@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+ }
+
+.heading {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-left: 0px;
+    background-color: #2D9CDB;
+    z-index: 20;
+    text-align: center;
+}
+
+.main-area {
+    position: fixed;
+    top: 80px;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.app-title {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 20pt;
+}
+
+.search-bar {
+    top: 0;
+    padding: 10px;
+    margin-bottom: 30px;
+    background: #E5E5E5;
+    border-radius: 20px;
+}
+
+.search-bar img {
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.search-bar p {
+    display: inline;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 20px;
+
+    color: #000000;
+}
+
+.search-option-button {
+    height: 170px;
+    background: #2D9CDB;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.search-option-button img {
+    margin-left: 50px;
+    margin-right: 90px;
+    width: 90px;
+    vertical-align: middle;
+}
+
+.search-option-button p {
+    display: inline;
+    line-height: 170px;
+    color: #FFFFFF;
+    font-size: 20pt;
+}
+
+.homebar {
+    background-color: #E5E5E5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-left: 0px;
+}
+
+.homebar-icons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row: 1;
+    text-align: center;
+}
