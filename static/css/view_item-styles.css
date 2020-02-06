@@ -15,7 +15,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    padding-left: 0px;
+    padding: 10px 10px 10px 10px;
     background-color: #2D9CDB;
     z-index: 20;
 }
@@ -24,6 +24,11 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-row: 1;
+}
+
+#heading-back {
+    height: auto;
+    padding: 10px;
 }
 
 .profile {
@@ -45,7 +50,8 @@ body {
 }
 .profile-fav {
     grid-area: 2 / 2 / 3 / 3;
-    padding-top: 70px;
+    padding-top: 100px;
+    padding-right: 20px;
     text-align: right;
     z-index: 10;
 }
@@ -94,6 +100,8 @@ body {
     bottom: 0;
     width: 100%;
     padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .homebar-icons {

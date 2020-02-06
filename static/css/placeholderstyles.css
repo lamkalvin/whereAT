@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+ }
+
+.parent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.heading {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    background-color: #2D9CDB;
+    z-index: 20;
+}
+
+.heading-elem {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row: 1;
+}
+
+#heading-back {
+    height: auto;
+    padding: 10px;
+}
+
+.matchtile {
+    margin-top: 120px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.homebar {
+    background-color: #E5E5E5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.homebar-icons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row: 1;
+    text-align: center;
+}
