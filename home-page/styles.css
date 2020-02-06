@@ -8,7 +8,8 @@ body {
     top: 0;
     width: 100%;
     padding-left: 0px;
-    background-color: #2D9CDB;
+    background-color: #DCDCDC;
+    /* background-color: #2D9CDB; */
     z-index: 20;
     text-align: center;
 }
@@ -23,7 +24,8 @@ body {
 
 .app-title {
     text-align: center;
-    color: #FFFFFF;
+    color: #A9A9A9;
+    /* color: #FFFFFF; */
     font-size: 20pt;
 }
 
@@ -47,13 +49,13 @@ body {
     font-weight: normal;
     font-size: 20px;
     line-height: 20px;
-
-    color: #000000;
+    color: #696969;
 }
 
 .search-option-button {
     height: 170px;
-    background: #2D9CDB;
+    background: #E5E5E5;
+    /* background: #2D9CDB; */
     border-radius: 20px;
     margin-bottom: 20px;
 }
@@ -68,7 +70,8 @@ body {
 .search-option-button p {
     display: inline;
     line-height: 170px;
-    color: #FFFFFF;
+    color: #A9A9A9;
+    /* color: #FFFFFF; */
     font-size: 20pt;
 }
 
