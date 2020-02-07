@@ -73,14 +73,13 @@ body {
     text-align: center;
 }
 
-.search-option-button p {
+.search-option-button-text {
     color: #A9A9A9;
     /* color: #FFFFFF; */
     font-size: 20pt;
     margin: auto;
+    grid-area: 1 / 2 / 2 / 3;
     text-align: center;
-    border-style: solid;
-    border-color: black;
 }
 
 .homebar {

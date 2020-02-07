@@ -44,12 +44,16 @@ body {
 
 .study-space {
     display: grid;
-    grid-template-columns: 100px 1fr 100px;
+    grid-template-columns: 4fr 1fr;
+    padding: 10px;
+}
+
+.study-space-text {
 }
 
 .study-space img {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     object-fit: cover;
     border-radius: 25px;
 }
