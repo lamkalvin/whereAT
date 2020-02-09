@@ -4,6 +4,9 @@ import Nav from 'react-bootstrap/Nav';
 import home from '../assets/homebar/home.png';
 import settings from '../assets/homebar/settings.png';
 import favorites from '../assets/homebar/star.png';
+import {
+    Link
+} from "react-router-dom";
 
 const Botnav = styled(Nav)`
     background-color: #e6e6e6;
@@ -12,22 +15,20 @@ const Botnav = styled(Nav)`
     bottom: 0;
 `;
 
+const NavImg = styled.img`
+    margin: 10px auto 10px auto;
+`;
+
 const Homebar = () => (
     <Botnav fill className="justify-content-center" activeKey="/home">
         <Nav.Item>
-            <Nav.Link eventKey="link-1">
-                <img src={favorites} />
-            </Nav.Link>
+            <Link to="/favorites"><NavImg src={favorites} /></Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link href="/home">
-                <img src={home} />
-            </Nav.Link>
+            <Link to="/"><NavImg src={home} /></Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link eventKey="link-2">
-                <img src={settings} />
-            </Nav.Link>
+            <Link to="/settings"><NavImg src={settings} /></Link>
         </Nav.Item>
     </Botnav>
 );

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Jumbotron from 'react-bootstrap/jumbotron';
 import Container from 'react-bootstrap/container';
 import Button from 'react-bootstrap/button';
+import {
+    Link
+} from "react-router-dom";
 
 const Centered = styled(Container)`
     text-align: center;
@@ -12,9 +15,11 @@ const Survey = () => (
     <Centered>
         <h3>Been here before?</h3>
         <p>
-        Improve our data by doing our survey!
+            Improve our data by doing our survey!
         </p>
-        <Button variant="primary">Survey</Button>
+        <Link to="/survey">
+            <Button variant="primary">Survey</Button>
+        </Link>
     </Centered>
     </Jumbotron>
 );
