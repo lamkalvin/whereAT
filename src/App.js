@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Settings from './routes/settings';
+import SurveyView from './routes/survey';
 import ViewSpace from './routes/view-space/the-think-tank';
 import Homebar from './components/homebar';
 import {
@@ -22,7 +23,11 @@ export default function App() {
           <Route path="/view-space">
             <ViewSpace />
           </Route>
+          <Route path="/survey">
+            <SurveyView />
+          </Route>
           <Route path="/">
+            {/* TODO home */}
           </Route>
         </Switch>
       </div>
@@ -30,17 +35,3 @@ export default function App() {
     </Router>
   );
 }
-
-// class App extends React.Component {
-//   constructor (props){
-//     super (props)
-//   }
-//   render () {
-//     return ([
-//       <ViewSpace />, // FIXME / TODO : TEMPORARILY FOR TESTING
-//       <Homebar />
-//     ])
-//   }
-// }
-
-// export default App;
