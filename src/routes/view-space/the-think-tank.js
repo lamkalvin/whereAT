@@ -18,7 +18,8 @@ const Title = styled(Navbar.Brand)`
 `;
 
 const BufferDiv = styled.div`
-    margin-bottom: 50px;
+    margin: 50px auto 50px auto;
+    width: 85%;
 `;
 
 const Parent = styled.div`
@@ -45,30 +46,32 @@ function Seats(seats) {
 };
 
 function Description(desc) {
-    return <div style={{gridArea: '2 / 1 / 3 / 3'}}>
+    return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
         <h3>Description</h3>
         <p>Active study spaces inside Galbraith Hall</p>
     </div>
 };
 
 const ViewSpace = () => (
-    <BufferDiv>
+    <div>
         <Topbar expand="lg" sticky="top">
             <img src={back} />
             <Title href="#">
-                <h1 style={{color: 'white'}}>The Think Tank</h1>
+                <h1 style={{ color: 'white' }}>The Think Tank</h1>
             </Title>
         </Topbar>
         <Profile />
-        <Parent>
-            <Hours />
-            <Seats />
-            <Description />
-            <Ambience val='med'/>
-            <Popularity val='med'/>
-        </Parent>
-    <Survey />
-    </BufferDiv>
+        <BufferDiv>
+            <Parent>
+                <Hours />
+                <Seats />
+                <Description />
+                <Ambience val='med' />
+                <Popularity val='med' />
+            </Parent>
+        </BufferDiv>
+        <Survey />
+    </div>
 );
 
 export default ViewSpace;
