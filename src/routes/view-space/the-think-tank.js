@@ -1,21 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from 'react-bootstrap/Navbar';
-import back from '../../assets/back.png';
 import Profile from '../../components/ttt-profile'
 import Ambience from '../../components/ambience'
 import Popularity from '../../components/popularity';
 import Survey from '../../components/survey';
-
-const Topbar = styled(Navbar)`
-    background-color: #2D9CDB;
-`;
-
-const Title = styled(Navbar.Brand)`
-    text-align: center;
-    width: 75%;
-    color: white;
-`;
+import Topbar from '../../components/topbar';
 
 const BufferDiv = styled.div`
     margin: 50px auto 50px auto;
@@ -54,12 +43,7 @@ function Description(desc) {
 
 const ViewSpace = () => (
     <div>
-        <Topbar expand="lg" sticky="top">
-            <img src={back} />
-            <Title href="#">
-                <h1 style={{ color: 'white' }}>The Think Tank</h1>
-            </Title>
-        </Topbar>
+        <Topbar title='The Think Tank' hasBack={true} />
         <Profile />
         <BufferDiv>
             <Parent>
