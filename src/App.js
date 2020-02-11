@@ -2,11 +2,9 @@ import React from 'react';
 import './App.css';
 import Settings from './routes/settings';
 import ViewSpace from './routes/view-space/the-think-tank';
+import SurveyView from './routes/surveyView'
 import Search from './routes/search';
-import {
-  Survey,
-  Homebar
-} from './components';
+import {Homebar} from './components';
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,7 +43,7 @@ export default class App extends React.Component {
               <ViewSpace />
             </Route>
             <Route path="/survey">
-              <Survey />
+              <SurveyView />
             </Route>
             <Route path="/search">
               <Search />
