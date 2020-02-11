@@ -1,22 +1,38 @@
 import React from 'react';
 import './App.css';
 import Settings from './routes/settings';
-import SurveyView from './routes/survey';
-import Search from './routes/search';
 import ViewSpace from './routes/view-space/the-think-tank';
-import Homebar from './components/homebar';
-
+import SurveyView from './routes/surveyView'
+import Search from './routes/search';
+import {Homebar} from './components';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
+import LandingPage from './routes/landingPage/LandingPage';
+import HomePage from './routes/homePage';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false
+    };
+    this.login = this.login.bind(this);
+  }
+
+  login() {
+    this.setState({
+      loggedIn: true
+    });
+  }
+
   render() {
     return (
       <Router>
-        <div>
+        <div style={{height: '100%'}}>
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
@@ -32,8 +48,15 @@ export default class App extends React.Component {
             <Route path="/search">
               <Search />
             </Route>
+            <Route path='/login'>
+              {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
+            </Route>
             <Route path="/">
-              {/* TODO home */}
+              {this.state.loggedIn ? <HomePage /> : <Redirect to='/login'/>}
+            </Route>
+            <Route path='*'>
+              {/* Might want to make this a 404*/}
+              <HomePage />
             </Route>
           </Switch>
         </div>
