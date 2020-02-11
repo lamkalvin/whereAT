@@ -1,8 +1,9 @@
-import Ambience from './ambience.js';
-import Homebar from './homebar.js';
-import Popularity from './popularity.js';
-import SurveyForm from './survey-form.js';
-import Survey from './survey.js';
-import Profile from './ttt-profile.js';
+import Ambience from './ambience';
+import Homebar from './homebar';
+import Popularity from './popularity';
+import SurveyForm from './survey-form';
+import Survey from './survey';
+import Profile from './ttt-profile';
+import Topbar from './topbar';
 
-export { Ambience, Homebar, Popularity, SurveyForm, Survey, Profile };
+export { Ambience, Homebar, Popularity, SurveyForm, Survey, Profile, Topbar };
