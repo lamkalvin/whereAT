@@ -13,8 +13,7 @@ import {
 } from "react-router-dom";
 import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
-import NearYouPage from './routes/nearYouPage';
-import SearchByClassPage from './routes/searchByClassPage';
+import LocationSearchPage from './routes/locationSearchPage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -50,11 +49,8 @@ export default class App extends React.Component {
             <Route path="/search">
               <Search />
             </Route>
-            <Route path="/near-you-results">
-              <NearYouPage />
-            </Route>
-            <Route path="/class-search">
-              <SearchByClassPage />
+            <Route path="/location-search">
+              <LocationSearchPage />
             </Route>
             <Route path='/login'>
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
@@ -68,7 +64,7 @@ export default class App extends React.Component {
             </Route>
           </Switch>
         </div>
-        <Homebar onClick={this.handleClick} />
+        {this.state.loggedIn ? <Homebar onClick={this.handleClick}/> : null}
       </Router>
     );
   }

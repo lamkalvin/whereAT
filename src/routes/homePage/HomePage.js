@@ -11,7 +11,6 @@ import styled from 'styled-components';
 const searchIcon = require('../../assets/search.png');
 const pencilIcon = require('../../assets/icons/pencil.png');
 const pinIcon = require('../../assets/icons/pin.png');
-const routeIcon = require('../../assets/icons/route.png')
 const stackIcon = require('../../assets/icons/stack.png');
 
 const TileButton = styled(Button)`
@@ -44,17 +43,12 @@ const HomePage = () => (
 
             <TileButton href='/search'>
                 <Image src={pencilIcon} style={{paddingRight: '20px'}}/>
-                Search for study spaces by preferences
+                Specify preferences
             </TileButton>
 
-            <TileButton href='/near-you-results'>
+            <TileButton href='/location-search'>
                 <Image src={pinIcon} style={{paddingRight: '20px'}}/>
-                Study spaces near you
-            </TileButton>
-
-            <TileButton href='/class-search'>
-                <Image src={routeIcon} style={{paddingRight: '20px'}}/>
-                Where is your next class?
+                Search by location
             </TileButton>
 
             <TileButton>
