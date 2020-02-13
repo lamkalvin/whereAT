@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Settings from './routes/settings';
-import ViewSpace from './routes/view-space/the-think-tank';
+import ViewSpace from './routes/view-space';
 import SurveyView from './routes/surveyView'
 import Search from './routes/search';
 import {Homebar} from './components';
@@ -16,6 +16,8 @@ import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
 import LocationSearchPage from './routes/locationSearchPage';
 import RecentlyViewedPage from './routes/recentlyViewedPage';
+
+let spaces = require('./study-spaces.json');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -46,7 +48,7 @@ export default class App extends React.Component {
               <Settings />
             </Route>
             <Route path="/view-space">
-              <ViewSpace />
+              <ViewSpace data={spaces.data[0]} />
             </Route>
             <Route path="/survey">
               <SurveyView />
@@ -68,7 +70,7 @@ export default class App extends React.Component {
             </Route>
           </Switch>
         </div>
-        {this.state.loggedIn ? <Homebar onClick={this.handleClick}/> : null}
+        <Homebar onClick={this.handleClick}/>
       </Router>
     );
   }
