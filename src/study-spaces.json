@@ -4,9 +4,21 @@
     {
       "title": "The Think Tank",
       "description": "Active study spaces located inside Galbraith Hall",
-      "imageFilePath": "../assets/study-spaces/galbraith.jpg",
+      "imageFilePath": "/study-spaces/galbraith.jpg",
       "distance": "2 miles away",
-      "tags": "Active, Quiet, Crowded"  
+      "tags": "Active, Quiet, Crowded",
+      "time": "8 a.m. to 11 p.m. daily",
+      "seats": 48,
+      "description": "Active study spaces inside Galbraith Hall",
+      "ambience": "med",
+      "popularity": "med",
+      "maxGroupSize": 4,
+      "outlet": true,
+      "computer": false,
+      "food": true,
+      "printer": false,
+      "usb": false,
+      "whiteboard": false
     }
   ]
 }
