@@ -14,6 +14,8 @@ import {
 } from "react-router-dom";
 import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
+import LocationSearchPage from './routes/locationSearchPage';
+import RecentlyViewedPage from './routes/recentlyViewedPage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -52,19 +54,21 @@ export default class App extends React.Component {
             <Route path="/search">
               <Search />
             </Route>
+            <Route path="/location-search">
+              <LocationSearchPage />
+            </Route>
+            <Route path="/recently-viewed">
+              <RecentlyViewedPage />
+            </Route>
             <Route path='/login'>
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
             </Route>
             <Route path="/">
               {this.state.loggedIn ? <HomePage /> : <Redirect to='/login'/>}
             </Route>
-            <Route path='*'>
-              {/* Might want to make this a 404*/}
-              <HomePage />
-            </Route>
           </Switch>
         </div>
-        <Homebar onClick={this.handleClick} />
+        {this.state.loggedIn ? <Homebar onClick={this.handleClick}/> : null}
       </Router>
     );
   }

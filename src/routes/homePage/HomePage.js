@@ -43,17 +43,17 @@ const HomePage = () => (
 
             <TileButton href='/search'>
                 <Image src={pencilIcon} style={{paddingRight: '20px'}}/>
-                Search By Preferences
+                Specify preferences
             </TileButton>
 
-            <TileButton>
+            <TileButton href='/location-search'>
                 <Image src={pinIcon} style={{paddingRight: '20px'}}/>
-                Places Near You
+                Search by location
             </TileButton>
 
-            <TileButton>
+            <TileButton href='/recently-viewed'>
                 <Image src={stackIcon} style={{paddingRight: '20px'}}/>
-                Recently Viewed
+                Recently viewed
             </TileButton>
         </div>
         <div>
