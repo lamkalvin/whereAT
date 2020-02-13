@@ -5,6 +5,7 @@ import ViewSpace from './routes/view-space/the-think-tank';
 import SurveyView from './routes/surveyView'
 import Search from './routes/search';
 import {Homebar} from './components';
+import Favorites from "./routes/favorites";
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,6 +39,9 @@ export default class App extends React.Component {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
+            <Route path="/favorites">
+              <Favorites />
+            </Route>
             <Route path="/settings">
               <Settings />
             </Route>
