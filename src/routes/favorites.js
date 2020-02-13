@@ -1,21 +1,42 @@
 import React from "react";
-import {Card} from "react-bootstrap";
 import {
   StudySpaceCard,
   Topbar
 } from "../components";
-import styled from "styled-components";
+
+var study_spaces = require("../study-spaces.json");
+
+// TODO: Delete this. This is only a temporary solution to the handle click
+//   callback.
+function handleClick() {
+  console.log("I've been clicked! Bless this day.")
+}
+
 
 // TODO: Read from the static database here to generate a list of study space
 //   cards.
 function renderFavoritesList() {
-  return <StudySpaceCard
-    title="The Think Tank"
-    description="Active study spaces located inside Galbraith Hall"
-    imageFilePath="../assets/study-spaces/galbraith.jpg"
-    distance="2 miles away"
-    tags="Active, Quiet, Crowded"
-  />;
+  // TODO: Figure out how to iterate through the list and dynamically create the
+  //   HTML. Following the labs' example, handlebars allows you to use the #each
+  //   helper.
+  return <div>
+    <StudySpaceCard
+      title={study_spaces.data[0].title}
+      description={study_spaces.data[0].description}
+      imageFilePath={study_spaces.data[0].imageFilePath}
+      distance={study_spaces.data[0].distance}
+      tags={study_spaces.data[0].tags}
+      handleClick={study_spaces.data[0].handleClick}
+    />
+    <StudySpaceCard
+      title={study_spaces.data[0].title}
+      description={study_spaces.data[0].description}
+      imageFilePath={study_spaces.data[0].imageFilePath}
+      distance={study_spaces.data[0].distance}
+      tags={study_spaces.data[0].tags}
+      handleClick={study_spaces.data[0].handleClick}
+    />
+  </div>;
 }
 
 const Favorites = () => (

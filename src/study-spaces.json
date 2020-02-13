@@ -1,0 +1,13 @@
+{
+  "size": 1,
+  "data": [
+    {
+      "title": "The Think Tank",
+      "description": "Active study spaces located inside Galbraith Hall",
+      "imageFilePath": "../assets/study-spaces/galbraith.jpg",
+      "distance": "2 miles away",
+      "tags": "Active, Quiet, Crowded"
+      
+    }
+  ]
+}

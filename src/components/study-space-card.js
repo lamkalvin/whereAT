@@ -1,7 +1,7 @@
 import React from "react";
+// TODO: Use styled components
 import styled from "styled-components";
 import {
-  Container,
   Card
 } from 'react-bootstrap';
 
@@ -13,25 +13,23 @@ import {
  */
 // TODO: Link the card to the corresponding detail page.
 const StudySpaceCard = (props) => (
-  <a style={{ color: 'inherit' }} href="">
-    <Card style={{ height: '10rem', width: '100%', flexDirection: 'row', overflow: 'scroll' }}>
-      <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-        <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={require("../assets/study-spaces/galbraith.jpg")} />
-      </div>
-      <Card.Body>
-        <Card.Title style={{ fontSize: '100%' }}>{props.title}</Card.Title>
-        <Card.Text style={{ fontSize: '60%' }}>
-          {props.description}
-        </Card.Text>
-        <Card.Text style={{ fontSize: '75%' }}>
-          {props.distance}
-        </Card.Text>
-        <Card.Text style={{ fontSize: '60%' }}>
-          Tags: {props.tags}
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  </a>
+  <Card style={{ height: '10rem', width: '100%', flexDirection: 'row', overflow: 'scroll' }} onClick={props.handleClick}>
+    <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
+      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={require("../assets/study-spaces/galbraith.jpg")} />
+    </div>
+    <Card.Body>
+      <Card.Title style={{ fontSize: '100%' }}>{props.title}</Card.Title>
+      <Card.Text style={{ fontSize: '60%' }}>
+        {props.description}
+      </Card.Text>
+      <Card.Text style={{ fontSize: '75%' }}>
+        {props.distance}
+      </Card.Text>
+      <Card.Text style={{ fontSize: '60%' }}>
+        Tags: {props.tags}
+      </Card.Text>
+    </Card.Body>
+  </Card>
 );
 /*
  * Sources of Help:
