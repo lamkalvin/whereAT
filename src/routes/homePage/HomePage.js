@@ -51,7 +51,7 @@ const HomePage = () => (
                 Search by location
             </TileButton>
 
-            <TileButton>
+            <TileButton href='/recently-viewed'>
                 <Image src={stackIcon} style={{paddingRight: '20px'}}/>
                 Recently viewed
             </TileButton>
