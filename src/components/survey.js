@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Jumbotron from 'react-bootstrap/jumbotron';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/container';
 import Button from 'react-bootstrap/button';
 import {
