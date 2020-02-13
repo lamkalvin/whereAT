@@ -26,7 +26,7 @@ function renderFavoritesList() {
       imageFilePath={study_spaces.data[0].imageFilePath}
       distance={study_spaces.data[0].distance}
       tags={study_spaces.data[0].tags}
-      handleClick={study_spaces.data[0].handleClick}
+      handleClick={handleClick}
     />
     <StudySpaceCard
       title={study_spaces.data[0].title}
