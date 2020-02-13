@@ -5,6 +5,7 @@ import back from '../assets/back.png';
 
 const Title = styled(Navbar.Brand)`
     width: 100%;
+    text-wrap: normal;
 `;
 
 const StyledNav = styled(Navbar)`
@@ -13,9 +14,14 @@ const StyledNav = styled(Navbar)`
 
 const Topbar = (props) => (
     <StyledNav expand="lg" sticky="top">
-        { props.hasBack && <img src={back} onClick={() => window.history.back()} />}
+        { props.hasBack &&
+        <img
+            src={back} 
+            onClick={() => window.history.back()}
+            style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
+        />}
         <Title href="#">
-            <h1 style={{ color: 'white', textAlign: 'center' }}>{props.title}</h1>
+            <h1 style={{ color: 'white', textAlign: 'center', fontSize: props.titleSize }}>{props.title}</h1>
         </Title>
     </StyledNav>
 );
