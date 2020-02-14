@@ -114,7 +114,7 @@ const SearchForm = () => {
                 </Form.Row>
             </Form.Group>
 
-            <div style={{ textAlign: 'right' }}>
+            <div style={{ textAlign: 'right', marginBottom: '100px' }}>
                 <Link to="/view-space">
                     <Button variant="primary" type="submit">
                         Submit

@@ -15,7 +15,7 @@ import {
 const StudySpaceCard = (props) => (
   <Card style={{ height: '10rem', width: '100%', flexDirection: 'row', overflow: 'scroll' }} onClick={props.handleClick}>
     <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={require("../assets/study-spaces/galbraith.jpg")} />
+      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.imageFilePath} />
     </div>
     <Card.Body>
       <Card.Title style={{ fontSize: '100%' }}>{props.title}</Card.Title>
