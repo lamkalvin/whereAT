@@ -80,7 +80,7 @@ const SurveyForm = () => {
                 </div>
             </Form.Group>
 
-            <div style={{ textAlign: 'center', marginTop: '10%' }}>
+            <div style={{ textAlign: 'center', marginTop: '10%', marginBottom: '100px' }}>
                 <p>
                     Once submitted, we will review your survey and adjust statistics
                     for a study space on a case-by-case basis!

@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import {Topbar} from '../../components';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const searchIcon = require('../../assets/search.png');
 const pencilIcon = require('../../assets/icons/pencil.png');
@@ -41,20 +42,26 @@ const HomePage = () => (
                 <FormControl placeholder="Search"/>
             </InputGroup>
 
-            <TileButton href='/search'>
-                <Image src={pencilIcon} style={{paddingRight: '20px'}}/>
-                Specify preferences
-            </TileButton>
+            <Link to="/search">
+                <TileButton type="submit">
+                    <Image src={pencilIcon} style={{paddingRight: '20px'}}/>
+                    Specify preferences
+                </TileButton>
+            </Link>
 
-            <TileButton href='/location-search'>
-                <Image src={pinIcon} style={{paddingRight: '20px'}}/>
-                Search by location
-            </TileButton>
+            <Link to="/location-search">
+                <TileButton type="submit">
+                    <Image src={pinIcon} style={{paddingRight: '20px'}}/>
+                    Search by location
+                </TileButton>
+            </Link>
 
-            <TileButton href='/recently-viewed'>
-                <Image src={stackIcon} style={{paddingRight: '20px'}}/>
-                Recently viewed
-            </TileButton>
+            <Link to="/recently-viewed">
+                <TileButton type="submit">
+                    <Image src={stackIcon} style={{paddingRight: '20px'}}/>
+                    Recently viewed
+                </TileButton>
+            </Link>
         </div>
         <div>
             

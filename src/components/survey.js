@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Jumbotron from 'react-bootstrap/jumbotron';
-import Container from 'react-bootstrap/container';
-import Button from 'react-bootstrap/button';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import {
     Link
 } from "react-router-dom";
