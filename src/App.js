@@ -45,6 +45,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log(!window.location.href.includes("login"));
     return (
       <Router>
         <div style={{height: '100%'}}>
@@ -53,37 +54,45 @@ export default class App extends React.Component {
           <Switch>
             <Route path="/search-results">
               <SearchResults data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/favorites">
               <Favorites />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/settings">
               <Settings handleClick={this.logout} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/view-space">
               <ViewSpace data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/survey">
               <SurveyView />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/search">
               <Search />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/location-search">
               <LocationSearchPage data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/recently-viewed">
               <RecentlyViewedPage data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path='/login'>
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
             </Route>
             <Route path="/">
               {this.state.loggedIn ? <HomePage history={history}/> : <Redirect to='/login'/>}
+              <Homebar onClick={this.handleClick}/>
             </Route>
           </Switch>
         </div>
-          { (history.location.pathname === "/login") ? !this.state.loggedIn : this.state.loggedIn && <Homebar onClick={this.handleClick}/> }
       </Router>
     );
   }
