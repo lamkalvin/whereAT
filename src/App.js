@@ -83,7 +83,7 @@ export default class App extends React.Component {
             </Route>
           </Switch>
         </div>
-          { ((history.location.pathname === "/login") ? !this.state.loggedIn : this.state.loggedIn) && <Homebar onClick={this.handleClick}/> }
+          { (history.location.pathname === "/login") ? !this.state.loggedIn : this.state.loggedIn && <Homebar onClick={this.handleClick}/> }
       </Router>
     );
   }
