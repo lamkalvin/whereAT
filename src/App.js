@@ -16,8 +16,10 @@ import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
 import LocationSearchPage from './routes/locationSearchPage';
 import RecentlyViewedPage from './routes/recentlyViewedPage';
+import { createBrowserHistory } from "history";
 
 let spaces = require('./study-spaces.json');
+const history = createBrowserHistory();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,11 +28,18 @@ export default class App extends React.Component {
       loggedIn: false
     };
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   login() {
     this.setState({
       loggedIn: true
+    });
+  }
+
+  logout() {
+    this.setState({
+      loggedIn: false
     });
   }
 
@@ -45,7 +54,7 @@ export default class App extends React.Component {
               <Favorites />
             </Route>
             <Route path="/settings">
-              <Settings />
+              <Settings handleClick={this.logout} />
             </Route>
             <Route path="/view-space">
               <ViewSpace data={spaces.data[0]} />
@@ -70,7 +79,7 @@ export default class App extends React.Component {
             </Route>
           </Switch>
         </div>
-        <Homebar onClick={this.handleClick}/>
+          { ((history.location.pathname === "/login") ? this.state.loggedIn : !this.state.loggedIn) && <Homebar onClick={this.handleClick}/> }
       </Router>
     );
   }
