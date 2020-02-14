@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Card from 'react-bootstrap/Card';
-import galbraith from '../assets/study-spaces/galbraith.jpg';
 
 const Overlay = styled(Card.ImgOverlay)`
     padding-top: 0px;
@@ -14,14 +13,13 @@ const Title = styled(Card.Title)`
     font-size: 150%;
 `;
 
-const Profile = () => (
+const Profile = (props) => (
+    
     <Card>
-        <Card.Img src={galbraith} alt="Card image" />
-        <Overlay>
-        {/* <Card.Body> */}
-            <Title>Galbraith Hall - The Think Tank</Title>
-        {/* </Card.Body> */}
-        </Overlay>
+        <Card.Img src={window.location.origin + props.img} alt="Card image" />
+        {/* <Overlay>
+            <Title>{props.title}</Title>
+        </Overlay> */}
     </Card>
 );
 

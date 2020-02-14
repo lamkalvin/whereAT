@@ -5,30 +5,40 @@ import {
 } from "../components";
 
 var study_spaces = require("../study-spaces.json");
+var dataHtml = [];
 
 // TODO: Delete this. This is only a temporary solution to the handle click
 //   callback.
 function handleClick() {
-  console.log("I've been clicked! Bless this day.")
+  console.log("I've been clicked! Bless this day.");
 }
 
+function handleClickDelete(event) {
+  console.log("I'm being deleted! NOOOO.");
+  // TODO: Use this code when actually deleting from the static db.
+  //var indexToDelete = event.target.getAttribute("index");
+  //dataHtml.splice(indexToDelete, 1);
+  // TODO: This is going to be dummy code for now.
+  document.getElementById("favorites-list").style.display = "none";
+}
 
-// TODO: Read from the static database here to generate a list of study space
-//   cards.
 function renderFavoritesList() {
-  var data = study_spaces.data
+  var data = study_spaces.data;
 
-  var dataHtml = []
+  dataHtml = [];
   for (var i = 0; i < data.length; i++) {
     var space = data[i];
     dataHtml.push(
       <StudySpaceCard
+        index={i}
         title={space.title}
         description={space.description}
         imageFilePath={space.imageFilePath}
         distance={space.distance}
         tags={space.tags}
         handleClick={handleClick}
+        hasRemove={true}
+        handleClickDelete={handleClickDelete}
       />
     );
   }
@@ -42,7 +52,8 @@ function renderFavoritesList() {
 
 const Favorites = () => (
   <div id="favorites" style={{ overflow: "scroll" }}>
-    <Topbar title="Favorites" hasBack={true} />
+    <Topbar title="Favorites" hasBack={true}/>
+
     <div id="favorites-list">
       {renderFavoritesList()}
     </div>
