@@ -1,48 +1,67 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   StudySpaceCard,
   Topbar
 } from "../components";
 
+// TODO: Read the JSON file from App.js
 var study_spaces = require("../study-spaces.json");
+var dataHtml = [];
 
 // TODO: Delete this. This is only a temporary solution to the handle click
 //   callback.
 function handleClick() {
-  console.log("I've been clicked! Bless this day.")
+  console.log("I've been clicked! Bless this day.");
+  // TODO: This is a workaround. Try to use the Link component in the future.
+  window.location.href = window.location.href.replace("/favorites", "/view-space");
 }
 
+function handleClickDelete(event) {
+  event.stopPropagation();
+  console.log("I'm being deleted! NOOOO.");
+  // TODO: Use this code when actually deleting from the static db.
+  //var indexToDelete = event.target.getAttribute("index");
+  //dataHtml.splice(indexToDelete, 1);
+  // TODO: This is going to be dummy code for now.
+  document.getElementById("favorites-list").style.display = "none";
+}
 
-// TODO: Read from the static database here to generate a list of study space
-//   cards.
 function renderFavoritesList() {
-  // TODO: Figure out how to iterate through the list and dynamically create the
-  //   HTML. Following the labs' example, handlebars allows you to use the #each
-  //   helper.
-  return <div>
-    <StudySpaceCard
-      title={study_spaces.data[0].title}
-      description={study_spaces.data[0].description}
-      imageFilePath={study_spaces.data[0].imageFilePath}
-      distance={study_spaces.data[0].distance}
-      tags={study_spaces.data[0].tags}
-      handleClick={handleClick}
-    />
-    <StudySpaceCard
-      title={study_spaces.data[0].title}
-      description={study_spaces.data[0].description}
-      imageFilePath={study_spaces.data[0].imageFilePath}
-      distance={study_spaces.data[0].distance}
-      tags={study_spaces.data[0].tags}
-      handleClick={study_spaces.data[0].handleClick}
-    />
-  </div>;
+  var data = study_spaces.data;
+
+  dataHtml = [];
+  for (var i = 0; i < data.length; i++) {
+    var space = data[i];
+    dataHtml.push(
+      <StudySpaceCard
+        index={i}
+        title={space.title}
+        description={space.description}
+        imageFilePath={space.imageFilePath}
+        distance={space.distance}
+        tags={space.tags}
+        handleClick={handleClick}
+        hasRemove={true}
+        handleClickDelete={handleClickDelete}
+      />
+    );
+  }
+
+  return dataHtml;
 }
+/*
+ * Sources of Help:
+ *  - Dynamically generating the list of study space cards: https://www.skptricks.com/2018/06/append-or-prepend-html-using-reactjs.html
+ **/
 
 const Favorites = () => (
-  <div>
-    <Topbar title="Favorites" hasBack={true} />
-    {renderFavoritesList()}
+  <div id="favorites" style={{ overflow: "scroll" }}>
+    <Topbar title="Favorites" hasBack={true}/>
+
+    <div id="favorites-list">
+      {renderFavoritesList()}
+    </div>
   </div>
 );
 

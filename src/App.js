@@ -6,6 +6,7 @@ import SurveyView from './routes/surveyView'
 import Search from './routes/search';
 import {Homebar} from './components';
 import Favorites from "./routes/favorites";
+import SearchResults from './routes/search-results';
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,6 +51,9 @@ export default class App extends React.Component {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
+            <Route path="/search-results">
+              <SearchResults data={spaces.data[0]} />
+            </Route>
             <Route path="/favorites">
               <Favorites />
             </Route>
@@ -66,10 +70,10 @@ export default class App extends React.Component {
               <Search />
             </Route>
             <Route path="/location-search">
-              <LocationSearchPage />
+              <LocationSearchPage data={spaces.data[0]} />
             </Route>
             <Route path="/recently-viewed">
-              <RecentlyViewedPage />
+              <RecentlyViewedPage data={spaces.data[0]} />
             </Route>
             <Route path='/login'>
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
