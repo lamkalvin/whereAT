@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   StudySpaceCard,
   Topbar
 } from "../components";
 
+// TODO: Read the JSON file from App.js
 var study_spaces = require("../study-spaces.json");
 var dataHtml = [];
 
@@ -11,9 +13,12 @@ var dataHtml = [];
 //   callback.
 function handleClick() {
   console.log("I've been clicked! Bless this day.");
+  // TODO: This is a workaround. Try to use the Link component in the future.
+  window.location.href = window.location.href.replace("/favorites", "/view-space");
 }
 
 function handleClickDelete(event) {
+  event.stopPropagation();
   console.log("I'm being deleted! NOOOO.");
   // TODO: Use this code when actually deleting from the static db.
   //var indexToDelete = event.target.getAttribute("index");
