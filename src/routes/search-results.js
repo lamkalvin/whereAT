@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   StudySpaceCard,
   Topbar
-} from '../../components';
+} from '../components';
 
 // TODO: Delete this. This is only a temporary solution to the handle click
 //   callback.
@@ -11,12 +11,12 @@ function handleClick() {
   console.log("I've been clicked! Bless this day.");
 }
 
-const RecentlyViewedPage = (props) => {
+const SearchResults = (props) => {
     const [noResults, setNoResults] = useState(false);
 
     return (
         <div>
-            <Topbar title='Recently Viewed' hasBack/>
+            <Topbar title='Search Results' hasBack/>
             <Link to="/view-space" style={{ textDecoration: "none" }}>
               <StudySpaceCard
                 title={props.data.title}
@@ -32,4 +32,4 @@ const RecentlyViewedPage = (props) => {
     );
 }
 
-export default RecentlyViewedPage;
+export default SearchResults;
