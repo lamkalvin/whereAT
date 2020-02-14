@@ -79,7 +79,7 @@ export default class App extends React.Component {
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
             </Route>
             <Route path="/">
-              {this.state.loggedIn ? <HomePage /> : <Redirect to='/login'/>}
+              {this.state.loggedIn ? <HomePage history={history}/> : <Redirect to='/login'/>}
             </Route>
           </Switch>
         </div>
