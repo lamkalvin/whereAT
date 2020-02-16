@@ -19,12 +19,12 @@ const Settings = (props) => (
     <div>
         <Topbar title='Settings' hasBack={true} />
         <BufferDiv>
-            <Link to="/login">
-                <Button variant="danger" size="lg" block onClick={props.handleClick}>
-                    {/* <img src={trash} style={{ marginRight: '10%', width: '15%' }} /> */}
-                    <p style={{ fontSize: '125%', display: 'inline' }}>Log out</p>
-                </Button>
-            </Link>
+            {/* <Link to="/login"> */}
+            <Button variant="danger" size="lg" block onClick={props.handleClick}>
+                <img src={trash} style={{ marginRight: '10%', width: '15%' }} />
+                <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
+            </Button>
+            {/* </Link> */}
             <Disclaimer>
                 <p style={{color: '#2D9CDB'}}>
                     <b>where@</b> has been created by Andy Duong, Kalvin Lam, and Bella Le for COGS 120 / CSE 170!

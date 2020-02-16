@@ -115,7 +115,6 @@ const SearchForm = () => {
     }
 
     function createNewPreset(presetName) {
-        console.log(userPresets.data);
         userPresets.data.push({
             'title': presetName,
             'preset': {
@@ -130,8 +129,8 @@ const SearchForm = () => {
                 'food': food
             }
         })
+        setPresetDropdown(presetName);
         localStorage.setItem('userPresets', JSON.stringify(userPresets));
-        clearInput();
     }
 
     function createPresets() {

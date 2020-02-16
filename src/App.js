@@ -30,6 +30,7 @@ export default class App extends React.Component {
         };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
+        this.clearAllLocalData = this.clearAllLocalData.bind(this);
     }
 
     login() {
@@ -48,10 +49,15 @@ export default class App extends React.Component {
         const userPresets = localStorage.getItem('userPresets');
         if (!userPresets) {
             localStorage.setItem('userPresets', JSON.stringify({
-                    "data": []
-                }
-            ))
+                "data": []
+            }))
         }
+    }
+
+    clearAllLocalData() {
+        localStorage.setItem('userPresets', JSON.stringify({
+            "data": []
+        }))
     }
 
     render() {
@@ -71,7 +77,7 @@ export default class App extends React.Component {
                             <Homebar onClick={this.handleClick} />
                         </Route>
                         <Route path="/settings">
-                            <Settings handleClick={this.logout} />
+                            <Settings handleClick={this.clearAllLocalData} />
                             <Homebar onClick={this.handleClick} />
                         </Route>
                         <Route path="/view-space">
