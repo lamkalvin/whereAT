@@ -46,7 +46,8 @@ const LocationSearchPage = (props) => {
                     width: '80%'
                 }}
             />
-            <Link to="/view-space" style={{ textDecoration: "none" }}>
+            <Link to={{ state: {data : props.data}, pathname: "/view-space" }}
+              style={{ textDecoration: "none" }}>
               <StudySpaceCard
                 title={props.data.title}
                 description={props.data.description}

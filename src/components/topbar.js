@@ -17,11 +17,11 @@ const Topbar = (props) => (
         { props.hasBack &&
         <img
             src={back} 
-            onClick={() => window.history.back()}
+            onClick={props.handleClick ? (() => props.handleClick()) : (() => window.history.back())}
             style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
         />}
-        <Title href="#">
-            <h1 style={{ color: 'white', textAlign: 'center', fontSize: props.titleSize }}>{props.title}</h1>
+        <Title>
+            <h2 style={{ color: 'white', textAlign: 'center', fontSize: props.titleSize }}>{props.title}</h2>
         </Title>
     </StyledNav>
 );

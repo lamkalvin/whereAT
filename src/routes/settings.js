@@ -22,7 +22,7 @@ const Settings = (props) => (
             <Link to="/login">
                 <Button variant="danger" size="lg" block onClick={props.handleClick}>
                     {/* <img src={trash} style={{ marginRight: '10%', width: '15%' }} /> */}
-                    <p style={{ fontSize: '125%', display: 'inline' }}>Log out</p>
+                    <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
                 </Button>
             </Link>
             <Disclaimer>
