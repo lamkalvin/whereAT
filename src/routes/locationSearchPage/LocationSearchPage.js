@@ -7,6 +7,17 @@ import {
 } from '../../components';
 import styled from 'styled-components';
 
+let locations = [
+  '',
+  'General Campus Locations',
+  'Marshall College',
+  'Muir College',
+  'Revelle College',
+  'Roosevelt College',
+  'Sixth College',
+  'Sports Facilities',
+  'Warren College'
+]
 
 const StyledText = styled.h3`
     margin-top: 20px;
@@ -20,22 +31,24 @@ function handleClick() {
 }
 
 const LocationSearchPage = (props) => {
-    const [noResults, setNoResults] = useState(false);
+    const [searchLocation, setSearchLocation] = useState(0);
+    const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
     return (
         <div>
             <Topbar title="Location Search" hasBack={true} titleSize={'24pt'}/>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
                 <Form.Group style={{width: '80%', margin: '20px auto 10px'}}>
                     <Form.Label>Select the location that you would like to search:</Form.Label>
-                    <Form.Control as="select">
-                        <option>General Campus Locations</option>
-                        <option>Marshall College</option>
-                        <option>Muir College</option>
-                        <option>Revelle College</option>
-                        <option>Roosevelt College</option>
-                        <option>Sixth College</option>
-                        <option>Sports Facilities</option>
-                        <option>Warren College</option>
+                    <Form.Control as="select" onChange={e => setSearchLocation(e.target.value)} value={searchLocation}>
+                        <option value={0}>Select a location...</option>
+                        <option value={1}>General Campus Locations</option>
+                        <option value={2}>Marshall College</option>
+                        <option value={3}>Muir College</option>
+                        <option value={4}>Revelle College</option>
+                        <option value={5}>Roosevelt College</option>
+                        <option value={6}>Sixth College</option>
+                        <option value={7}>Sports Facilities</option>
+                        <option value={8}>Warren College</option>
                     </Form.Control>
                 </Form.Group>
             </div>
@@ -46,18 +59,19 @@ const LocationSearchPage = (props) => {
                     width: '80%'
                 }}
             />
-            <Link to={{ state: {data : props.data}, pathname: "/view-space" }}
-              style={{ textDecoration: "none" }}>
-              <StudySpaceCard
-                title={props.data.title}
-                description={props.data.description}
-                imageFilePath={props.data.imageFilePath}
-                distance={props.data.distance}
-                tags={props.data.tags}
-                handleClick={handleClick}
-                hasRemove={false}
-              />
-            </Link>
+            {filteredData.map((d,i) => {return (
+              <Link to={{ state: {data : d}, pathname: "/view-space"}} style= {{ textDecoration: "none"}} key={i}>
+                <StudySpaceCard
+                  title={d.title}
+                  description={d.description}
+                  imageFilePath={d.imageFilePath}
+                  distance={d.distance}
+                  tags={d.tags}
+                  handleClick={handleClick}
+                  hasRemove={false}
+                />
+              </Link>
+            )})}
         </div>
     )
 ;}

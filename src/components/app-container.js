@@ -81,7 +81,7 @@ function Container({ location }) {
                                 <Search />
                             </Route>
                             <Route path="/location-search">
-                                <LocationSearchPage data={spaces.data[0]} />
+                                <LocationSearchPage data={spaces.data} />
                             </Route>
                             <Route path="/recently-viewed">
                                 <RecentlyViewedPage data={spaces.data[0]} />
