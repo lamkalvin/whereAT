@@ -3,7 +3,7 @@ import './App.css';
 import Settings from './routes/settings';
 import ViewSpace from './routes/view-space';
 import Search from './routes/search';
-import {Homebar} from './components';
+import { Homebar } from './components';
 import Favorites from "./routes/favorites";
 import SearchResults from './routes/search-results';
 import {
@@ -20,29 +20,44 @@ let spaces = require('./study-spaces.json');
 const history = createBrowserHistory();
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedIn: false
-    };
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false
+        };
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+        this.clearAllLocalData = this.clearAllLocalData.bind(this);
+    }
 
-  login() {
-    this.setState({
-      loggedIn: true
-    });
-  }
+    login() {
+        this.setState({
+            loggedIn: true
+        });
+    }
 
-  logout() {
-    this.setState({
-      loggedIn: false
-    });
-  }
+    logout() {
+        this.setState({
+            loggedIn: false
+        });
+    }
+
+    componentDidMount() {
+        const userPresets = localStorage.getItem('userPresets');
+        if (!userPresets) {
+            localStorage.setItem('userPresets', JSON.stringify({
+                "data": []
+            }))
+        }
+    }
+
+    clearAllLocalData() {
+        localStorage.setItem('userPresets', JSON.stringify({
+            "data": []
+        }))
+    }
 
   render() {
-    
     return (
       <Router>
         <div style={{height: '100%'}}>
@@ -52,7 +67,7 @@ export default class App extends React.Component {
             <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]}/>} />
             <Route path="/favorites" render={() => <Favorites />} />
             <Route path="/settings">
-              <Settings handleClick={this.logout} />
+              <Settings handleClick={this.clearAllLocalData} />
             </Route>
             <Route path="/view-space" component={ViewSpace} />
             <Route path="/search">
