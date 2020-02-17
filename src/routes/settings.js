@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import trash from '../assets/trash.png';
 import Topbar from '../components/topbar';
-import SettingsToast from '../components/settingsToast';
+import SettingsToast from '../components/settings-toast';
 
 const BufferDiv = styled.div`
     margin: 50px auto 50px auto;
