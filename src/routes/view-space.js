@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Profile from '../components/profile';
 import Ambience from '../components/ambience';
 import Popularity from '../components/popularity';
-import SurveyToast from '../components/toast';
+import SurveyToast from '../components/survey-toast';
 import Topbar from '../components/topbar';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
