@@ -173,7 +173,7 @@
     {
       "location": "Sports Facilities",
       "title": "RIMAC Annex Glider Lounge",
-      "description": [],
+      "description": ["No description."],
       "imageFilePath": "/study-spaces/ucsd.jpg",
       "distance": "",
       "tags": ["Active", "Quiet"],
@@ -197,7 +197,7 @@
     {
       "location": "Warren College",
       "title": "Warren College Study Lounge in CSE Building",
-      "description": [],
+      "description": ["No description."],
       "imageFilePath": "/study-spaces/ucsd.jpg",
       "distance": "",
       "tags": ["Active", "Crowded"],
