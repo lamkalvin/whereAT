@@ -2,18 +2,15 @@ import React from 'react';
 import './App.css';
 import Settings from './routes/settings';
 import ViewSpace from './routes/view-space';
-import SurveyView from './routes/surveyView'
 import Search from './routes/search';
 import { Homebar } from './components';
 import Favorites from "./routes/favorites";
 import SearchResults from './routes/search-results';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect
+  BrowserRouter as Router,
+  Switch,
+  Route,
 } from "react-router-dom";
-import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
 import LocationSearchPage from './routes/locationSearchPage';
 import RecentlyViewedPage from './routes/recentlyViewedPage';
@@ -60,56 +57,36 @@ export default class App extends React.Component {
         }))
     }
 
-    render() {
-        console.log(!window.location.href.includes("login"));
-        return (
-            <Router>
-                <div style={{ height: '100%' }}>
-                    {/* A <Switch> looks through its children <Route>s and
+  render() {
+    return (
+      <Router>
+        <div style={{height: '100%'}}>
+          {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-                    <Switch>
-                        <Route path="/search-results">
-                            <SearchResults data={spaces.data[0]} />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/favorites">
-                            <Favorites />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/settings">
-                            <Settings handleClick={this.clearAllLocalData} />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/view-space">
-                            <ViewSpace data={spaces.data[0]} />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/survey">
-                            <SurveyView />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/search">
-                            <Search />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/location-search">
-                            <LocationSearchPage data={spaces.data[0]} />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path="/recently-viewed">
-                            <RecentlyViewedPage data={spaces.data[0]} />
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                        <Route path='/login'>
-                            {this.state.loggedIn ? <Redirect to='/' /> : <LandingPage login={this.login} />}
-                        </Route>
-                        <Route path="/">
-                            {this.state.loggedIn ? <HomePage history={history} /> : <Redirect to='/login' />}
-                            <Homebar onClick={this.handleClick} />
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        );
-    }
+          <Switch>
+            <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]}/>} />
+            <Route path="/favorites" render={() => <Favorites />} />
+            <Route path="/settings">
+              <Settings handleClick={this.clearAllLocalData} />
+            </Route>
+            <Route path="/view-space" component={ViewSpace} />
+            <Route path="/search">
+              <Search />
+            </Route>
+            <Route path="/location-search">
+              <LocationSearchPage data={spaces.data[0]} />
+            </Route>
+            <Route path="/recently-viewed">
+              <RecentlyViewedPage data={spaces.data[0]} />
+            </Route>
+            {/* <Route path='/login'>
+              {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
+            </Route> */}
+            <Route path="/" render={() => <HomePage history={history}/>} />
+          </Switch>
+        </div>
+        <Homebar />
+      </Router>
+    );
+  }
 }
