@@ -31,7 +31,11 @@ const Parent = styled.div`
 function Hours(props) {
     return (<div>
         <h3>Hours</h3>
-        <p>{props.val}</p>
+        <ul>
+            {props.val.map((time, i) => {
+                return <li key={i}>{time}</li>
+            })}
+        </ul>
     </div>)
 };
 
@@ -45,7 +49,7 @@ function Seats(props) {
 function Description(props) {
     return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
         <h3>Description</h3>
-        <p>{props.val}</p>
+        {props.val.map(item => {return <p>{item}</p> })}
     </div>
 };
 

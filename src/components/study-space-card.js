@@ -34,7 +34,7 @@ const StudySpaceCard = (props) => (
         {props.distance}
       </Card.Text>
       <Card.Text style={{ fontSize: '60%' }}>
-        Tags: {props.tags}
+        Tags: {props.tags.join(', ')}
       </Card.Text>
     </Card.Body>
     {showRemove(props.hasRemove, props.handleClickDelete, props.index)}
