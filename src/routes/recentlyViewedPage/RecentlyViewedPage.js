@@ -18,7 +18,7 @@ const RecentlyViewedPage = (props) => {
         <div>
             <Topbar title='Recently Viewed' hasBack/>
             <Link to={{ state: {data : props.data}, pathname: "/view-space" }}
-              style={{ textDecoration: "none" }}>
+              style={{ textDecoration: "none", color: "#000000"}}>
               <StudySpaceCard
                 title={props.data.title}
                 description={props.data.description}

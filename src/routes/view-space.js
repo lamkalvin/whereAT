@@ -31,9 +31,11 @@ const Parent = styled.div`
 function Hours(props) {
     return (<div>
         <h3>Hours</h3>
-        {props.val.map((time, i) => {
-            return <p key={i}>{time}</p>
-        })}
+        <ul>
+            {props.val.map((time, i) => {
+                return <li key={i}>{time}</li>
+            })}
+        </ul>
     </div>)
 };
 
