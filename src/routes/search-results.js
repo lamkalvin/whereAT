@@ -17,7 +17,8 @@ const SearchResults = (props) => {
     return (
         <div>
             <Topbar title='Search Results' hasBack/>
-            <Link to="/view-space" style={{ textDecoration: "none" }}>
+            <Link to={{ state: {data : props.data}, pathname: "/view-space" }}
+              style={{ textDecoration: "none", color: "#000000" }}>
               <StudySpaceCard
                 title={props.data.title}
                 description={props.data.description}

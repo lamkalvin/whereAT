@@ -3,10 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
-import ToggleButton from 'react-bootstrap/ToggleButton'
-import { Link } from "react-router-dom";
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
-const SurveyForm = () => {
+const SurveyForm = (props) => {
     const [ambienceVal, setAmbience] = useState();
     const [popularityVal, setPopularity] = useState();
     const [hours, toggleHours] = useState(true);
@@ -33,8 +32,8 @@ const SurveyForm = () => {
                         Are the hours correct for this location?
                 </Col>
                     <Col>
-                        <Form.Check inline label="Yes" type='radio' checked={hours} onClick={() => toggleHours(true)} />
-                        <Form.Check inline label="No" type='radio' checked={!hours} onClick={() => toggleHours(false)} />
+                        <Form.Check inline label="Yes" type='radio' checked={hours} onClick={() => toggleHours(true)} readOnly />
+                        <Form.Check inline label="No" type='radio' checked={!hours} onClick={() => toggleHours(false)} readOnly />
                     </Col>
                 </Form.Row>
             </Form.Group>
@@ -46,8 +45,8 @@ const SurveyForm = () => {
                         Is the number of seats about correct?
                 </Col>
                     <Col>
-                        <Form.Check inline label="Yes" type='radio' checked={seats} onClick={() => toggleSeats(true)} />
-                        <Form.Check inline label="No" type='radio' checked={!seats} onClick={() => toggleSeats(false)} />
+                        <Form.Check inline label="Yes" type='radio' checked={seats} onClick={() => toggleSeats(true)} readOnly />
+                        <Form.Check inline label="No" type='radio' checked={!seats} onClick={() => toggleSeats(false)} readOnly />
                     </Col>
                 </Form.Row>
             </Form.Group>
@@ -85,11 +84,9 @@ const SurveyForm = () => {
                     Once submitted, we will review your survey and adjust statistics
                     for a study space on a case-by-case basis!
             </p>
-                <Link to="/view-space">
-                    <Button variant="primary" type="submit">
-                        Submit
+                <Button variant="primary" type="submit" onClick={() => { props.handleSubmit(); props.handleClick(); }} >
+                    Submit
                 </Button>
-                </Link>
             </div>
         </Form>
     )

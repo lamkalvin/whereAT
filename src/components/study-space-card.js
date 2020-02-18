@@ -22,7 +22,7 @@ function showRemove(hasRemove, handleClickRemove, index) {
 // TODO: The src of an image will look into public/ by default when provided with a portion of the absolute path.
 const StudySpaceCard = (props) => (
   <div style={{ display: "flex", flexDirection: "row" }}>
-    <Card index={props.index} style={{ height: '10rem', width: '80%', flexDirection: 'row' }} onClick={props.handleClick}>
+    <Card index={props.index} style={{ height: '10rem', width: '100%', flexDirection: 'row', overflow: 'scroll' }} onClick={props.handleClick}>
       <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
         <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.imageFilePath} />
       </div>
@@ -35,7 +35,7 @@ const StudySpaceCard = (props) => (
           {props.distance}
         </Card.Text>
         <Card.Text style={{ fontSize: '60%' }}>
-          Tags: {props.tags}
+          Tags: {props.tags.join(', ')}
         </Card.Text>
       </Card.Body>
     </Card>
