@@ -4,11 +4,13 @@ import med from '../assets/view-icons/popularity/med-popular.png';
 import high from '../assets/view-icons/popularity/high-popular.png';
 import not from '../assets/view-icons/popularity/not-popular.png';
 
+const popularityLevels = ['not', 'med', 'high'];
+
 function Popularity(props) {
     return (
         <div>
             <h3>Popularity</h3>
-            {props.val === 'med' &&
+            {popularityLevels[props.val-1] === 'med' &&
                 < Figure >
                     <Figure.Image src={med} />
                     <Figure.Caption>
@@ -16,7 +18,7 @@ function Popularity(props) {
                 </Figure.Caption>
                 </Figure>
             }
-            {props.val === 'high' &&
+            {popularityLevels[props.val-1] === 'high' &&
                 < Figure >
                     <Figure.Image src={high} />
                     <Figure.Caption>
@@ -24,7 +26,7 @@ function Popularity(props) {
                 </Figure.Caption>
                 </Figure>
             }
-            {props.val === 'not' &&
+            {popularityLevels[props.val-1] === 'not' &&
                 < Figure >
                     <Figure.Image src={not} />
                     <Figure.Caption>

@@ -15,9 +15,12 @@ import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import NewSpacePage from '../routes/newSpace';
 
 let spaces = require('../study-spaces.json');
+let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 const history = createBrowserHistory();
+let allSpaces = spaces.data.concat(newSpaces.data)
 
 const Wrapper = styled.div`
     height : 100%;
@@ -55,6 +58,9 @@ function clearAllLocalData() {
     localStorage.setItem('userPresets', JSON.stringify({
         "data": []
     }))
+    localStorage.setItem('customSpaces', JSON.stringify({
+        "data": []
+    }))
 }
 
 function Container({ location }) {
@@ -81,10 +87,13 @@ function Container({ location }) {
                                 <Search />
                             </Route>
                             <Route path="/location-search">
-                                <LocationSearchPage data={spaces.data} />
+                                <LocationSearchPage data={allSpaces} />
                             </Route>
                             <Route path="/recently-viewed">
                                 <RecentlyViewedPage data={spaces.data[0]} />
+                            </Route>
+                            <Route path="/new-space">
+                                <NewSpacePage />
                             </Route>
                             <Route path="/" render={() => <HomePage history={history} />} />
                         </Switch>
