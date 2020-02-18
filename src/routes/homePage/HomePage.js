@@ -9,6 +9,7 @@ import { Link, withRouter } from "react-router-dom";
 const pencilIcon = require('../../assets/icons/pencil.png');
 const pinIcon = require('../../assets/icons/pin.png');
 const stackIcon = require('../../assets/icons/stack.png');
+const addIcon = require('../../assets/icons/bookmark-add.png');
 
 const TileButton = styled(Button)`
     display: flex;
@@ -24,6 +25,10 @@ const TileButton = styled(Button)`
     text-align: left;
     padding-left: 20px;
 `
+const BufferDiv = styled.div`
+    margin: 50px auto 100px auto;
+    width: 85%;
+`;
 
 const HomePage = (props) => {
     let titles = props.data.map(({ title }) => title)
@@ -31,7 +36,7 @@ const HomePage = (props) => {
     return (
         <div>
             <Topbar title='where @' />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '20px' }}>
+            <BufferDiv style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '20px' }}>
                 <Autocomplete suggestions={titles} data={props.data} history={props.history} />
 
 
@@ -53,14 +58,17 @@ const HomePage = (props) => {
                     <TileButton type="submit">
                         <Image src={stackIcon} style={{ paddingRight: '20px' }} />
                         Recently viewed
-                </TileButton>
+                    </TileButton>
                 </Link>
-            </div>
-            <div>
-
-            </div>
-        </div>
-    );
-}
+                <Link to="/new-space">
+                    <TileButton type="submit">
+                        <Image src={addIcon} style={{paddingRight: '20px'}}/>
+                        Add study space
+                    </TileButton>
+                </Link>
+            </BufferDiv>
+    </div>
+    )
+};
 
 export default withRouter(HomePage);
