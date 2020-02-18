@@ -9,7 +9,7 @@ import {
 
 function showRemove(hasRemove, handleClickRemove, index) {
   if (hasRemove) {
-    return <Button index={index} style={{ height: "25%", margin: "auto", marginRight: "20px" }} variant="outline-danger" onClick={handleClickRemove}>Remove</Button>
+    return <Button index={index} style={{ display: "flex", margin: "auto", marginRight: "20px" }} variant="outline-danger" onClick={handleClickRemove}>Remove</Button>
   }
 }
 /**
@@ -21,24 +21,26 @@ function showRemove(hasRemove, handleClickRemove, index) {
 // TODO: Link the card to the corresponding detail page.
 // TODO: The src of an image will look into public/ by default when provided with a portion of the absolute path.
 const StudySpaceCard = (props) => (
-  <Card index={props.index} style={{ height: '10rem', width: '100%', flexDirection: 'row', overflow: 'scroll' }} onClick={props.handleClick}>
-    <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.imageFilePath} />
-    </div>
-    <Card.Body>
-      <Card.Title style={{ fontSize: '100%' }}>{props.title}</Card.Title>
-      <Card.Text style={{ fontSize: '60%' }}>
-        {props.description}
-      </Card.Text>
-      <Card.Text style={{ fontSize: '75%' }}>
-        {props.distance}
-      </Card.Text>
-      <Card.Text style={{ fontSize: '60%' }}>
-        Tags: {props.tags}
-      </Card.Text>
-    </Card.Body>
+  <div style={{ display: "flex", flexDirection: "row" }}>
+    <Card index={props.index} style={{ height: '10rem', width: '80%', flexDirection: 'row' }} onClick={props.handleClick}>
+      <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
+        <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.imageFilePath} />
+      </div>
+      <Card.Body>
+        <Card.Title style={{ fontSize: '100%' }}>{props.title}</Card.Title>
+        <Card.Text style={{ fontSize: '60%' }}>
+          {props.description}
+        </Card.Text>
+        <Card.Text style={{ fontSize: '75%' }}>
+          {props.distance}
+        </Card.Text>
+        <Card.Text style={{ fontSize: '60%' }}>
+          Tags: {props.tags}
+        </Card.Text>
+      </Card.Body>
+    </Card>
     {showRemove(props.hasRemove, props.handleClickDelete, props.index)}
-  </Card>
+  </div>
 );
 /*
  * Sources of Help:

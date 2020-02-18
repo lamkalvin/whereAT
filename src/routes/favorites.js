@@ -30,25 +30,37 @@ const Favorites = (props) => {
   }
 
   function favoritesListToHtml(data) {
-    dataHtml = [];
-    for (var i = 0; i < data.length; i++) {
-      var space = data[i];
-      dataHtml.push(
-        <StudySpaceCard
-          index={i}
-          title={space.title}
-          description={space.description}
-          imageFilePath={space.imageFilePath}
-          distance={space.distance}
-          tags={space.tags}
-          handleClick={handleClick}
-          hasRemove={true}
-          handleClickDelete={handleClickDelete}
-        />
-      );
-    }
-
-    return dataHtml;
+    return data.map((space, i) => {
+      return <StudySpaceCard
+        index={i}
+        title={space.title}
+        description={space.description}
+        imageFilePath={space.imageFilePath}
+        distance={space.distance}
+        tags={space.tags}
+        handleClick={handleClick}
+        hasRemove={true}
+        handleClickDelete={handleClickDelete}
+      />;
+    });
+    // for (var i = 0; i < data.length; i++) {
+    //   var space = data[i];
+    //   dataHtml.push(
+    //     <StudySpaceCard
+    //       index={i}
+    //       title={space.title}
+    //       description={space.description}
+    //       imageFilePath={space.imageFilePath}
+    //       distance={space.distance}
+    //       tags={space.tags}
+    //       handleClick={handleClick}
+    //       hasRemove={true}
+    //       handleClickDelete={handleClickDelete}
+    //     />
+    //   );
+    // }
+    //
+    // return dataHtml;
   }
   /*
    * Sources of Help:
