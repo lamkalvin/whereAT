@@ -86,7 +86,7 @@ function Container({ location }) {
                             <Route path="/recently-viewed">
                                 <RecentlyViewedPage data={spaces.data[0]} />
                             </Route>
-                            <Route path="/" render={() => <HomePage history={history} />} />
+                            <Route path="/" render={() => <HomePage history={history} data={spaces.data} />} />
                         </Switch>
                     </section>
                 </CSSTransition>
