@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Form, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -23,9 +24,11 @@ const LandingPage = (props) => (
                 <Form.Control placeholder='Password' />
             </Form.Group>
         </Form>
-        <Button variant='primary' type='submit' onClick={props.login}>
-            Login
-        </Button>
+        <Link to="/">
+            <Button variant='primary' type='submit' onClick={props.login}>
+                Login
+            </Button>
+        </Link>
     </StyledDiv>
 );
 

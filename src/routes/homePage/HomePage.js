@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import {Topbar} from '../../components';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const searchIcon = require('../../assets/search.png');
 const pencilIcon = require('../../assets/icons/pencil.png');
@@ -29,17 +29,17 @@ const TileButton = styled(Button)`
     padding-left: 20px;
 `
 
-const HomePage = () => (
+const HomePage = (props) => (
     <div>
         <Topbar title='where @' />
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '20px'}}>
-            <InputGroup style={{width: '85%', margin: '0px auto 20px'}}>
+            <InputGroup style={{width: '85%', margin: '0px auto 20px'}} >
                 <InputGroup.Prepend>
                     <InputGroup.Text>
                         <Image src={searchIcon} />
                     </InputGroup.Text>
                 </InputGroup.Prepend>
-                <FormControl placeholder="Search"/>
+                <FormControl placeholder="Search" onKeyPress={event => event.key === 'Enter' && props.history.push('/search-results')}/>
             </InputGroup>
 
             <Link to="/search">
@@ -64,9 +64,9 @@ const HomePage = () => (
             </Link>
         </div>
         <div>
-            
+
         </div>
     </div>
 );
 
-export default HomePage;
+export default withRouter(HomePage);

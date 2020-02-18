@@ -17,8 +17,10 @@ import LandingPage from './routes/landingPage/LandingPage';
 import HomePage from './routes/homePage';
 import LocationSearchPage from './routes/locationSearchPage';
 import RecentlyViewedPage from './routes/recentlyViewedPage';
+import { createBrowserHistory } from "history";
 
 let spaces = require('./study-spaces.json');
+const history = createBrowserHistory();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,6 +29,7 @@ export default class App extends React.Component {
       loggedIn: false
     };
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   login() {
@@ -35,7 +38,14 @@ export default class App extends React.Component {
     });
   }
 
+  logout() {
+    this.setState({
+      loggedIn: false
+    });
+  }
+
   render() {
+    console.log(!window.location.href.includes("login"));
     return (
       <Router>
         <div style={{height: '100%'}}>
@@ -44,37 +54,45 @@ export default class App extends React.Component {
           <Switch>
             <Route path="/search-results">
               <SearchResults data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/favorites">
               <Favorites />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/settings">
-              <Settings />
+              <Settings handleClick={this.logout} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/view-space">
               <ViewSpace data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/survey">
               <SurveyView />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/search">
               <Search />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/location-search">
               <LocationSearchPage data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/recently-viewed">
               <RecentlyViewedPage data={spaces.data[0]} />
+              <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path='/login'>
               {this.state.loggedIn ? <Redirect to='/'/> : <LandingPage login={this.login}/>}
             </Route>
             <Route path="/">
-              {this.state.loggedIn ? <HomePage /> : <Redirect to='/login'/>}
+              {this.state.loggedIn ? <HomePage history={history}/> : <Redirect to='/login'/>}
+              <Homebar onClick={this.handleClick}/>
             </Route>
           </Switch>
         </div>
-        <Homebar onClick={this.handleClick}/>
       </Router>
     );
   }

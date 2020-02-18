@@ -26,13 +26,48 @@ const SearchForm = () => {
         setGroupsize("Group size");
         toggleOutlet(false);
         toggleUsb(false);
+        togglePrinter(false);
         toggleComputer(false);
         toggleWhiteboard(false);
         toggleFood(false);
     }
 
+    function focusPreset() {
+        setAmbience(1);
+        setPopularity(1);
+        setGroupsize("1-2");
+        toggleOutlet(true);
+        toggleFood(false);
+    }
+
+    function activePreset() {
+        setAmbience(3);
+        setPopularity(3);
+        setGroupsize("3-4");
+        toggleFood(true);
+        toggleOutlet(true);
+    }
+
+    function comfortablePreset() {
+        setAmbience(2);
+        setPopularity(2);
+        setGroupsize("3-4");
+        toggleOutlet(true);
+        toggleFood(true);
+    }
+
     return (
         <Form>
+            <div>
+                <h5>Preset search options</h5>
+                <div>
+                    <ToggleButtonGroup type="radio" name="options" value={0}>
+                        <ToggleButton variant="secondary" value={1} onClick={() => focusPreset()}>Focus</ToggleButton>
+                        <ToggleButton variant="secondary" value={2} onClick={() => comfortablePreset()}>Comfortable</ToggleButton>
+                        <ToggleButton variant="secondary" value={3} onClick={() => activePreset()}>Active</ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+            </div>
             <div style={{ textAlign: 'right' }}>
                 <Button variant="danger" onClick={() => clearInput()}>
                     Clear input
