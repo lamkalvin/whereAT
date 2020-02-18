@@ -95,7 +95,7 @@ function Container({ location }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route path="/" render={() => <HomePage history={history} />} />
+                            <Route path="/" render={() => <HomePage history={history} data={allSpaces} />} />
                         </Switch>
                     </section>
                 </CSSTransition>
