@@ -57,7 +57,7 @@ export default class App extends React.Component {
               <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/favorites">
-              <Favorites />
+              <Favorites data={spaces.data}/>
               <Homebar onClick={this.handleClick}/>
             </Route>
             <Route path="/settings">

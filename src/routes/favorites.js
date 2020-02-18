@@ -5,16 +5,9 @@ import {
   Topbar
 } from "../components";
 
-// TODO: Read the JSON file from App.js
-var study_spaces = require("../study-spaces.json");
 var dataHtml = [];
 
-/*
- * Sources of Help:
- *  - Dynamically generating the list of study space cards: https://www.skptricks.com/2018/06/append-or-prepend-html-using-reactjs.html
- **/
-
-const Favorites = () => {
+const Favorites = (props) => {
   const history = useHistory();
 
   // TODO: Delete this. This is only a temporary solution to the handle click
@@ -36,9 +29,7 @@ const Favorites = () => {
     document.getElementById("favorites-list").style.display = "none";
   }
 
-  function renderFavoritesList() {
-    var data = study_spaces.data;
-
+  function favoritesListToHtml(data) {
     dataHtml = [];
     for (var i = 0; i < data.length; i++) {
       var space = data[i];
@@ -59,13 +50,16 @@ const Favorites = () => {
 
     return dataHtml;
   }
+  /*
+   * Sources of Help:
+   *  - Dynamically generating the list of study space cards: https://www.skptricks.com/2018/06/append-or-prepend-html-using-reactjs.html
+   **/
 
   return (
     <div id="favorites" style={{ overflow: "scroll" }}>
       <Topbar title="Favorites" hasBack={true} />
-
       <div id="favorites-list">
-        {renderFavoritesList()}
+        {favoritesListToHtml(props.data)}
       </div>
     </div>);
 };
