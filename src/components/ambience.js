@@ -6,14 +6,12 @@ import loud from '../assets/view-icons/ambience/loud-ambience.png';
 import quiet from '../assets/view-icons/ambience/quiet-ambience.png';
 import silent from '../assets/view-icons/ambience/silent-ambience.png';
 
-const ambienceLevels = ['quiet','med','loud'];
-
 function Ambience(props) {
 
     return (
         <div>
             <h3>Ambience</h3>
-            {ambienceLevels[props.val-1] === 'loud' &&
+            {props.val === 'loud' &&
                 <Figure>
                     <Figure.Image src={loud} />
                     <Figure.Caption>
@@ -21,7 +19,7 @@ function Ambience(props) {
                     </Figure.Caption>
                 </Figure>
             }
-            {ambienceLevels[props.val-1] === 'quiet' &&
+            {props.val === 'quiet' &&
                 <Figure>
                     <Figure.Image src={quiet} />
                     <Figure.Caption>
@@ -29,7 +27,15 @@ function Ambience(props) {
                     </Figure.Caption>
                 </Figure>
             }
-            {ambienceLevels[props.val-1] === 'med' &&
+            {props.val === 'silent' &&
+                <Figure>
+                    <Figure.Image src={silent} />
+                    <Figure.Caption>
+                        Silent
+                    </Figure.Caption>
+                </Figure>
+            }
+            {props.val === 'med' &&
                 <Figure>
                     <Figure.Image src={med} />
                     <Figure.Caption>

@@ -58,7 +58,7 @@ function OtherFeatures(props) {
         <div style={{ gridArea: '3 / 1 / 4 / 3' }}>
             <h3>Other features</h3>
             <ul>
-                {props.count && <li>Suitable for a maximum group size of {props.count}</li>}
+                {<li>Suitable for a maximum group size of {props.count}</li>}
                 {props.outlet && <li>✓ Has outlet</li>}
                 {props.usb && <li>✓ Has USB charging</li>}
                 {props.computer && <li>✓ Has computer</li>}

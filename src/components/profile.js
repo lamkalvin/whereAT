@@ -16,7 +16,7 @@ const Title = styled(Card.Title)`
 const Profile = (props) => (
     
     <Card>
-        <Card.Img src={props.img.slice(0,5) === 'https' ? props.img : window.location.origin + props.img} alt="Card image" />
+        <Card.Img src={window.location.origin + props.img} alt="Card image" />
         {/* <Overlay>
             <Title>{props.title}</Title>
         </Overlay> */}
