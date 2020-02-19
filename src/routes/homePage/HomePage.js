@@ -34,26 +34,25 @@ const HomePage = (props) => {
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '20px' }}>
                 <Autocomplete suggestions={titles} data={props.data} history={props.history} />
 
-
                 <Link to="/search">
                     <TileButton type="submit">
                         <Image src={pencilIcon} style={{ paddingRight: '20px' }} />
                         Specify preferences
-                </TileButton>
+                    </TileButton>
                 </Link>
 
                 <Link to="/location-search">
                     <TileButton type="submit">
                         <Image src={pinIcon} style={{ paddingRight: '20px' }} />
                         Search by location
-                </TileButton>
+                    </TileButton>
                 </Link>
 
                 <Link to="/recently-viewed">
                     <TileButton type="submit">
                         <Image src={stackIcon} style={{ paddingRight: '20px' }} />
                         Recently viewed
-                </TileButton>
+                    </TileButton>
                 </Link>
             </div>
             <div>

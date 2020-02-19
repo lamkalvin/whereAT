@@ -72,7 +72,7 @@ function Container({ location }) {
                     <section className="route-section">
                         <Switch location={location}>
                             <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
-                            <Route path="/favorites" render={() => <Favorites />} />
+                            <Route path="/favorites" render={() => <Favorites data={spaces.data} />} />
                             <Route path="/settings">
                                 <Settings handleClick={clearAllLocalData} />
                             </Route>

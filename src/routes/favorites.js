@@ -1,5 +1,8 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import {
+  Link,
+  useHistory
+} from 'react-router-dom';
 import {
   StudySpaceCard,
   Topbar
@@ -10,57 +13,45 @@ var dataHtml = [];
 const Favorites = (props) => {
   const history = useHistory();
 
-  // TODO: Delete this. This is only a temporary solution to the handle click
-  //   callback.
   function handleClick() {
-    console.log("I've been clicked! Bless this day.");
-    // TODO: This is a workaround. Try to use the Link component in the future.
-    // window.location.assign(window.location.href.replace("/favorites", "/view-space"));
-    history.push("/view-space");
+    console.log("Favorites card clicked.");
+
+    // TODO: Commented this out because it was breaking the back button.
+    // history.push("/view-space");
   }
 
   function handleClickDelete(event) {
-    event.stopPropagation();
-    console.log("I'm being deleted! NOOOO.");
+    console.log("Favorites card deleted.");
+
+    event.preventDefault();
     // TODO: Use this code when actually deleting from the static db.
     //var indexToDelete = event.target.getAttribute("index");
     //dataHtml.splice(indexToDelete, 1);
     // TODO: This is going to be dummy code for now.
     document.getElementById("favorites-list").style.display = "none";
   }
+  /* Sources of Help:
+   *  - Interrupting the Link on the Card: https://stackoverflow.com/questions/39849108/disable-react-router-link-in-react
+   **/
 
+  // TODO: Change the data attribute of this.
   function favoritesListToHtml(data) {
     return data.map((space, i) => {
-      return <StudySpaceCard
-        index={i}
-        title={space.title}
-        description={space.description}
-        imageFilePath={space.imageFilePath}
-        distance={space.distance}
-        tags={space.tags}
-        handleClick={handleClick}
-        hasRemove={true}
-        handleClickDelete={handleClickDelete}
-      />;
+      return <Link to={{ state: { data : space }, pathname: "/view-space" }}
+        style={{ textDecoration: "none", color: "#000000" }}>
+        <StudySpaceCard
+          index={i}
+          title={space.title}
+          description={space.description}
+          imageFilePath={space.imageFilePath}
+          distance={space.distance}
+          tags={space.tags}
+          handleClick={handleClick}
+          hasRemove={true}
+          handleClickDelete={handleClickDelete}
+        />
+      </Link>;
     });
-    // for (var i = 0; i < data.length; i++) {
-    //   var space = data[i];
-    //   dataHtml.push(
-    //     <StudySpaceCard
-    //       index={i}
-    //       title={space.title}
-    //       description={space.description}
-    //       imageFilePath={space.imageFilePath}
-    //       distance={space.distance}
-    //       tags={space.tags}
-    //       handleClick={handleClick}
-    //       hasRemove={true}
-    //       handleClickDelete={handleClickDelete}
-    //     />
-    //   );
-    // }
-    //
-    // return dataHtml;
   }
   /*
    * Sources of Help:
