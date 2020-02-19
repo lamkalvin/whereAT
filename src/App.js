@@ -13,17 +13,10 @@ export default class App extends React.Component {
 
     componentDidMount() {
         const userPresets = localStorage.getItem('userPresets');
-        const customSpaces = localStorage.getItem('customSpaces');
         if (!userPresets) {
             localStorage.setItem('userPresets', JSON.stringify({
-              "data": []
+                "data": []
             }))
-        }
-
-        if (!customSpaces) {
-          localStorage.setItem('customSpaces', JSON.stringify({
-            "data": []
-          }))
         }
     }
 
