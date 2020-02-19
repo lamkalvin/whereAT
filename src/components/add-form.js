@@ -84,7 +84,7 @@ const AddForm = () => {
         if (friTime) {times.push(friTime)};
         if (satTime) {times.push(satTime)};
         if (sunTime) {times.push(sunTime)};
-        console.log(times);
+
         let space = {
             "location": locationValue ? locations[locationValue] : locations[1],
             "title": titleValue,
@@ -332,7 +332,6 @@ const AddForm = () => {
             <div style={{ textAlign: 'right', marginBottom: '100px' }}>
                 <Button variant="primary" onClick={() => {
                     createNewSpace();
-                    // let space = getNewSpace();
                     history.push("/view-space", {data: getNewSpace()})}}
                 >
                     Submit

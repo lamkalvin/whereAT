@@ -49,7 +49,7 @@ function Seats(props) {
 function Description(props) {
     return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
         <h3>Description</h3>
-        {props.val.map(item => {return <p>{item}</p> })}
+        {props.val.map((item,i) => {return <p key={i}>{item}</p> })}
     </div>
 };
 
