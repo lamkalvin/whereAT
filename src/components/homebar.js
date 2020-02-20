@@ -25,7 +25,7 @@ const Homebar = () => (
             <Link to="/favorites"><NavImg src={favorites} /></Link>
         </Nav.Item>
         <Nav.Item>
-            <Link to="/"><NavImg src={home} /></Link>
+            <Link to="/home"><NavImg src={home} /></Link>
         </Nav.Item>
         <Nav.Item>
             <Link to="/settings"><NavImg src={settings} /></Link>
