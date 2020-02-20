@@ -32,8 +32,6 @@ const BufferDiv = styled.div`
 `;
 
 const HomePage = (props) => {
-    const customSpaces = JSON.parse(localStorage.getItem("customSpaces")).data
-    props.data.push(customSpaces);
     let titles = props.data.map(({ title }) => title)
 
     return (
