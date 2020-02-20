@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Profile from '../components/profile';
 import Ambience from '../components/ambience';
+import FavoritesButton from '../components/favoritesButton';
 import Popularity from '../components/popularity';
 import SurveyToast from '../components/survey-toast';
 import Topbar from '../components/topbar';
@@ -81,40 +82,6 @@ const SurveyJumbo = (props) => (
         </Centered>
     </Jumbotron>
 );
-
-/**
- * Improvements:
- *  - animated heart icon for the favorites button (see: https://codepen.io/mapk/pen/ZOQqaQ)
- *  - better background color
- *  - include a toast (maybe "Added to Favorites") once clicked
- *  - disable button as soon as it's clicked instead of having to refresh the page
- *  - favorites button on the main nav bar should automatically requery for the
- *    local storage data instead of having to do a manual refresh
- *  - user can unfavorite immediately after they favorite. or like, any unfavoriting capability on this page
- */
-const FavoritesButton = (props) => {
-    let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
-
-    /* Add the currently viewed space to the favorites list */
-    function handleClick() {
-        favoriteSpacesJson.data.push(props.space);
-        localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
-    }
-
-    /* Disable button if a space has already been added to the favorites list */
-    function shouldDisable() {
-        return favoriteSpacesJson.data.map(space => space.title).includes(props.space.title);
-    }
-
-    return (<Button
-      style={{ position: "absolute", top: "100px", right: "20px" }}
-      variant="secondary"
-      onClick={handleClick}
-      disabled={shouldDisable()}
-      >
-      Add to Favorites
-    </Button>);
-};
 
 const ViewSpace = (props) => {
     const { data } = props.location.state;

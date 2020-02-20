@@ -4,19 +4,18 @@ import {
   useHistory
 } from 'react-router-dom';
 import {
+  FavoritesButton,
   StudySpaceCard,
   Topbar
 } from "../components";
 
 const Favorites = (props) => {
-  // TODO: Figure out how to use this correctly with the handleClick().
   const history = useHistory();
 
   function handleClick() {
     console.log("Favorites card clicked.");
-
-    // TODO: Commented this out because it was breaking the back button.
-    //history.push("/view-space");
+    // TODO: This should not be called if we are clicking on the delete button.
+    history.push("/view-space");
   }
 
   /**
@@ -33,7 +32,7 @@ const Favorites = (props) => {
     var favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
     var indexToDelete = event.target.getAttribute("index");
     favoriteSpacesJson.data.splice(indexToDelete, 1);
-    localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson))
+    localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
   }
   /* Sources of Help:
    *  - Interrupting the Link on the Card: https://stackoverflow.com/questions/39849108/disable-react-router-link-in-react
