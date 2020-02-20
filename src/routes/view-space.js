@@ -49,7 +49,7 @@ function Seats(props) {
 function Description(props) {
     return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
         <h3>Description</h3>
-        {props.val.map(item => {return <p>{item}</p> })}
+        {props.val.map((item,i) => {return <p key={i}>{item}</p> })}
     </div>
 };
 
@@ -58,7 +58,7 @@ function OtherFeatures(props) {
         <div style={{ gridArea: '3 / 1 / 4 / 3' }}>
             <h3>Other features</h3>
             <ul>
-                {<li>Suitable for a maximum group size of {props.count}</li>}
+                {props.count && <li>Suitable for a maximum group size of {props.count}</li>}
                 {props.outlet && <li>✓ Has outlet</li>}
                 {props.usb && <li>✓ Has USB charging</li>}
                 {props.computer && <li>✓ Has computer</li>}

@@ -34,7 +34,7 @@ const LocationSearchPage = (props) => {
     const [searchLocation, setSearchLocation] = useState(0);
     const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
     return (
-        <div>
+        <div style={{marginBottom: '100px'}}>
             <Topbar title="Location Search" hasBack={true} titleSize={'24pt'}/>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
                 <Form.Group style={{width: '80%', margin: '20px auto 10px'}}>
