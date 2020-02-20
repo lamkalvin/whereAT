@@ -94,12 +94,9 @@ const SurveyJumbo = (props) => (
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
 
-    console.log(typeof favoriteSpacesJson.data.map(space => space.title).includes(props.space.title))
-
     /* Add the currently viewed space to the favorites list */
     function handleClick() {
         favoriteSpacesJson.data.push(props.space);
-        console.log(favoriteSpacesJson);
         localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
     }
 

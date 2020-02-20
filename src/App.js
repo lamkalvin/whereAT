@@ -21,6 +21,7 @@ export default class App extends React.Component {
       const userPresets = localStorage.getItem('userPresets');
       const customSpaces = localStorage.getItem('customSpaces');
       const favoriteSpaces = localStorage.getItem('favoriteSpaces');
+      const recentlyViewedSpaces = localStorage.getItem('recentlyViewedSpaces');
 
       if (!userPresets) {
           localStorage.setItem('userPresets', JSON.stringify({
@@ -36,6 +37,12 @@ export default class App extends React.Component {
 
       if (!favoriteSpaces) {
           localStorage.setItem('favoriteSpaces', JSON.stringify({
+            "data": []
+          }))
+      }
+
+      if (!recentlyViewedSpaces) {
+          localStorage.setItem('recentlyViewedSpaces', JSON.stringify({
             "data": []
           }))
       }

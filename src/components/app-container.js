@@ -22,9 +22,8 @@ const history = createBrowserHistory();
 let spaces = require('../study-spaces.json').data;
 let newSpaces = JSON.parse(localStorage.getItem('customSpaces')).data;
 let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces')).data;
-let allSpaces = spaces
-  .concat(newSpaces)
-  .concat(favoriteSpaces);
+let recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces')).data;
+let allSpaces = spaces.concat(newSpaces)
 
 const Wrapper = styled.div`
     height : 100%;
@@ -65,7 +64,10 @@ function clearAllLocalData() {
     localStorage.setItem('customSpaces', JSON.stringify({
         "data": []
     }));
-    localStorage.setIteam('favoriteSpaces', JSON.stringify({
+    localStorage.setItem('favoriteSpaces', JSON.stringify({
+        "data": []
+    }));
+    localStorage.setItem('recentlyViewedSpaces', JSON.stringify({
         "data": []
     }));
 }
@@ -97,7 +99,7 @@ function Container({ location }) {
                                 <LocationSearchPage data={allSpaces} />
                             </Route>
                             <Route path="/recently-viewed">
-                                <RecentlyViewedPage data={spaces[0]} />
+                                <RecentlyViewedPage data={recentlyViewedSpaces} />
                             </Route>
                             <Route path="/new-space">
                                 <NewSpacePage />

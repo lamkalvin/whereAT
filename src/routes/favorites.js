@@ -29,22 +29,22 @@ function handleClickDelete(event) {
   var favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
   var indexToDelete = event.target.getAttribute("index");
   favoriteSpacesJson.data.splice(indexToDelete, 1);
-  localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson))
+  localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
 }
 /* Sources of Help:
  *  - Interrupting the Link on the Card: https://stackoverflow.com/questions/39849108/disable-react-router-link-in-react
  **/
 
+/**
+ * Improvements:
+ *  - Put this function in a shared file b/c it's copied to Recently Viewed screen.
+ */
 function favoritesListToHtml(data) {
   return data.map((space, i) => {
     return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
       <StudySpaceCard
         index={i}
-        title={space.title}
-        description={space.description}
-        imageFilePath={space.imageFilePath}
-        distance={space.distance}
-        tags={space.tags}
+        data={space}
         handleClick={handleClick}
         hasRemove={true}
         handleClickDelete={handleClickDelete}

@@ -5,10 +5,25 @@ import {
   Topbar
 } from '../../components';
 
-// TODO: Delete this. This is only a temporary solution to the handle click
-//   callback.
 function handleClick() {
-  console.log("I've been clicked! Bless this day.");
+  console.log("Recently Viewed card clicked.");
+}
+
+/**
+ * Improvements:
+ *  - Put this function in a shared file b/c it's copied from Favorites screen.
+ */
+function recentlyViewedListToHtml(data) {
+  return data.map((space, i) => {
+    return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
+      <StudySpaceCard
+        index={i}
+        data={space}
+        handleClick={handleClick}
+        hasRemove={false}
+      />
+    </Link>;
+  });
 }
 
 const RecentlyViewedPage = (props) => {
@@ -17,18 +32,7 @@ const RecentlyViewedPage = (props) => {
     return (
         <div>
             <Topbar title='Recently Viewed' hasBack/>
-            <Link to={{ state: {data : props.data}, pathname: "/view-space" }}
-              style={{ textDecoration: "none", color: "#000000"}}>
-              <StudySpaceCard
-                title={props.data.title}
-                description={props.data.description}
-                imageFilePath={props.data.imageFilePath}
-                distance={props.data.distance}
-                tags={props.data.tags}
-                handleClick={handleClick}
-                hasRemove={false}
-              />
-            </Link>
+            {recentlyViewedListToHtml(props.data)}
         </div>
     );
 }

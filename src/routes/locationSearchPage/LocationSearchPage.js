@@ -60,11 +60,7 @@ const LocationSearchPage = (props) => {
             {filteredData.map((d,i) => {return (
               <Link to={{ state: {data : d}, pathname: "/view-space"}} style= {{ textDecoration: "none", color: "#000000"}} key={i}>
                 <StudySpaceCard
-                  title={d.title}
-                  description={d.description}
-                  imageFilePath={d.imageFilePath}
-                  distance={d.distance}
-                  tags={d.tags}
+                  data={d}
                   handleClick={handleClick}
                   hasRemove={false}
                 />

@@ -13,41 +13,49 @@ function showRemove(hasRemove, handleClickRemove, index) {
     return <Button index={index} style={{ display: "flex", margin: "auto", marginRight: "20px" }} variant="outline-danger" onClick={handleClickRemove}>Remove</Button>
   }
 }
+
+function addToRecentlyViewedList(space) {
+  let recentlyViewedSpacesJson = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
+  recentlyViewedSpacesJson.data.push(space);
+  localStorage.setItem('recentlyViewedSpaces', JSON.stringify(recentlyViewedSpacesJson));
+}
+
+/**
+ * Improvements:
+ *   - Figure out how to create the ellipsis for description. Here is some
+ *     sample code that I tried but couldn't get to work exactly. When the
+ *     string exceeds the numLine attribute, only the ellipsis is displayed.
+ *        <LinesEllipsis
+            text={"Audrey's Cafe serves coffee and tea drinks "}
+            maxLine='2'
+            ellipsis='...'
+            trimRight
+            basedOn='letters'
+            component="p"
+          />
+ *   - Either create styled components or function components to clean up this
+ *     code
+ *   - Real-time updates vs. refreshing page to update recently viewed list
+ */
 /**
  * Props Expected:
- *  - title: name of the study space
- *  - description: brief description of the study space
- *  - imageFilePath: file path to locally stored image of the study space.
- *      File paths that start with "/" will be checked in the public/ directory.
+ *  - data: full JSON object containing data about the space
  */
-// TODO: Figure out how to create the ellipsis. Here is some sample code that I
-//   tried but couldn't get to work exactly. When the string exceeds the numLine
-//   attribute, only the ellipsis is displayed.
-/*
-      <LinesEllipsis
-         text={"Audrey's Cafe serves coffee and tea drinks "}
-         maxLine='2'
-         ellipsis='...'
-         trimRight
-         basedOn='letters'
-         component="p"
-       />
-*/
 const StudySpaceCard = (props) => (
-  <Card index={props.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }} onClick={props.handleClick}>
+  <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }} onClick={() => {addToRecentlyViewedList(props.data); props.handleClick();}}>
     <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.imageFilePath} />
+      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.data.imageFilePath} />
     </div>
     <Card.Body style={{ height: '100%', width: '40%' }}>
-      <Card.Title style={{ fontSize: '100%', overflow: 'hidden' }}>{props.title}</Card.Title>
+      <Card.Title style={{ fontSize: '100%', overflow: 'hidden' }}>{props.data.title}</Card.Title>
       <Card.Text style={{ height: '25%', fontSize: '60%', overflow: 'hidden' }}>
-        {props.description.join(' ')}
+        {props.data.description.join(' ')}
       </Card.Text>
       <Card.Text style={{ fontSize: '75%' }}>
-        {props.distance}
+        {props.data.distance}
       </Card.Text>
       <Card.Text style={{ fontSize: '60%' }}>
-        Tags: {props.tags.join(', ')}
+        Tags: {props.data.tags.join(', ')}
       </Card.Text>
     </Card.Body>
     {showRemove(props.hasRemove, props.handleClickDelete, props.index)}
