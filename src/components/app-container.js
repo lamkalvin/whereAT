@@ -17,10 +17,14 @@ import { createBrowserHistory } from "history";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import NewSpacePage from '../routes/newSpace';
 
-let spaces = require('../study-spaces.json');
-let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 const history = createBrowserHistory();
-let allSpaces = spaces.data.concat(newSpaces.data)
+
+let spaces = require('../study-spaces.json').data;
+let newSpaces = JSON.parse(localStorage.getItem('customSpaces')).data;
+let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces')).data;
+let allSpaces = spaces
+  .concat(newSpaces)
+  .concat(favoriteSpaces);
 
 const Wrapper = styled.div`
     height : 100%;
@@ -57,10 +61,13 @@ const Wrapper = styled.div`
 function clearAllLocalData() {
     localStorage.setItem('userPresets', JSON.stringify({
         "data": []
-    }))
+    }));
     localStorage.setItem('customSpaces', JSON.stringify({
         "data": []
-    }))
+    }));
+    localStorage.setIteam('favoriteSpaces', JSON.stringify({
+        "data": []
+    }));
 }
 
 function Container({ location }) {
@@ -77,8 +84,8 @@ function Container({ location }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
-                            <Route path="/favorites" render={() => <Favorites data={spaces.data} />} />
+                            <Route path="/search-results" render={() => <SearchResults data={spaces[0]} />} />
+                            <Route path="/favorites" render={() => <Favorites data={favoriteSpaces} />} />
                             <Route path="/settings">
                                 <Settings handleClick={clearAllLocalData} />
                             </Route>
@@ -90,7 +97,7 @@ function Container({ location }) {
                                 <LocationSearchPage data={allSpaces} />
                             </Route>
                             <Route path="/recently-viewed">
-                                <RecentlyViewedPage data={spaces.data[0]} />
+                                <RecentlyViewedPage data={spaces[0]} />
                             </Route>
                             <Route path="/new-space">
                                 <NewSpacePage />
