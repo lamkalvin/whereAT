@@ -86,14 +86,14 @@ function Container({ location }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            <Route path="/search-results" render={() => <SearchResults data={spaces[0]} />} />
+                            <Route path="/search-results" component={SearchResults} />
                             <Route path="/favorites" render={() => <Favorites data={favoriteSpaces} />} />
                             <Route path="/settings">
                                 <Settings handleClick={clearAllLocalData} />
                             </Route>
                             <Route path="/view-space" component={ViewSpace} />
                             <Route path="/search">
-                                <Search />
+                                <Search data={allSpaces} />
                             </Route>
                             <Route path="/location-search">
                                 <LocationSearchPage data={allSpaces} />
