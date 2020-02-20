@@ -40,9 +40,7 @@ const Favorites = (props) => {
    **/
 
   function favoritesListToHtml() {
-    var favoritesList = JSON.parse(localStorage.getItem("favoriteSpaces")).data;
-
-    return favoritesList.map((space, i) => {
+    return props.data.data.map((space, i) => {
       return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
         <StudySpaceCard
           index={i}

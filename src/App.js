@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Homebar } from './components';
 import {
   BrowserRouter as Router
 } from "react-router-dom";
@@ -45,7 +44,6 @@ export default class App extends React.Component {
     return (
       <Router>
         <Container />
-        <Homebar />
       </Router>
     );
   }
