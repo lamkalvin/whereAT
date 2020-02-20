@@ -29,6 +29,8 @@ function handleClick() {
 }
 
 const LocationSearchPage = (props) => {
+    const customSpaces = JSON.parse(localStorage.getItem("customSpaces")).data
+    props.data.push(customSpaces);
     const [searchLocation, setSearchLocation] = useState(0);
     const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
     return (

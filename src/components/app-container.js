@@ -19,12 +19,10 @@ import NewSpacePage from '../routes/newSpace';
 
 const history = createBrowserHistory();
 
+// NOTE: For additional spaces, Local Storage needs to be accessed within the
+//   child component to allow React to run the code to create the entries before
+//   trying to access it and distribute its data to children components.
 let spaces = require('../study-spaces.json').data;
-let newSpaces = JSON.parse(localStorage.getItem('customSpaces')).data;
-let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces')).data;
-let allSpaces = spaces
-  .concat(newSpaces)
-  .concat(favoriteSpaces);
 
 const Wrapper = styled.div`
     height : 100%;
@@ -65,7 +63,7 @@ function clearAllLocalData() {
     localStorage.setItem('customSpaces', JSON.stringify({
         "data": []
     }));
-    localStorage.setIteam('favoriteSpaces', JSON.stringify({
+    localStorage.setItem('favoriteSpaces', JSON.stringify({
         "data": []
     }));
 }
@@ -85,7 +83,7 @@ function Container({ location }) {
                     <section className="route-section">
                         <Switch location={location}>
                             <Route path="/search-results" render={() => <SearchResults data={spaces[0]} />} />
-                            <Route path="/favorites" render={() => <Favorites data={favoriteSpaces} />} />
+                            <Route path="/favorites" render={() => <Favorites />} />
                             <Route path="/settings">
                                 <Settings handleClick={clearAllLocalData} />
                             </Route>
@@ -94,7 +92,7 @@ function Container({ location }) {
                                 <Search />
                             </Route>
                             <Route path="/location-search">
-                                <LocationSearchPage data={allSpaces} />
+                                <LocationSearchPage data={spaces} />
                             </Route>
                             <Route path="/recently-viewed">
                                 <RecentlyViewedPage data={spaces[0]} />
@@ -102,7 +100,7 @@ function Container({ location }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                            <Route path="/" render={() => <HomePage history={history} data={spaces}/>} />
                         </Switch>
                     </section>
                 </CSSTransition>

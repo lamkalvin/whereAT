@@ -90,6 +90,7 @@ const SurveyJumbo = (props) => (
  *  - disable button as soon as it's clicked instead of having to refresh the page
  *  - favorites button on the main nav bar should automatically requery for the
  *    local storage data instead of having to do a manual refresh
+ *  - user can unfavorite immediately after they favorite. or like, any unfavoriting capability on this page
  */
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
