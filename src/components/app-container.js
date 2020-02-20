@@ -76,7 +76,7 @@ function Container({ location }) {
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
         allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
-        favoriteSpaces = JSON.parse(localStorage.getItem('favorteSpaces'));
+        favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
     })
 
     return (
