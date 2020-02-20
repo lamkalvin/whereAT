@@ -4,6 +4,7 @@ import {
   useHistory
 } from 'react-router-dom';
 import {
+  FavoritesButton,
   StudySpaceCard,
   Topbar
 } from "../components";
