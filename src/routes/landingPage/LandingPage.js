@@ -24,7 +24,7 @@ const LandingPage = (props) => (
                 <Form.Control placeholder='Password' />
             </Form.Group>
         </Form>
-        <Link to="/">
+        <Link to="/home">
             <Button variant='primary' type='submit' onClick={props.login}>
                 Login
             </Button>

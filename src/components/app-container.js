@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -10,20 +10,21 @@ import {
     Route,
     withRouter
 } from "react-router-dom";
+import LandingPage from '../routes/landingPage';
 import HomePage from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import NewSpacePage from '../routes/newSpace';
+import Homebar from './homebar';
 
 const history = createBrowserHistory();
-
-let spaces = require('../study-spaces.json').data;
-let newSpaces = JSON.parse(localStorage.getItem('customSpaces')).data;
-let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces')).data;
-let recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces')).data;
-let allSpaces = spaces.concat(newSpaces)
+const spaces = require('../study-spaces.json');
+let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
+let allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
+let recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
 
 const Wrapper = styled.div`
     height : 100%;
@@ -54,6 +55,7 @@ const Wrapper = styled.div`
         width: 100%;
         top: 0;
         left: 0;
+        height: 100%;
     }
 `;
 
@@ -73,6 +75,13 @@ function clearAllLocalData() {
 }
 
 function Container({ location }) {
+    const [isLoggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
+        allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+        favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
+    })
 
     return (
         <Wrapper>
@@ -86,29 +95,35 @@ function Container({ location }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            <Route path="/search-results" component={SearchResults} />
-                            <Route path="/favorites" render={() => <Favorites data={favoriteSpaces} />} />
-                            <Route path="/settings">
-                                <Settings handleClick={clearAllLocalData} />
-                            </Route>
-                            <Route path="/view-space" component={ViewSpace} />
-                            <Route path="/search">
-                                <Search data={allSpaces} />
-                            </Route>
-                            <Route path="/location-search">
-                                <LocationSearchPage data={allSpaces} />
-                            </Route>
-                            <Route path="/recently-viewed">
-                                <RecentlyViewedPage data={recentlyViewedSpaces} />
-                            </Route>
-                            <Route path="/new-space">
-                                <NewSpacePage />
-                            </Route>
-                            <Route path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                            {isLoggedIn ?
+                                <div>
+                                    <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
+                                    <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
+                                    <Route path="/settings">
+                                        <Settings handleClick={clearAllLocalData} />
+                                    </Route>
+                                    <Route path="/view-space" component={ViewSpace} />
+                                    <Route path="/search">
+                                        <Search />
+                                    </Route>
+                                    <Route path="/location-search">
+                                        <LocationSearchPage data={allSpaces} />
+                                    </Route>
+                                    <Route path="/recently-viewed">
+                                        <RecentlyViewedPage data={spaces.data[0]} />
+                                    </Route>
+                                    <Route path="/new-space">
+                                        <NewSpacePage />
+                                    </Route>
+                                    <Route path="/home" render={() => <HomePage history={history} data={allSpaces}/>} />
+                                </div> :
+                                <Route path="/" render={() => <LandingPage login={() => setLoggedIn(true)}/>} />
+                            }
                         </Switch>
                     </section>
                 </CSSTransition>
             </TransitionGroup>
+            {isLoggedIn ? <Homebar /> : null}
         </Wrapper>
     );
 }
