@@ -16,6 +16,8 @@ export default class App extends React.Component {
    * filtered study space information is distributed to various pages.
    */
   componentWillMount() {
+      // TODO: Figure out why these keys are not reset when deleted and the
+      //   React server is restarted
       const userPresets = localStorage.getItem('userPresets');
       const customSpaces = localStorage.getItem('customSpaces');
       const favoriteSpaces = localStorage.getItem('favoriteSpaces');
@@ -27,15 +29,15 @@ export default class App extends React.Component {
       }
 
       if (!customSpaces) {
-        localStorage.setItem('customSpaces', JSON.stringify({
-          "data": []
-        }))
+          localStorage.setItem('customSpaces', JSON.stringify({
+            "data": []
+          }))
       }
 
       if (!favoriteSpaces) {
-        localStorage.setItem('favoriteSpaces', JSON.stringify({
-          "data": []
-        }))
+          localStorage.setItem('favoriteSpaces', JSON.stringify({
+            "data": []
+          }))
       }
   }
 

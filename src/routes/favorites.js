@@ -15,17 +15,21 @@ function handleClick() {
   // history.push("/view-space");
 }
 
+/**
+ * Improvements:
+ *  - update list as soon as it's clicked instead of having to refresh the page
+ */
 function handleClickDelete(event) {
   console.log("Favorites card deleted.");
 
   // Prevents the Card's onClick/Link from being triggered
   event.preventDefault();
 
-  // TODO: Use this code when actually deleting from the static db.
-  //var indexToDelete = event.target.getAttribute("index");
-  //dataHtml.splice(indexToDelete, 1);
-  // TODO: This is going to be dummy code for now.
-  document.getElementById("favorites-list").style.display = "none";
+  // Delete from Local Storage
+  var favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
+  var indexToDelete = event.target.getAttribute("index");
+  favoriteSpacesJson.data.splice(indexToDelete, 1);
+  localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson))
 }
 /* Sources of Help:
  *  - Interrupting the Link on the Card: https://stackoverflow.com/questions/39849108/disable-react-router-link-in-react
@@ -60,9 +64,7 @@ const Favorites = (props) => {
   return (
     <div id="favorites" style={{ overflow: "scroll" }}>
       <Topbar title="Favorites" hasBack={true} />
-      <div id="favorites-list">
-        {favoritesListToHtml(props.data)}
-      </div>
+      {favoritesListToHtml(props.data)}
     </div>);
 };
 
