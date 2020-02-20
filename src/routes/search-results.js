@@ -39,29 +39,29 @@ const SearchResults = (props) => {
     console.log(preferences);
 
     var ambience = 0;
-    if (preferences.ambience == 1) {
+    if (preferences.ambience === 1) {
       ambience = "quiet";
-    } else if (preferences.ambience == 2) {
+    } else if (preferences.ambience === 2) {
       ambience = "med";
     } else {
       ambience = "loud";
     }
 
     var popularity = 0;
-    if (preferences.popularity == 1) {
+    if (preferences.popularity === 1) {
       popularity = "not";
-    } else if (preferences.popularity == 2) {
+    } else if (preferences.popularity === 2) {
       popularity = "med";
     } else {
       popularity = "high";
     }
 
     var minGroupSize = 0;
-    if (preferences.groupSize == "1-2") {
+    if (preferences.groupSize === "1-2") {
       minGroupSize = 1;
-    } else if (preferences.groupSize == "3-4") {
+    } else if (preferences.groupSize === "3-4") {
       minGroupSize = 3;
-    } else if (preferences.groupSize == "5-6") {
+    } else if (preferences.groupSize === "5-6") {
       minGroupSize = 5;
     } else {
       minGroupSize = 7;
