@@ -28,10 +28,10 @@ const LandingPage = (props) => {
                     <Form.Control placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId='formPassword'>
-                    <Form.Control placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
+                    <Form.Control placeholder='Password' type="password" onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
             </Form>
-            <Button variant='primary' type='submit'
+            <Button variant='primary'
                 onClick={(((username === "exampleuser@gmail.com") && (password === "testpassword")) ?
                     props.logIn : () => toggleToast(true))}>
                 Login
