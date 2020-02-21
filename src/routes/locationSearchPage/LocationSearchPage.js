@@ -24,10 +24,6 @@ const StyledText = styled.h3`
     text-align: center;
 `
 
-function handleClick() {
-    console.log("Location search result card clicked.");
-}
-
 const LocationSearchPage = (props) => {
     const [searchLocation, setSearchLocation] = useState(0);
     const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
@@ -61,7 +57,6 @@ const LocationSearchPage = (props) => {
               <Link to={{ state: {data : d}, pathname: "/view-space"}} style= {{ textDecoration: "none", color: "#000000"}} key={i}>
                 <StudySpaceCard
                   data={d}
-                  handleClick={handleClick}
                   hasRemove={false}
                 />
               </Link>

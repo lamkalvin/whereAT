@@ -10,13 +10,6 @@ import {
 } from "../components";
 
 const Favorites = (props) => {
-  const history = useHistory();
-
-  function handleClick() {
-    console.log("Favorites card clicked.");
-    // TODO: This should not be called if we are clicking on the delete button.
-    history.push("/view-space");
-  }
 
   /**
    * Improvements:
@@ -43,7 +36,6 @@ const Favorites = (props) => {
       return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
         <StudySpaceCard
           data={space}
-          handleClick={handleClick}
           hasRemove={true}
           handleClickDelete={handleClickDelete}
         />

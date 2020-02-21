@@ -10,7 +10,6 @@ import {
     Route,
     withRouter
 } from "react-router-dom";
-import LandingPage from '../routes/landingPage';
 import HomePage from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
@@ -96,14 +95,14 @@ function Container({ location, ...props }) {
                     <section className="route-section">
                         <Switch location={location}>
                                 <div>
-                                    <Route path="/search-results" render={() => <SearchResults data={allSpaces} />} />
+                                    <Route path="/search-results" component={SearchResults} />
                                     <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
                                     <Route path="/settings">
                                         <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
                                     </Route>
                                     <Route path="/view-space" component={ViewSpace} />
                                     <Route path="/search">
-                                        <Search />
+                                        <Search data={allSpaces}/>
                                     </Route>
                                     <Route path="/location-search">
                                         <LocationSearchPage data={allSpaces} />

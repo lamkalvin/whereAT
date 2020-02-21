@@ -5,21 +5,21 @@ import {
   Topbar
 } from '../components';
 
-function handleClick() {
-  console.log("Search Results card clicked.");
-}
-
 /**
  * Improvements:
  *  - Put this function in a shared file b/c it's copied from Favorites screen.
+ *  - Create a No Results Found display if no results.
  */
 function searchResultsListToHtml(data) {
+  if (data.length == 0) {
+    return <h1 style={{ textAlign: "center" }}>No results found.</h1>;
+  }
+
   return data.map((space, i) => {
     return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
       <StudySpaceCard
         index={i}
         data={space}
-        handleClick={handleClick}
         hasRemove={false}
       />
     </Link>;
@@ -36,26 +36,6 @@ const SearchResults = (props) => {
     //   this variable
     const { data, preferences } = props.location.state;
 
-    console.log(preferences);
-
-    var ambience = 0;
-    if (preferences.ambience === 1) {
-      ambience = "quiet";
-    } else if (preferences.ambience === 2) {
-      ambience = "med";
-    } else {
-      ambience = "loud";
-    }
-
-    var popularity = 0;
-    if (preferences.popularity === 1) {
-      popularity = "not";
-    } else if (preferences.popularity === 2) {
-      popularity = "med";
-    } else {
-      popularity = "high";
-    }
-
     var minGroupSize = 0;
     if (preferences.groupSize === "1-2") {
       minGroupSize = 1;
@@ -68,8 +48,8 @@ const SearchResults = (props) => {
     }
 
     var results = data.filter(space =>
-      space.ambience === ambience
-      && space.popularity === popularity
+      space.ambience === preferences.ambience
+      && space.popularity === preferences.popularity
       && space.maxGroupSize >= minGroupSize
       && (space.outlet === preferences.outlet
           || space.usb === preferences.usb

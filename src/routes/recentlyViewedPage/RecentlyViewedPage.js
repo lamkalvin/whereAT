@@ -5,10 +5,6 @@ import {
   Topbar
 } from '../../components';
 
-function handleClick() {
-  console.log("Recently Viewed card clicked.");
-}
-
 /**
  * Improvements:
  *  - Put this function in a shared file b/c it's copied from Favorites screen.
@@ -20,7 +16,6 @@ function recentlyViewedListToHtml(data) {
       <StudySpaceCard
         index={i}
         data={space}
-        handleClick={handleClick}
         hasRemove={false}
       />
     </Link>;

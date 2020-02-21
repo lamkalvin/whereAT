@@ -42,7 +42,7 @@ function addToRecentlyViewedList(space) {
  *  - data: full JSON object containing data about the space
  */
 const StudySpaceCard = (props) => (
-  <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }} onClick={() => {addToRecentlyViewedList(props.data); props.handleClick();}}>
+  <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }} onClick={() => {addToRecentlyViewedList(props.data);}}>
     <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
       <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.data.imageFilePath} />
     </div>
