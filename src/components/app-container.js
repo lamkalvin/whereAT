@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -16,11 +16,12 @@ import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import NewSpacePage from '../routes/newSpace';
+import Homebar from './homebar';
 
 let spaces = require('../study-spaces.json');
 let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 const history = createBrowserHistory();
-let allSpaces = spaces.data.concat(newSpaces.data)
+let allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
 
 const Wrapper = styled.div`
     height : 100%;
@@ -51,6 +52,7 @@ const Wrapper = styled.div`
         width: 100%;
         top: 0;
         left: 0;
+        height: 100%;
     }
 `;
 
@@ -63,7 +65,12 @@ function clearAllLocalData() {
     }))
 }
 
-function Container({ location }) {
+function Container({ location, ...props }) {
+
+    useEffect(() => {
+        newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
+        allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+    })
 
     return (
         <Wrapper>
@@ -77,29 +84,32 @@ function Container({ location }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
-                            <Route path="/favorites" render={() => <Favorites />} />
-                            <Route path="/settings">
-                                <Settings handleClick={clearAllLocalData} />
-                            </Route>
-                            <Route path="/view-space" component={ViewSpace} />
-                            <Route path="/search">
-                                <Search />
-                            </Route>
-                            <Route path="/location-search">
-                                <LocationSearchPage data={allSpaces} />
-                            </Route>
-                            <Route path="/recently-viewed">
-                                <RecentlyViewedPage data={spaces.data[0]} />
-                            </Route>
-                            <Route path="/new-space">
-                                <NewSpacePage />
-                            </Route>
-                            <Route path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                                <div>
+                                    <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
+                                    <Route path="/favorites" render={() => <Favorites />} />
+                                    <Route path="/settings">
+                                        <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
+                                    </Route>
+                                    <Route path="/view-space" component={ViewSpace} />
+                                    <Route path="/search">
+                                        <Search />
+                                    </Route>
+                                    <Route path="/location-search">
+                                        <LocationSearchPage data={allSpaces} />
+                                    </Route>
+                                    <Route path="/recently-viewed">
+                                        <RecentlyViewedPage data={spaces.data[0]} />
+                                    </Route>
+                                    <Route path="/new-space">
+                                        <NewSpacePage />
+                                    </Route>
+                                    <Route exact path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                                </div>
                         </Switch>
                     </section>
                 </CSSTransition>
             </TransitionGroup>
+            <Homebar />
         </Wrapper>
     );
 }
