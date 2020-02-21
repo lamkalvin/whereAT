@@ -12,10 +12,10 @@ const searchIcon = require('../assets/search.png');
 const Wrapper = styled.div`
     position: absolute;
     background-color: white;
-    width: 78%;
+    width: 70%;
     margin: 0 auto;
     left: 50%;
-    top: 130px;
+    top: 160px;
     transform: translate(-50%, 0%);
 
   .suggestions {
