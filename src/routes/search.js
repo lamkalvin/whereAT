@@ -8,11 +8,11 @@ const BufferDiv = styled.div`
     width: 85%;
 `;
 
-const Search = () => (
+const Search = (props) => (
     <div>
         <Topbar title='Search' hasBack={true} />
         <BufferDiv>
-            <SearchForm />
+            <SearchForm data={props.data}/>
         </BufferDiv>
     </div>
 );

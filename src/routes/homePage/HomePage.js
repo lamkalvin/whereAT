@@ -1,18 +1,15 @@
 import React from 'react';
-import {
-    InputGroup,
-    FormControl,
-    Image,
-    Button
-} from 'react-bootstrap';
-import {Topbar} from '../../components';
+import Autocomplete from '../../components/autocomplete';
+import { Topbar } from '../../components';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import { Link, withRouter } from "react-router-dom";
 
-const searchIcon = require('../../assets/search.png');
 const pencilIcon = require('../../assets/icons/pencil.png');
 const pinIcon = require('../../assets/icons/pin.png');
 const stackIcon = require('../../assets/icons/stack.png');
+const addIcon = require('../../assets/icons/bookmark-add.png');
 
 const TileButton = styled(Button)`
     display: flex;
@@ -29,44 +26,50 @@ const TileButton = styled(Button)`
     padding-left: 20px;
 `
 
-const HomePage = (props) => (
-    <div>
-        <Topbar title='where @' />
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '20px'}}>
-            <InputGroup style={{width: '85%', margin: '0px auto 20px'}} >
-                <InputGroup.Prepend>
-                    <InputGroup.Text>
-                        <Image src={searchIcon} />
-                    </InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl placeholder="Search" onKeyPress={event => event.key === 'Enter' && props.history.push('/search-results')}/>
-            </InputGroup>
+const BufferDiv = styled.div`
+    margin: 50px auto 100px auto;
+    width: 85%;
+`;
 
-            <Link to="/search">
-                <TileButton type="submit">
-                    <Image src={pencilIcon} style={{paddingRight: '20px'}}/>
-                    Specify preferences
-                </TileButton>
-            </Link>
+const HomePage = (props) => {
+    let titles = props.data.map(({ title }) => title)
 
-            <Link to="/location-search">
-                <TileButton type="submit">
-                    <Image src={pinIcon} style={{paddingRight: '20px'}}/>
-                    Search by location
-                </TileButton>
-            </Link>
-
-            <Link to="/recently-viewed">
-                <TileButton type="submit">
-                    <Image src={stackIcon} style={{paddingRight: '20px'}}/>
-                    Recently viewed
-                </TileButton>
-            </Link>
-        </div>
+    return (
         <div>
-            
+            <Topbar title='where @' />
+            <BufferDiv style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Autocomplete suggestions={titles} data={props.data} history={props.history} />
+
+                <Link to="/search">
+                    <TileButton type="submit">
+                        <Image src={pencilIcon} style={{ paddingRight: '20px' }} />
+                        Specify preferences
+                    </TileButton>
+                </Link>
+
+                <Link to="/location-search">
+                    <TileButton type="submit">
+                        <Image src={pinIcon} style={{ paddingRight: '20px' }} />
+                        Search by location
+                    </TileButton>
+                </Link>
+
+                <Link to="/recently-viewed">
+                    <TileButton type="submit">
+                        <Image src={stackIcon} style={{ paddingRight: '20px' }} />
+                        Recently viewed
+                    </TileButton>
+                </Link>
+
+                <Link to="/new-space">
+                    <TileButton type="submit">
+                        <Image src={addIcon} style={{ paddingRight: '20px' }}/>
+                        Add study space
+                    </TileButton>
+                </Link>
+            </BufferDiv>
         </div>
-    </div>
-);
+    );
+}
 
 export default withRouter(HomePage);

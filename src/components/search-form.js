@@ -2,13 +2,53 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown';
-import Col from 'react-bootstrap/Col';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import InputGroup from 'react-bootstrap/InputGroup';
 import { Link } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
+import Alert from 'react-bootstrap/Alert';
 
-const SearchForm = () => {
+function SavePresetModal(props) {
+    let presetName = "";
+    return (
+        <Modal
+            {...props}
+            size="lg"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Name your preset!
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {props.showAlert && <Alert variant="danger">
+                    Must have preset name!
+                </Alert>}
+                <InputGroup className="mb-3">
+                    <Form.Control
+                        placeholder="Preset name"
+                        onChange={(e) => presetName = e.target.value}
+                    />
+                </InputGroup>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => {
+                    if (presetName !== "") {
+                        props.onHide();
+                        props.onSubmit(presetName);
+                    } else {
+                        props.setAlertShow();
+                    }
+                }}>Submit</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
+const SearchForm = (props) => {
     const [ambienceVal, setAmbience] = useState();
     const [popularityVal, setPopularity] = useState();
     const [groupSize, setGroupsize] = useState("Group size");
@@ -20,6 +60,11 @@ const SearchForm = () => {
     const [whiteboard, toggleWhiteboard] = useState(false);
     const [food, toggleFood] = useState(false);
 
+    const [modalShow, setModalShow] = useState(false);
+    const [showAlert, setAlertShow] = useState(false);
+    const [preset, setPresetDropdown] = useState("User presets");
+    let userPresets = JSON.parse(localStorage.getItem('userPresets'));
+
     function clearInput() {
         setAmbience(0);
         setPopularity(0);
@@ -30,6 +75,7 @@ const SearchForm = () => {
         toggleComputer(false);
         toggleWhiteboard(false);
         toggleFood(false);
+        setPresetDropdown("User presets");
     }
 
     function focusPreset() {
@@ -56,29 +102,93 @@ const SearchForm = () => {
         toggleFood(true);
     }
 
+    function setPreset(preset) {
+        setAmbience(preset.ambience);
+        setPopularity(preset.popularity);
+        setGroupsize(preset.groupSize);
+        toggleOutlet(preset.outlet);
+        toggleUsb(preset.usb);
+        togglePrinter(preset.printer);
+        toggleComputer(preset.computer);
+        toggleWhiteboard(preset.whiteboard);
+        toggleFood(preset.food);
+    }
+
+    function createNewPreset(presetName) {
+        userPresets.data.push({
+            'title': presetName,
+            'preset': {
+                'ambience': ambienceVal,
+                'popularity': popularityVal,
+                'groupSize': groupSize,
+                'outlet': outlet,
+                'usb': usb,
+                'printer': printer,
+                'computer': computer,
+                'whiteboard': whiteboard,
+                'food': food
+            }
+        })
+        setPresetDropdown(presetName);
+        localStorage.setItem('userPresets', JSON.stringify(userPresets));
+    }
+
+    function createPresets() {
+        let presets = [];
+        for (let i = 0; i < userPresets.data.length; i++) {
+            presets.push(
+                <Dropdown.Item onClick={() => { setPreset(userPresets.data[i].preset); setPresetDropdown(userPresets.data[i].title); }}>
+                    {userPresets.data[i].title}
+                </Dropdown.Item>)
+        }
+        return presets;
+    }
+
     return (
         <Form>
+            <SavePresetModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                onSubmit={createNewPreset}
+                showAlert={showAlert}
+                setAlertShow={() => setAlertShow(true)}
+            />
+            <div style={{ display: 'grid', gridGap: '10px 10px', gridTemplateColumns: 'repeat(2, 1fr)', marginBottom: '10px' }}>
+                <Button variant="info" onClick={() => setModalShow(true)}>
+                    Save preset
+                </Button>
+                <Button variant="danger" onClick={() => clearInput()}>
+                    Clear input
+                </Button>
+            </div>
+            {(userPresets.data.length > 0) &&
+                <div>
+                    <h5>User presets</h5>
+                    <div>
+                        <DropdownButton id="dropdown-basic-button"
+                            title={preset}
+                            variant="secondary">
+                            {createPresets()}
+                        </DropdownButton>
+                    </div>
+                </div>
+            }
             <div>
                 <h5>Preset search options</h5>
                 <div>
-                    <ToggleButtonGroup type="radio" name="options" value={0}>
+                    <ToggleButtonGroup type="radio" name="options" value={0} style={{ width: '100%' }}>
                         <ToggleButton variant="secondary" value={1} onClick={() => focusPreset()}>Focus</ToggleButton>
                         <ToggleButton variant="secondary" value={2} onClick={() => comfortablePreset()}>Comfortable</ToggleButton>
                         <ToggleButton variant="secondary" value={3} onClick={() => activePreset()}>Active</ToggleButton>
                     </ToggleButtonGroup>
                 </div>
             </div>
-            <div style={{ textAlign: 'right' }}>
-                <Button variant="danger" onClick={() => clearInput()}>
-                    Clear input
-                </Button>
-            </div>
             <Form.Group controlId="formGridAmb">
                 <Form.Label><h5>Ambience</h5></Form.Label>
                 <div>
                     What is your preferred noise level?
                     <div>
-                        <ToggleButtonGroup type="radio" name="options" value={ambienceVal}>
+                        <ToggleButtonGroup type="radio" name="options" value={ambienceVal} style={{ width: '100%' }}>
                             <ToggleButton variant="secondary" value={1} onClick={() => setAmbience(1)}>Rather quiet</ToggleButton>
                             <ToggleButton variant="secondary" value={2} onClick={() => setAmbience(2)}>Moderately active</ToggleButton>
                             <ToggleButton variant="secondary" value={3} onClick={() => setAmbience(3)}>Very loud</ToggleButton>
@@ -92,7 +202,7 @@ const SearchForm = () => {
                 <div>
                     How popular would you like your location to be?
                     <div>
-                        <ToggleButtonGroup type="radio" name="options" value={popularityVal}>
+                        <ToggleButtonGroup type="radio" name="options" value={popularityVal} style={{ width: '100%' }}>
                             <ToggleButton variant="secondary" value={1} onClick={() => setPopularity(1)}>Not very popular</ToggleButton>
                             <ToggleButton variant="secondary" value={2} onClick={() => setPopularity(2)}>Moderately popular</ToggleButton>
                             <ToggleButton variant="secondary" value={3} onClick={() => setPopularity(3)}>Very popular</ToggleButton>
@@ -108,7 +218,8 @@ const SearchForm = () => {
                 <div>
                         <DropdownButton id="dropdown-basic-button"
                             title={groupSize}
-                            variant="secondary">
+                            variant="secondary"
+                        >
                             <Dropdown.Item onClick={() => setGroupsize("1-2")}>1-2</Dropdown.Item>
                             <Dropdown.Item onClick={() => setGroupsize("3-4")}>3-4</Dropdown.Item>
                             <Dropdown.Item onClick={() => setGroupsize("5-6")}>5-6</Dropdown.Item>
@@ -120,40 +231,49 @@ const SearchForm = () => {
 
             <Form.Group controlId="formGridOther">
                 <Form.Label><h5>Other</h5></Form.Label>
-                <Form.Row>
-                    <Col><b>Feature</b></Col><Col><b>Search</b></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Has outlet</Col>
-                    <Col><Form.Check checked={outlet} onClick={() => toggleOutlet(!outlet)} /></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Has USB charging port</Col>
-                    <Col><Form.Check checked={usb} onClick={() => toggleUsb(!usb)} /></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Has public computer</Col>
-                    <Col><Form.Check checked={computer} onClick={() => toggleComputer(!computer)} /></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Has printer</Col>
-                    <Col><Form.Check checked={printer} onClick={() => togglePrinter(!printer)} /></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Has whiteboard</Col>
-                    <Col><Form.Check checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} /></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col>Allows food/drink</Col>
-                    <Col><Form.Check checked={food} onClick={() => toggleFood(!food)} /></Col>
-                </Form.Row>
+                <div style={{ marginLeft: '25px' }}>
+                    <Form.Row>
+                        <Form.Check checked={outlet} onClick={() => toggleOutlet(!outlet)} />
+                        Has outlet
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Check checked={usb} onClick={() => toggleUsb(!usb)} />
+                        Has USB charging port
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Check checked={computer} onClick={() => toggleComputer(!computer)} />
+                        Has public computer
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Check checked={printer} onClick={() => togglePrinter(!printer)} />
+                        Has printer
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Check checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} />
+                        Has whiteboard
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Check checked={food} onClick={() => toggleFood(!food)} />
+                        Allows food/drink
+                    </Form.Row>
+                </div>
             </Form.Group>
 
             <div style={{ textAlign: 'right', marginBottom: '100px' }}>
-                <Link to="/search-results">
+                <Link to={{ state: { data: props.data, preferences : {
+                  ambience: ambienceVal,
+                  popularity: popularityVal,
+                  groupSize: groupSize,
+                  outlet: outlet,
+                  usb: usb,
+                  printer: printer,
+                  computer: computer,
+                  whiteboard: whiteboard,
+                  food: food
+                }}, pathname: "/search-results" }}>
                     <Button variant="primary" type="submit">
                         Submit
-                </Button>
+                    </Button>
                 </Link>
             </div>
         </Form>)

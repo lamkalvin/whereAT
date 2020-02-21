@@ -3,8 +3,9 @@ import Homebar from './homebar';
 import Popularity from './popularity';
 import StudySpaceCard from './study-space-card';
 import SurveyForm from './survey-form';
-import Survey from './survey';
 import Profile from './profile';
 import Topbar from './topbar';
+import AddForm from './add-form'
+import FavoritesButton from './favoritesButton';
 
-export { Ambience, Homebar, Popularity, StudySpaceCard, SurveyForm, Survey, Profile, Topbar };
+export { Ambience, FavoritesButton, Homebar, Popularity, StudySpaceCard, SurveyForm, Profile, Topbar, AddForm };

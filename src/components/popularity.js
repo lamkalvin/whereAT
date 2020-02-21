@@ -1,19 +1,40 @@
 import React from 'react';
-// import styled from 'styled-components';
 import Figure from 'react-bootstrap/Figure';
 import med from '../assets/view-icons/popularity/med-popular.png';
+import high from '../assets/view-icons/popularity/high-popular.png';
+import not from '../assets/view-icons/popularity/not-popular.png';
 
-function Popularity (val) {
+const popularityLevels = ['not', 'med', 'high'];
+
+function Popularity(props) {
     return (
         <div>
             <h3>Popularity</h3>
-            <Figure>
-                <Figure.Image src={med} />
-                <Figure.Caption>
-                    Medium
+            {popularityLevels[props.val-1] === 'med' &&
+                < Figure >
+                    <Figure.Image src={med} />
+                    <Figure.Caption>
+                        Medium
                 </Figure.Caption>
-            </Figure>
-        </div>
+                </Figure>
+            }
+            {popularityLevels[props.val-1] === 'high' &&
+                < Figure >
+                    <Figure.Image src={high} />
+                    <Figure.Caption>
+                        High
+                </Figure.Caption>
+                </Figure>
+            }
+            {popularityLevels[props.val-1] === 'not' &&
+                < Figure >
+                    <Figure.Image src={not} />
+                    <Figure.Caption>
+                        Not very popular
+                </Figure.Caption>
+                </Figure>
+            }
+        </div >
     )
 }
 export default Popularity;

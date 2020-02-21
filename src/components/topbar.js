@@ -16,12 +16,12 @@ const Topbar = (props) => (
     <StyledNav expand="lg" sticky="top">
         { props.hasBack &&
         <img
-            src={back} 
-            onClick={() => window.history.back()}
+            src={back}
+            onClick={props.handleClick ? (() => props.handleClick()) : (() => window.history.back())}
             style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
         />}
-        <Title href="#">
-            <h1 style={{ color: 'white', textAlign: 'center', fontSize: props.titleSize }}>{props.title}</h1>
+        <Title style={{ color: 'white', textAlign: 'center', fontSize: 'min(5vw, 28px)', wordWrap: 'break-word' }}>
+            {props.title}
         </Title>
     </StyledNav>
 );
