@@ -18,7 +18,7 @@ const SurveyToast = (props) => {
     return (
         <PositionDiv>
             <DisguisedToast onClose={() => props.handleClick()} show={props.show} delay={3000} autohide>
-                <Toast.Body>Thanks for submitting the survey! We'll get back to you soon :)</Toast.Body>
+                <Toast.Body>{props.text}</Toast.Body>
             </DisguisedToast>
         </PositionDiv>
     )
