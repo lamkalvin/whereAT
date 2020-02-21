@@ -12,6 +12,8 @@ import Button from 'react-bootstrap/Button';
  *  - user can unfavorite immediately after they favorite. or like, any unfavoriting capability on this page
  *  - relative positioning of button
  */
+
+ // state for button
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
 

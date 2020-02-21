@@ -20,7 +20,7 @@ const Topbar = (props) => (
             onClick={props.handleClick ? (() => props.handleClick()) : (() => window.history.back())}
             style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
         />}
-        <Title style={{ color: 'white', textAlign: 'center', fontSize: '5vw', wordWrap: 'break-word' }}>
+        <Title style={{ color: 'white', textAlign: 'center', fontSize: 'min(5vw, 28px)', wordWrap: 'break-word' }}>
             {props.title}
         </Title>
     </StyledNav>

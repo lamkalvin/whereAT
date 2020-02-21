@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     width: 70%;
     margin: 0 auto;
     left: 50%;
-    top: 160px;
+    top: 145px;
     transform: translate(-50%, 0%);
 
   .suggestions {

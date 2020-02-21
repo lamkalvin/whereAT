@@ -108,7 +108,7 @@ function Container({ location, ...props }) {
                                         <LocationSearchPage data={allSpaces} />
                                     </Route>
                                     <Route path="/recently-viewed">
-                                        <RecentlyViewedPage data={recentlyViewedSpaces} />
+                                        <RecentlyViewedPage data={recentlyViewedSpaces.data} />
                                     </Route>
                                     <Route path="/new-space">
                                         <NewSpacePage />

@@ -20,6 +20,12 @@ function showRemove(hasRemove, handleClickRemove, index) {
  */
 function addToRecentlyViewedList(space) {
   let recentlyViewedSpacesJson = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
+  let dupeIdx = recentlyViewedSpacesJson.data.findIndex(studySpace => studySpace.title === space.title);
+  console.log(dupeIdx);
+  if (dupeIdx != -1) {
+    console.log(recentlyViewedSpacesJson.data[dupeIdx].title);
+    recentlyViewedSpacesJson.data.splice(dupeIdx, 1);
+  }
   recentlyViewedSpacesJson.data.push(space);
   localStorage.setItem('recentlyViewedSpaces', JSON.stringify(recentlyViewedSpacesJson));
 }

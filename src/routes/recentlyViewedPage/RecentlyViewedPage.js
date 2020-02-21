@@ -10,7 +10,7 @@ import {
  *  - Put this function in a shared file b/c it's copied from Favorites screen.
  */
 function recentlyViewedListToHtml(data) {
-  console.log(data)
+  data = data.reverse();
   return data.map((space, i) => {
     return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
       <StudySpaceCard
@@ -22,14 +22,17 @@ function recentlyViewedListToHtml(data) {
   });
 }
 
+const NoResults = () => (
+  <div style={{width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px'}}><h2>No results found.</h2></div>
+)
+
 const RecentlyViewedPage = (props) => {
-    const [noResults, setNoResults] = useState(false);
     console.log(props.data)
 
     return (
         <div>
             <Topbar title='Recently Viewed' hasBack/>
-            {recentlyViewedListToHtml(props.data.data)}
+            {props.data.length > 0 ? recentlyViewedListToHtml(props.data) : <NoResults />}
         </div>
     );
 }
