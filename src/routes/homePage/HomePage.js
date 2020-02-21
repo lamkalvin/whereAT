@@ -40,7 +40,6 @@ const HomePage = (props) => {
             <BufferDiv style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <Autocomplete suggestions={titles} data={props.data} history={props.history} />
 
-
                 <Link to="/search">
                     <TileButton type="submit">
                         <Image src={pencilIcon} style={{ paddingRight: '20px' }} />

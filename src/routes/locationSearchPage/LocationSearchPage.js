@@ -24,10 +24,8 @@ const StyledText = styled.h3`
     text-align: center;
 `
 
-// TODO: Delete this. This is only a temporary solution to the handle click
-//   callback.
 function handleClick() {
-  console.log("I've been clicked! Bless this day.");
+    console.log("Location search result card clicked.");
 }
 
 const LocationSearchPage = (props) => {

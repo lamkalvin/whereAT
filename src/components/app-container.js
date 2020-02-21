@@ -10,6 +10,7 @@ import {
     Route,
     withRouter
 } from "react-router-dom";
+import LandingPage from '../routes/landingPage';
 import HomePage from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
@@ -18,10 +19,11 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import NewSpacePage from '../routes/newSpace';
 import Homebar from './homebar';
 
-let spaces = require('../study-spaces.json');
-let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 const history = createBrowserHistory();
+const spaces = require('../study-spaces.json');
+let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 let allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
 
 const Wrapper = styled.div`
     height : 100%;
@@ -59,10 +61,13 @@ const Wrapper = styled.div`
 function clearAllLocalData() {
     localStorage.setItem('userPresets', JSON.stringify({
         "data": []
-    }))
+    }));
     localStorage.setItem('customSpaces', JSON.stringify({
         "data": []
-    }))
+    }));
+    localStorage.setItem('favoriteSpaces', JSON.stringify({
+        "data": []
+    }));
 }
 
 function Container({ location, ...props }) {
@@ -70,6 +75,7 @@ function Container({ location, ...props }) {
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
         allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+        favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
     })
 
     return (
