@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
  *  - favorites button on the main nav bar should automatically requery for the
  *    local storage data instead of having to do a manual refresh
  *  - user can unfavorite immediately after they favorite. or like, any unfavoriting capability on this page
+ *  - relative positioning of button
  */
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));

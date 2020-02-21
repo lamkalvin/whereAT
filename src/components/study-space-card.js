@@ -14,6 +14,10 @@ function showRemove(hasRemove, handleClickRemove, index) {
   }
 }
 
+/**
+ * Improvements:
+ *  - Remove duplicates from the recently viewed list. 
+ */
 function addToRecentlyViewedList(space) {
   let recentlyViewedSpacesJson = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
   recentlyViewedSpacesJson.data.push(space);
