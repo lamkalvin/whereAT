@@ -74,8 +74,7 @@ function clearAllLocalData() {
     }));
 }
 
-function Container({ location }) {
-    const [isLoggedIn, setLoggedIn] = useState(false);
+function Container({ location, ...props }) {
 
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
@@ -96,12 +95,11 @@ function Container({ location }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            {isLoggedIn ?
                                 <div>
                                     <Route path="/search-results" render={() => <SearchResults data={allSpaces} />} />
                                     <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
                                     <Route path="/settings">
-                                        <Settings handleClick={clearAllLocalData} />
+                                        <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
                                     </Route>
                                     <Route path="/view-space" component={ViewSpace} />
                                     <Route path="/search">
@@ -116,15 +114,13 @@ function Container({ location }) {
                                     <Route path="/new-space">
                                         <NewSpacePage />
                                     </Route>
-                                    <Route path="/home" render={() => <HomePage history={history} data={allSpaces}/>} />
-                                </div> :
-                                <Route path="/" render={() => <LandingPage login={() => setLoggedIn(true)}/>} />
-                            }
+                                    <Route exact path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                                </div>
                         </Switch>
                     </section>
                 </CSSTransition>
             </TransitionGroup>
-            {isLoggedIn ? <Homebar /> : null}
+            <Homebar />
         </Wrapper>
     );
 }

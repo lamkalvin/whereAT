@@ -4,10 +4,17 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import Container from './components/app-container';
+import LandingPage from './routes/landingPage';
 
 export default class App extends React.Component {
+
   constructor(props) {
       super(props);
+      this.state = {
+        isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn'))
+      }
+      this.logIn = this.logIn.bind(this);
+      this.logOut = this.logOut.bind(this);
   }
 
   /**
@@ -15,18 +22,10 @@ export default class App extends React.Component {
    * filtered study space information is distributed to various pages.
    */
   componentWillMount() {
-      // TODO: Figure out why these keys are not reset when deleted and the
-      //   React server is restarted
       const userPresets = localStorage.getItem('userPresets');
       const customSpaces = localStorage.getItem('customSpaces');
       const favoriteSpaces = localStorage.getItem('favoriteSpaces');
       const recentlyViewedSpaces = localStorage.getItem('recentlyViewedSpaces');
-
-      if (!userPresets) {
-          localStorage.setItem('userPresets', JSON.stringify({
-            "data": []
-          }))
-      }
 
       if (!customSpaces) {
           localStorage.setItem('customSpaces', JSON.stringify({
@@ -47,10 +46,12 @@ export default class App extends React.Component {
       }
   }
 
+
   render() {
+    console.log(this.state.isLoggedIn);
     return (
       <Router>
-        <Container />
+        { this.state.isLoggedIn ? <Container logOut={this.logOut} /> : <LandingPage logIn={this.logIn}/> }
       </Router>
     );
   }
