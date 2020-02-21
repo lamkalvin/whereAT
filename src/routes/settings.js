@@ -27,6 +27,9 @@ const Settings = (props) => {
                     <img src={trash} style={{ marginRight: '10%', width: '15%' }} />
                     <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
                 </Button>
+                <Button variant="danger" size="lg" block onClick={() => {props.logOut()}}>
+                    <p style={{ fontSize: '125%', display: 'inline' }}>Log out</p>
+                </Button>
                 <Disclaimer>
                     <p style={{ color: '#2D9CDB' }}>
                         <b>where@</b> has been created by Andy Duong, Kalvin Lam, and Bella Le for COGS 120 / CSE 170!
