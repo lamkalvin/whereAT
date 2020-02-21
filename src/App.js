@@ -4,46 +4,39 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import Container from './components/app-container';
+import LandingPage from './routes/landingPage';
 
 export default class App extends React.Component {
-  constructor(props) {
-      super(props);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+          isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn'))
+        }
+        this.logIn = this.logIn.bind(this);
+        this.logOut = this.logOut.bind(this);
+    }
 
-  /**
-   * Local Storage must be set up before rendering the app because some
-   * filtered study space information is distributed to various pages.
-   */
-  componentWillMount() {
-      // TODO: Figure out why these keys are not reset when deleted and the
-      //   React server is restarted
-      const userPresets = localStorage.getItem('userPresets');
-      const customSpaces = localStorage.getItem('customSpaces');
-      const favoriteSpaces = localStorage.getItem('favoriteSpaces');
+    logIn() {
+      this.setState({
+        isLoggedIn : true
+      })
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = '/';
+    }
 
-      if (!userPresets) {
-          localStorage.setItem('userPresets', JSON.stringify({
-            "data": []
-          }))
-      }
-
-      if (!customSpaces) {
-          localStorage.setItem('customSpaces', JSON.stringify({
-            "data": []
-          }))
-      }
-
-      if (!favoriteSpaces) {
-          localStorage.setItem('favoriteSpaces', JSON.stringify({
-            "data": []
-          }))
-      }
-  }
+    logOut() {
+      this.setState({
+        isLoggedIn : false
+      })
+      localStorage.setItem('isLoggedIn', 'false');
+      window.location.href = '/';
+    }
 
   render() {
+    console.log(this.state.isLoggedIn);
     return (
       <Router>
-        <Container />
+        { this.state.isLoggedIn ? <Container logOut={this.logOut} /> : <LandingPage logIn={this.logIn}/> }
       </Router>
     );
   }
