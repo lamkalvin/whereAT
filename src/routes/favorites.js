@@ -42,12 +42,7 @@ const Favorites = (props) => {
     return props.data.data.map((space, i) => {
       return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
         <StudySpaceCard
-          index={i}
-          title={space.title}
-          description={space.description}
-          imageFilePath={space.imageFilePath}
-          distance={space.distance}
-          tags={space.tags}
+          data={space}
           handleClick={handleClick}
           hasRemove={true}
           handleClickDelete={handleClickDelete}

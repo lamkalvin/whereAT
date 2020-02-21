@@ -14,6 +14,7 @@ function handleClick() {
  *  - Put this function in a shared file b/c it's copied from Favorites screen.
  */
 function recentlyViewedListToHtml(data) {
+  console.log(data)
   return data.map((space, i) => {
     return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
       <StudySpaceCard
@@ -28,11 +29,12 @@ function recentlyViewedListToHtml(data) {
 
 const RecentlyViewedPage = (props) => {
     const [noResults, setNoResults] = useState(false);
+    console.log(props.data)
 
     return (
         <div>
             <Topbar title='Recently Viewed' hasBack/>
-            {recentlyViewedListToHtml(props.data)}
+            {recentlyViewedListToHtml(props.data.data)}
         </div>
     );
 }

@@ -81,6 +81,7 @@ function Container({ location }) {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
         allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
         favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
+        recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
     })
 
     return (
@@ -97,7 +98,7 @@ function Container({ location }) {
                         <Switch location={location}>
                             {isLoggedIn ?
                                 <div>
-                                    <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
+                                    <Route path="/search-results" render={() => <SearchResults data={allSpaces} />} />
                                     <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
                                     <Route path="/settings">
                                         <Settings handleClick={clearAllLocalData} />
@@ -110,7 +111,7 @@ function Container({ location }) {
                                         <LocationSearchPage data={allSpaces} />
                                     </Route>
                                     <Route path="/recently-viewed">
-                                        <RecentlyViewedPage data={spaces.data[0]} />
+                                        <RecentlyViewedPage data={recentlyViewedSpaces} />
                                     </Route>
                                     <Route path="/new-space">
                                         <NewSpacePage />
