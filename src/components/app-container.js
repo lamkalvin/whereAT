@@ -22,7 +22,6 @@ const history = createBrowserHistory();
 const spaces = require('../study-spaces.json');
 let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 let allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
-let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
 let recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
 
 const Wrapper = styled.div`
@@ -78,7 +77,6 @@ function Container({ location, ...props }) {
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
         allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
-        favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
         recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
     })
 
@@ -96,7 +94,7 @@ function Container({ location, ...props }) {
                         <Switch location={location}>
                                 <div>
                                     <Route path="/search-results" component={SearchResults} />
-                                    <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
+                                    <Route path="/favorites" render={() => <Favorites />} />
                                     <Route path="/settings">
                                         <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
                                     </Route>

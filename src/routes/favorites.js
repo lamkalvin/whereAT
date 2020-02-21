@@ -10,6 +10,7 @@ import {
 } from "../components";
 
 const Favorites = (props) => {
+  let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
 
   /**
    * Improvements:
@@ -22,17 +23,17 @@ const Favorites = (props) => {
     event.preventDefault();
 
     // Delete from Local Storage
-    var favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
     var indexToDelete = event.target.getAttribute("index");
-    favoriteSpacesJson.data.splice(indexToDelete, 1);
-    localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
+    favoriteSpaces.data.splice(indexToDelete, 1);
+    localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpaces));
   }
   /* Sources of Help:
    *  - Interrupting the Link on the Card: https://stackoverflow.com/questions/39849108/disable-react-router-link-in-react
    **/
 
   function favoritesListToHtml() {
-    return props.data.data.map((space, i) => {
+    console.log(favoriteSpaces);
+    return favoriteSpaces.data.map((space, i) => {
       return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
         <StudySpaceCard
           data={space}

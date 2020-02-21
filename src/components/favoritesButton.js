@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 /**
@@ -13,31 +13,34 @@ import Button from 'react-bootstrap/Button';
  *  - relative positioning of button
  */
 
- // state for button
+// state for button
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
-
-    console.log(typeof favoriteSpacesJson.data.map(space => space.title).includes(props.space.title))
+    const [favorited, setFavorited] = useState(favoriteSpacesJson.data.map(space => space.title).includes(props.space.title));
 
     /* Add the currently viewed space to the favorites list */
     function handleClick() {
-        favoriteSpacesJson.data.push(props.space);
-        console.log(favoriteSpacesJson);
-        localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
-    }
-
-    /* Disable button if a space has already been added to the favorites list */
-    function shouldDisable() {
-        return favoriteSpacesJson.data.map(space => space.title).includes(props.space.title);
+        if (!favoriteSpacesJson.data.map(space => space.title).includes(props.space.title)) {
+            favoriteSpacesJson.data.push(props.space);
+            localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
+            setFavorited(true);
+        } else {
+            let indexToDelete = favoriteSpacesJson.data.findIndex(space => space.title === props.space.title);
+            favoriteSpacesJson.data.splice(indexToDelete, 1);
+            localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpacesJson));
+            setFavorited(false);
+            if (props.delete) {
+                props.delete();
+            }
+        }
     }
 
     return (<Button
-      style={{ position: "absolute", top: "100px", right: "20px" }}
-      variant="secondary"
-      onClick={handleClick}
-      disabled={shouldDisable()}
-      >
-      Add to Favorites
+        style={{ position: "absolute", top: "75px", right: "20px", fontSize: "7vw", color: favorited ? 'white' : 'black' }}
+        variant={ favorited ? "warning" : "light" }
+        onClick={handleClick}
+    >
+        { favorited ? "★" : "☆" }
     </Button>);
 };
 

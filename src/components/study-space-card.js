@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LinesEllipsis from 'react-lines-ellipsis';
 // TODO: Use styled components
 import styled from "styled-components";
@@ -8,9 +8,14 @@ import {
   Container
 } from 'react-bootstrap';
 
-function showRemove(hasRemove, handleClickRemove, index) {
+function showRemove(hasRemove, handleClickRemove, index, setAppear) {
   if (hasRemove) {
-    return <Button index={index} style={{ display: "flex", margin: "auto", marginRight: "20px" }} variant="outline-danger" onClick={handleClickRemove}>Remove</Button>
+    return <Button index={index}
+      style={{ display: "flex", margin: "auto", marginRight: "20px", color: "white" }}
+      variant="warning"
+      onClick={(e) => { handleClickRemove(e); setAppear(false) }}>
+      ★
+      </Button>
   }
 }
 
@@ -18,17 +23,6 @@ function showRemove(hasRemove, handleClickRemove, index) {
  * Improvements:
  *  - Remove duplicates from the recently viewed list. 
  */
-function addToRecentlyViewedList(space) {
-  let recentlyViewedSpacesJson = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
-  let dupeIdx = recentlyViewedSpacesJson.data.findIndex(studySpace => studySpace.title === space.title);
-  console.log(dupeIdx);
-  if (dupeIdx != -1) {
-    console.log(recentlyViewedSpacesJson.data[dupeIdx].title);
-    recentlyViewedSpacesJson.data.splice(dupeIdx, 1);
-  }
-  recentlyViewedSpacesJson.data.push(space);
-  localStorage.setItem('recentlyViewedSpaces', JSON.stringify(recentlyViewedSpacesJson));
-}
 
 /**
  * Improvements:
@@ -51,26 +45,30 @@ function addToRecentlyViewedList(space) {
  * Props Expected:
  *  - data: full JSON object containing data about the space
  */
-const StudySpaceCard = (props) => (
-  <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }} onClick={() => {addToRecentlyViewedList(props.data);}}>
-    <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-      <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.data.imageFilePath} />
-    </div>
-    <Card.Body style={{ height: '100%', width: '40%' }}>
-      <Card.Title style={{ fontSize: '100%', overflow: 'hidden' }}>{props.data.title}</Card.Title>
-      <Card.Text style={{ height: '25%', fontSize: '60%', overflow: 'hidden' }}>
-        {props.data.description.join(' ')}
-      </Card.Text>
-      <Card.Text style={{ fontSize: '75%' }}>
-        {props.data.distance}
-      </Card.Text>
-      <Card.Text style={{ fontSize: '60%' }}>
-        Tags: {props.data.tags.join(', ')}
-      </Card.Text>
-    </Card.Body>
-    {showRemove(props.hasRemove, props.handleClickDelete, props.index)}
-  </Card>
-);
+const StudySpaceCard = (props) => {
+  const [appear, setAppear] = useState(true);
+  console.log(appear);
+  return (appear &&
+    <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }}>
+      <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
+        <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.data.imageFilePath} />
+      </div>
+      <Card.Body style={{ height: '100%', width: '40%' }}>
+        <Card.Title style={{ fontSize: '100%', overflow: 'hidden' }}>{props.data.title}</Card.Title>
+        <Card.Text style={{ height: '25%', fontSize: '60%', overflow: 'hidden' }}>
+          {props.data.description.join(' ')}
+        </Card.Text>
+        <Card.Text style={{ fontSize: '75%' }}>
+          {props.data.distance}
+        </Card.Text>
+        <Card.Text style={{ fontSize: '60%' }}>
+          Tags: {props.data.tags.join(', ')}
+        </Card.Text>
+      </Card.Body>
+      {showRemove(props.hasRemove, props.handleClickDelete, props.index, setAppear)}
+    </Card>
+  )
+};
 /*
  * Sources of Help:
  *  - Card: https://react-bootstrap.github.io/components/cards/#basic-example

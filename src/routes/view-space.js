@@ -50,7 +50,7 @@ function Seats(props) {
 function Description(props) {
     return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
         <h3>Description</h3>
-        {props.val.map((item,i) => {return <p key={i}>{item}</p> })}
+        {props.val.map((item, i) => { return <p key={i}>{item}</p> })}
     </div>
 };
 
@@ -83,10 +83,22 @@ const SurveyJumbo = (props) => (
     </Jumbotron>
 );
 
+function setRecentlyViewed(data) {
+    let recentlyViewedSpacesJson = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
+    let dupeIdx = recentlyViewedSpacesJson.data.findIndex(studySpace => studySpace.title === data.title);
+    if (dupeIdx !== -1) {
+        recentlyViewedSpacesJson.data.splice(dupeIdx, 1);
+    }
+    recentlyViewedSpacesJson.data.push(data);
+    localStorage.setItem('recentlyViewedSpaces', JSON.stringify(recentlyViewedSpacesJson));
+}
+
 const ViewSpace = (props) => {
     const { data } = props.location.state;
     const [showSurvey, toggleSurvey] = useState(false);
     const [showToast, toggleToast] = useState(false);
+
+    setRecentlyViewed(data);
 
     return (
         <div style={{ marginBottom: '50px' }}>
@@ -97,7 +109,7 @@ const ViewSpace = (props) => {
                 <div>
                     <Topbar title={data.title} hasBack={true} />
                     <Profile img={data.imageFilePath} title={data.title} />
-                    <FavoritesButton space={data}/>
+                    <FavoritesButton space={data} />
                     <BufferDiv>
                         <Parent>
                             <Hours val={data.time} />
@@ -118,7 +130,8 @@ const ViewSpace = (props) => {
                     </BufferDiv>
                     <SurveyJumbo data={data} handleClick={() => toggleSurvey(true)} />
                 </div>}
-            <SurveyToast show={showToast} handleClick={() => toggleToast(false)} />
+            <SurveyToast show={showToast} handleClick={() => toggleToast(false)}
+                text={"Thanks for submitting the survey! We'll get back to you soon :)"} />
         </div>)
 };
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import SurveyToast from '../../components/survey-toast';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -10,24 +10,34 @@ const StyledDiv = styled.div`
     align-items: center;
 `
 
-const LandingPage = (props) => (
-    <StyledDiv style={{ height: '100%' }}>
-        <div style={{ backgroundColor: "#2D9CDB", width: '100%', height: '80px', position: 'absolute', top: 0 }} />
-        <h1>where @</h1>
-        <p style={{ textAlign: 'center' }}>Finding the right studying environment at UCSD</p>
-        <p>Login below to get started!</p>
-        <Form>
-            <Form.Group controlId='formUsername'>
-                <Form.Control placeholder='Email' />
-            </Form.Group>
-            <Form.Group controlId='formPassword'>
-                <Form.Control placeholder='Password' />
-            </Form.Group>
-        </Form>
-        <Button variant='primary' type='submit' onClick={props.logIn}>
-            Login
+const LandingPage = (props) => {
+    const [showToast, toggleToast] = useState(false);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    return (
+        <StyledDiv style={{ height: '100%' }}>
+            <SurveyToast show={showToast} handleClick={() => toggleToast(false)}
+                text={"Incorrect username or password"} />
+            <div style={{ backgroundColor: "#2D9CDB", width: '100%', height: '80px', position: 'absolute', top: 0 }} />
+            <h1>where @</h1>
+            <p style={{ textAlign: 'center' }}>Finding the right studying environment at UCSD</p>
+            <p>Login below to get started!</p>
+            <Form>
+                <Form.Group controlId='formUsername'>
+                    <Form.Control placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId='formPassword'>
+                    <Form.Control placeholder='Password' type="password" onChange={(e) => setPassword(e.target.value)} />
+                </Form.Group>
+            </Form>
+            <Button variant='primary'
+                onClick={(((username === "exampleuser@gmail.com") && (password === "testpassword")) ?
+                    props.logIn : () => toggleToast(true))}>
+                Login
         </Button>
-    </StyledDiv>
-);
+        </StyledDiv>
+    )
+};
 
 export default LandingPage;
