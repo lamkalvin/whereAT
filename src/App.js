@@ -19,6 +19,9 @@ export default class App extends React.Component {
     componentDidMount() {
         const userPresets = localStorage.getItem('userPresets');
         const customSpaces = localStorage.getItem('customSpaces');
+        const favoriteSpaces = localStorage.getItem('favoriteSpaces');
+        const recentlyViewedSpaces = localStorage.getItem('recentlyViewedSpaces');
+
         if (!userPresets) {
             localStorage.setItem('userPresets', JSON.stringify({
               "data": []
@@ -27,6 +30,18 @@ export default class App extends React.Component {
 
         if (!customSpaces) {
           localStorage.setItem('customSpaces', JSON.stringify({
+            "data": []
+          }))
+        }
+
+        if (!favoriteSpaces) {
+          localStorage.setItem('favoriteSpaces', JSON.stringify({
+            "data": []
+          }))
+        }
+
+        if (!recentlyViewedSpaces) {
+          localStorage.setItem('recentlyViewedSpaces', JSON.stringify({
             "data": []
           }))
         }
@@ -47,6 +62,7 @@ export default class App extends React.Component {
       localStorage.setItem('isLoggedIn', 'false');
       window.location.href = '/';
     }
+
 
   render() {
     console.log(this.state.isLoggedIn);

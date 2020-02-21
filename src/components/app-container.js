@@ -18,10 +18,12 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import NewSpacePage from '../routes/newSpace';
 import Homebar from './homebar';
 
-let spaces = require('../study-spaces.json');
-let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 const history = createBrowserHistory();
+const spaces = require('../study-spaces.json');
+let newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
 let allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
+let recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
 
 const Wrapper = styled.div`
     height : 100%;
@@ -59,10 +61,16 @@ const Wrapper = styled.div`
 function clearAllLocalData() {
     localStorage.setItem('userPresets', JSON.stringify({
         "data": []
-    }))
+    }));
     localStorage.setItem('customSpaces', JSON.stringify({
         "data": []
-    }))
+    }));
+    localStorage.setItem('favoriteSpaces', JSON.stringify({
+        "data": []
+    }));
+    localStorage.setItem('recentlyViewedSpaces', JSON.stringify({
+        "data": []
+    }));
 }
 
 function Container({ location, ...props }) {
@@ -70,6 +78,8 @@ function Container({ location, ...props }) {
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
         allSpaces = newSpaces ? spaces.data.concat(newSpaces.data) : spaces;
+        favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
+        recentlyViewedSpaces = JSON.parse(localStorage.getItem('recentlyViewedSpaces'));
     })
 
     return (
@@ -85,20 +95,20 @@ function Container({ location, ...props }) {
                     <section className="route-section">
                         <Switch location={location}>
                                 <div>
-                                    <Route path="/search-results" render={() => <SearchResults data={spaces.data[0]} />} />
-                                    <Route path="/favorites" render={() => <Favorites />} />
+                                    <Route path="/search-results" component={SearchResults} />
+                                    <Route path="/favorites" render={() => <Favorites data={favoriteSpaces}/>} />
                                     <Route path="/settings">
                                         <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
                                     </Route>
                                     <Route path="/view-space" component={ViewSpace} />
                                     <Route path="/search">
-                                        <Search />
+                                        <Search data={allSpaces}/>
                                     </Route>
                                     <Route path="/location-search">
                                         <LocationSearchPage data={allSpaces} />
                                     </Route>
                                     <Route path="/recently-viewed">
-                                        <RecentlyViewedPage data={spaces.data[0]} />
+                                        <RecentlyViewedPage data={recentlyViewedSpaces.data} />
                                     </Route>
                                     <Route path="/new-space">
                                         <NewSpacePage />

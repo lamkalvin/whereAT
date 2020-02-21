@@ -48,7 +48,7 @@ function SavePresetModal(props) {
     );
 }
 
-const SearchForm = () => {
+const SearchForm = (props) => {
     const [ambienceVal, setAmbience] = useState();
     const [popularityVal, setPopularity] = useState();
     const [groupSize, setGroupsize] = useState("Group size");
@@ -260,10 +260,20 @@ const SearchForm = () => {
             </Form.Group>
 
             <div style={{ textAlign: 'right', marginBottom: '100px' }}>
-                <Link to="/search-results">
+                <Link to={{ state: { data: props.data, preferences : {
+                  ambience: ambienceVal,
+                  popularity: popularityVal,
+                  groupSize: groupSize,
+                  outlet: outlet,
+                  usb: usb,
+                  printer: printer,
+                  computer: computer,
+                  whiteboard: whiteboard,
+                  food: food
+                }}, pathname: "/search-results" }}>
                     <Button variant="primary" type="submit">
                         Submit
-                </Button>
+                    </Button>
                 </Link>
             </div>
         </Form>)

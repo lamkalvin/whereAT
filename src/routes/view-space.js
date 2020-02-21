@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Profile from '../components/profile';
 import Ambience from '../components/ambience';
+import FavoritesButton from '../components/favoritesButton';
 import Popularity from '../components/popularity';
 import SurveyToast from '../components/survey-toast';
 import Topbar from '../components/topbar';
@@ -96,6 +97,7 @@ const ViewSpace = (props) => {
                 <div>
                     <Topbar title={data.title} hasBack={true} />
                     <Profile img={data.imageFilePath} title={data.title} />
+                    <FavoritesButton space={data}/>
                     <BufferDiv>
                         <Parent>
                             <Hours val={data.time} />

@@ -24,12 +24,6 @@ const StyledText = styled.h3`
     text-align: center;
 `
 
-// TODO: Delete this. This is only a temporary solution to the handle click
-//   callback.
-function handleClick() {
-  console.log("I've been clicked! Bless this day.");
-}
-
 const LocationSearchPage = (props) => {
     const [searchLocation, setSearchLocation] = useState(0);
     const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
@@ -62,12 +56,7 @@ const LocationSearchPage = (props) => {
             {filteredData.map((d,i) => {return (
               <Link to={{ state: {data : d}, pathname: "/view-space"}} style= {{ textDecoration: "none", color: "#000000"}} key={i}>
                 <StudySpaceCard
-                  title={d.title}
-                  description={d.description}
-                  imageFilePath={d.imageFilePath}
-                  distance={d.distance}
-                  tags={d.tags}
-                  handleClick={handleClick}
+                  data={d}
                   hasRemove={false}
                 />
               </Link>
