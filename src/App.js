@@ -7,44 +7,61 @@ import Container from './components/app-container';
 import LandingPage from './routes/landingPage';
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn'))
+        }
+        this.logIn = this.logIn.bind(this);
+        this.logOut = this.logOut.bind(this);
+    }
 
-  constructor(props) {
-      super(props);
-      this.state = {
-        isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn'))
-      }
-      this.logIn = this.logIn.bind(this);
-      this.logOut = this.logOut.bind(this);
-  }
+    componentDidMount() {
+        const userPresets = localStorage.getItem('userPresets');
+        const customSpaces = localStorage.getItem('customSpaces');
+        const favoriteSpaces = localStorage.getItem('favoriteSpaces');
+        const recentlyViewedSpaces = localStorage.getItem('recentlyViewedSpaces');
 
-  /**
-   * Local Storage must be set up before rendering the app because some
-   * filtered study space information is distributed to various pages.
-   */
-  componentWillMount() {
-      const userPresets = localStorage.getItem('userPresets');
-      const customSpaces = localStorage.getItem('customSpaces');
-      const favoriteSpaces = localStorage.getItem('favoriteSpaces');
-      const recentlyViewedSpaces = localStorage.getItem('recentlyViewedSpaces');
+        if (!userPresets) {
+            localStorage.setItem('userPresets', JSON.stringify({
+              "data": []
+            }))
+        }
 
-      if (!customSpaces) {
+        if (!customSpaces) {
           localStorage.setItem('customSpaces', JSON.stringify({
             "data": []
           }))
-      }
+        }
 
-      if (!favoriteSpaces) {
+        if (!favoriteSpaces) {
           localStorage.setItem('favoriteSpaces', JSON.stringify({
             "data": []
           }))
-      }
+        }
 
-      if (!recentlyViewedSpaces) {
+        if (!recentlyViewedSpaces) {
           localStorage.setItem('recentlyViewedSpaces', JSON.stringify({
             "data": []
           }))
-      }
-  }
+        }
+    }
+
+    logIn() {
+      this.setState({
+        isLoggedIn : true
+      })
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = '/';
+    }
+
+    logOut() {
+      this.setState({
+        isLoggedIn : false
+      })
+      localStorage.setItem('isLoggedIn', 'false');
+      window.location.href = '/';
+    }
 
 
   render() {
