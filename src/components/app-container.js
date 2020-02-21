@@ -79,7 +79,7 @@ function Container({ location, ...props }) {
             <TransitionGroup>
                 <CSSTransition
                     key={location.key}
-                    timeout={{ enter: 600, exit: 600 }}
+                    timeout={{ enter: 300, exit: 300 }}
                     classNames={'fade'}
                 >
                     <section className="route-section">
