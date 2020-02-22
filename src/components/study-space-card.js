@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import LinesEllipsis from 'react-lines-ellipsis';
-// TODO: Use styled components
-import styled from "styled-components";
 import {
   Button,
   Card,
-  Container
 } from 'react-bootstrap';
 
 function showRemove(hasRemove, handleClickRemove, index, setAppear) {
@@ -18,11 +14,6 @@ function showRemove(hasRemove, handleClickRemove, index, setAppear) {
       </Button>
   }
 }
-
-/**
- * Improvements:
- *  - Remove duplicates from the recently viewed list. 
- */
 
 /**
  * Improvements:
@@ -47,7 +38,7 @@ function showRemove(hasRemove, handleClickRemove, index, setAppear) {
  */
 const StudySpaceCard = (props) => {
   const [appear, setAppear] = useState(true);
-  console.log(appear);
+
   return (appear &&
     <Card index={props.data.index} style={{ height: '10rem', width: '100%', flexDirection: 'row' }}>
       <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>

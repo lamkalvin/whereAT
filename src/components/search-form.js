@@ -11,6 +11,8 @@ import Modal from 'react-bootstrap/Modal';
 import Alert from 'react-bootstrap/Alert';
 
 function SavePresetModal(props) {
+    const [showalert, setalertshow] = useState(false);
+
     let presetName = "";
     return (
         <Modal
@@ -24,7 +26,7 @@ function SavePresetModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.showAlert && <Alert variant="danger">
+                {showalert && <Alert variant="danger">
                     Must have preset name!
                 </Alert>}
                 <InputGroup className="mb-3">
@@ -40,7 +42,7 @@ function SavePresetModal(props) {
                         props.onHide();
                         props.onSubmit(presetName);
                     } else {
-                        props.setAlertShow();
+                        setalertshow(true);
                     }
                 }}>Submit</Button>
             </Modal.Footer>
@@ -61,7 +63,6 @@ const SearchForm = (props) => {
     const [food, toggleFood] = useState(false);
 
     const [modalShow, setModalShow] = useState(false);
-    const [showAlert, setAlertShow] = useState(false);
     const [preset, setPresetDropdown] = useState("User presets");
     let userPresets = JSON.parse(localStorage.getItem('userPresets'));
 
@@ -137,7 +138,7 @@ const SearchForm = (props) => {
         let presets = [];
         for (let i = 0; i < userPresets.data.length; i++) {
             presets.push(
-                <Dropdown.Item onClick={() => { setPreset(userPresets.data[i].preset); setPresetDropdown(userPresets.data[i].title); }}>
+                <Dropdown.Item key={i} onClick={() => { setPreset(userPresets.data[i].preset); setPresetDropdown(userPresets.data[i].title); }}>
                     {userPresets.data[i].title}
                 </Dropdown.Item>)
         }
@@ -150,8 +151,6 @@ const SearchForm = (props) => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 onSubmit={createNewPreset}
-                showAlert={showAlert}
-                setAlertShow={() => setAlertShow(true)}
             />
             <div style={{ display: 'grid', gridGap: '10px 10px', gridTemplateColumns: 'repeat(2, 1fr)', marginBottom: '10px' }}>
                 <Button variant="info" onClick={() => setModalShow(true)}>
@@ -165,7 +164,7 @@ const SearchForm = (props) => {
                 <div>
                     <h5>User presets</h5>
                     <div>
-                        <DropdownButton id="dropdown-basic-button"
+                        <DropdownButton id={"dropdown-basic-button" + preset}
                             title={preset}
                             variant="secondary">
                             {createPresets()}
@@ -233,27 +232,27 @@ const SearchForm = (props) => {
                 <Form.Label><h5>Other</h5></Form.Label>
                 <div style={{ marginLeft: '25px' }}>
                     <Form.Row>
-                        <Form.Check checked={outlet} onClick={() => toggleOutlet(!outlet)} />
+                        <Form.Check readOnly id={"ouS"} checked={outlet} onClick={() => toggleOutlet(!outlet)} />
                         Has outlet
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check checked={usb} onClick={() => toggleUsb(!usb)} />
+                        <Form.Check readOnly id={"usS"} checked={usb} onClick={() => toggleUsb(!usb)} />
                         Has USB charging port
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check checked={computer} onClick={() => toggleComputer(!computer)} />
+                        <Form.Check readOnly id={"coS"} checked={computer} onClick={() => toggleComputer(!computer)} />
                         Has public computer
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check checked={printer} onClick={() => togglePrinter(!printer)} />
+                        <Form.Check readOnly id={"prS"} checked={printer} onClick={() => togglePrinter(!printer)} />
                         Has printer
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} />
+                        <Form.Check readOnly id={"wbS"} checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} />
                         Has whiteboard
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check checked={food} onClick={() => toggleFood(!food)} />
+                        <Form.Check readOnly id={"foS"} checked={food} onClick={() => toggleFood(!food)} />
                         Allows food/drink
                     </Form.Row>
                 </div>

@@ -24,7 +24,7 @@ const Settings = (props) => {
             <Topbar title='Settings' hasBack={true} />
             <BufferDiv>
                 <Button variant="danger" size="lg" block onClick={() => {props.handleClick(); setShowToast(true)}}>
-                    <img src={trash} style={{ marginRight: '10%', width: '15%' }} />
+                    <img src={trash} alt={"trash"} style={{ marginRight: '10%', width: '15%' }} />
                     <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
                 </Button>
                 <Button variant="danger" size="lg" block onClick={() => {props.logOut()}}>
