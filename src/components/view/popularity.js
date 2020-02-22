@@ -1,8 +1,8 @@
 import React from 'react';
 import Figure from 'react-bootstrap/Figure';
-import med from '../assets/view-icons/popularity/med-popular.png';
-import high from '../assets/view-icons/popularity/high-popular.png';
-import not from '../assets/view-icons/popularity/not-popular.png';
+import med from '../../assets/view-icons/popularity/med-popular.png';
+import high from '../../assets/view-icons/popularity/high-popular.png';
+import not from '../../assets/view-icons/popularity/not-popular.png';
 
 const popularityLevels = ['not', 'med', 'high'];
 
