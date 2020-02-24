@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import trash from '../assets/trash.png';
 import Topbar from '../components/topbar';
-import SettingsToast from '../components/settings-toast';
+import HoverToast from '../components/hovertoast';
 
 const BufferDiv = styled.div`
     margin: 50px auto 50px auto;
@@ -20,11 +20,11 @@ const Settings = (props) => {
 
     return (
         <div>
-            <SettingsToast handleClick={() => setShowToast(false)} show={showToast} />
+            <HoverToast handleClick={() => setShowToast(false)} show={showToast} text={"Your local storage has been cleared."} />
             <Topbar title='Settings' hasBack={true} />
             <BufferDiv>
-                <Button variant="danger" size="lg" block onClick={() => {props.handleClick(); setShowToast(true)}}>
-                    <img src={trash} style={{ marginRight: '10%', width: '15%' }} />
+                <Button variant="secondary" size="lg" block onClick={() => {props.handleClick(); setShowToast(true)}}>
+                    <img src={trash} alt={"trash"} style={{ marginRight: '10%', width: 'min(10vw, 36px)' }} />
                     <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
                 </Button>
                 <Button variant="danger" size="lg" block onClick={() => {props.logOut()}}>

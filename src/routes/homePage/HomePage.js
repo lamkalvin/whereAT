@@ -13,22 +13,37 @@ const addIcon = require('../../assets/icons/bookmark-add.png');
 
 const TileButton = styled(Button)`
     display: flex;
-    width: 85%;
-    height: 150px;
-    margin: 20px auto 20px;
-    background-color: #2D9CDB;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,156,219,1) 100%);;
     border: none;
     border-radius: 20px;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-    font-size: 24px;
-    text-align: left;
-    padding-left: 20px;
-`
+    font-size: min(5vw, 24px);
+    text-align: center;
+`;
+
+const TileImg = styled(Image)`
+    max-width: min(10vw, 100%);
+    height: auto;
+    margin-bottom: 4vh;
+`;
 
 const BufferDiv = styled.div`
     margin: 50px auto 100px auto;
-    width: 85%;
+    width: 90%;
+`;
+
+const ButtonDiv = styled.div`
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 7vh;
 `;
 
 const HomePage = (props) => {
@@ -37,36 +52,47 @@ const HomePage = (props) => {
     return (
         <div>
             <Topbar title='where @' />
-            <BufferDiv style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <BufferDiv>
+
                 <Autocomplete suggestions={titles} data={props.data} history={props.history} />
+                <ButtonDiv>
+                    <div>
+                        <Link to="/search" style={{ textDecoration: 'none' }}>
+                            <TileButton type="submit">
+                                <TileImg src={pencilIcon} />
+                                Specify preferences
+                            </TileButton>
+                        </Link>
+                    </div>
 
-                <Link to="/search">
-                    <TileButton type="submit">
-                        <Image src={pencilIcon} style={{ paddingRight: '20px' }} />
-                        Specify preferences
-                    </TileButton>
-                </Link>
+                    <div>
+                        <Link to="/location-search" style={{ textDecoration: 'none' }}>
+                            <TileButton type="submit">
+                                <TileImg src={pinIcon}/>
+                                Search by location
+                            </TileButton>
+                        </Link>
+                    </div>
 
-                <Link to="/location-search">
-                    <TileButton type="submit">
-                        <Image src={pinIcon} style={{ paddingRight: '20px' }} />
-                        Search by location
-                    </TileButton>
-                </Link>
+                    <div>
+                        <Link to="/recently-viewed" style={{ textDecoration: 'none' }}>
+                            <TileButton type="submit">
+                                <TileImg src={stackIcon} />
+                                Recently viewed spaces
+                            </TileButton>
+                        </Link>
+                    </div>
 
-                <Link to="/recently-viewed">
-                    <TileButton type="submit">
-                        <Image src={stackIcon} style={{ paddingRight: '20px' }} />
-                        Recently viewed
-                    </TileButton>
-                </Link>
+                    <div>
+                        <Link to="/new-space" style={{ textDecoration: 'none' }}>
+                            <TileButton type="submit">
+                                <TileImg src={addIcon}/>
+                                Add new study space
+                            </TileButton>
+                        </Link>
+                    </div>
 
-                <Link to="/new-space">
-                    <TileButton type="submit">
-                        <Image src={addIcon} style={{ paddingRight: '20px' }}/>
-                        Add study space
-                    </TileButton>
-                </Link>
+                </ButtonDiv>
             </BufferDiv>
         </div>
     );

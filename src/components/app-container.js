@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -92,27 +92,25 @@ function Container({ location, ...props }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                                <div>
-                                    <Route path="/search-results" component={SearchResults} />
-                                    <Route path="/favorites" render={() => <Favorites />} />
-                                    <Route path="/settings">
-                                        <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
-                                    </Route>
-                                    <Route path="/view-space" component={ViewSpace} />
-                                    <Route path="/search">
-                                        <Search data={allSpaces}/>
-                                    </Route>
-                                    <Route path="/location-search">
-                                        <LocationSearchPage data={allSpaces} />
-                                    </Route>
-                                    <Route path="/recently-viewed">
-                                        <RecentlyViewedPage data={recentlyViewedSpaces.data} />
-                                    </Route>
-                                    <Route path="/new-space">
-                                        <NewSpacePage />
-                                    </Route>
-                                    <Route exact path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
-                                </div>
+                            <Route path="/search-results" component={SearchResults} />
+                            <Route path="/favorites" render={() => <Favorites />} />
+                            <Route path="/settings">
+                                <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
+                            </Route>
+                            <Route path="/view-space" component={ViewSpace} />
+                            <Route path="/search">
+                                <Search data={allSpaces} />
+                            </Route>
+                            <Route path="/location-search">
+                                <LocationSearchPage data={allSpaces} />
+                            </Route>
+                            <Route path="/recently-viewed">
+                                <RecentlyViewedPage data={recentlyViewedSpaces.data} />
+                            </Route>
+                            <Route path="/new-space">
+                                <NewSpacePage />
+                            </Route>
+                            <Route exact path="/" render={() => <HomePage history={history} data={allSpaces} />} />
                         </Switch>
                     </section>
                 </CSSTransition>
