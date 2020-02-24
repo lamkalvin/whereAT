@@ -26,7 +26,7 @@ function recentlyViewedListToHtml(data) {
 }
 
 const NoResults = () => (
-  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}><h2>No results found.</h2></div>
+  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}><h5>No results found.</h5></div>
 )
 
 const RecentlyViewedPage = (props) => {

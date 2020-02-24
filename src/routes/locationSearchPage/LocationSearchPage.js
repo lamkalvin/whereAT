@@ -5,6 +5,7 @@ import {
   StudySpaceCard,
   Topbar
 } from '../../components';
+import '../../assets/css/fade.css';
 
 let locations = [
   '',
@@ -21,13 +22,21 @@ let locations = [
 const LocationSearchPage = (props) => {
   const [searchLocation, setSearchLocation] = useState(0);
   const filteredData = props.data.filter(d => d.location === locations[searchLocation]);
+  const [showLoc, setShowloc] = useState("");
+
+  function toggleShowloc(val) {
+    setShowloc("fade-goodbye");
+    setTimeout(() => setShowloc("fade-hello"), 600);
+    setTimeout(() => setSearchLocation(val), 300);
+  }
   return (
     <div style={{ marginBottom: '100px' }}>
       <Topbar title="Location Search" hasBack={true} titleSize={'24pt'} />
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Form.Group style={{ width: '80%', margin: '20px auto 10px' }}>
           <Form.Label>Select the location that you would like to search:</Form.Label>
-          <Form.Control as="select" onChange={e => setSearchLocation(e.target.value)} value={searchLocation}>
+          <Form.Control as="select" onChange={e => {toggleShowloc(e.target.value);}}
+              value={searchLocation}>
             <option value={0}>Select a location...</option>
             <option value={1}>General Campus Locations</option>
             <option value={2}>Marshall College</option>
@@ -47,16 +56,18 @@ const LocationSearchPage = (props) => {
         width: '80%'
       }}
       />
-      {filteredData.map((d, i) => {
-        return (
-          <Link to={{ state: { data: d }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }} key={i}>
-            <StudySpaceCard
-              data={d}
-              hasRemove={false}
-            />
-          </Link>
-        )
-      })}
+      <div className={showLoc}>
+        {filteredData.map((d, i) => {
+          return (
+            <Link to={{ state: { data: d }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }} key={i}>
+              <StudySpaceCard
+                data={d}
+                hasRemove={false}
+              />
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
     ;
