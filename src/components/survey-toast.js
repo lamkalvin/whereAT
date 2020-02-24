@@ -14,7 +14,7 @@ const DisguisedToast = styled(Toast)`
     margin: 0 auto;
 `;
 
-const HoverToast = (props) => {
+const SurveyToast = (props) => {
     return (
         <PositionDiv>
             <DisguisedToast onClose={() => props.handleClick()} show={props.show} delay={3000} autohide>
@@ -24,4 +24,4 @@ const HoverToast = (props) => {
     )
 };
 
-export default HoverToast;
+export default SurveyToast;

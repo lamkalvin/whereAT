@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Profile from '../components/view/profile';
-import Ambience from '../components/view/ambience';
+import Profile from '../components/profile';
+import Ambience from '../components/ambience';
 import FavoritesButton from '../components/favoritesButton';
-import Popularity from '../components/view/popularity';
-import HoverToast from '../components/hovertoast';
+import Popularity from '../components/popularity';
+import SurveyToast from '../components/survey-toast';
 import Topbar from '../components/topbar';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
@@ -130,7 +130,7 @@ const ViewSpace = (props) => {
                     </BufferDiv>
                     <SurveyJumbo data={data} handleClick={() => toggleSurvey(true)} />
                 </div>}
-            <HoverToast show={showToast} handleClick={() => toggleToast(false)}
+            <SurveyToast show={showToast} handleClick={() => toggleToast(false)}
                 text={"Thanks for submitting the survey! We'll get back to you soon :)"} />
         </div>)
 };

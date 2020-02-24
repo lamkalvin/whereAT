@@ -16,7 +16,6 @@ const Topbar = (props) => (
     <StyledNav expand="lg" sticky="top">
         { props.hasBack &&
         <img
-            alt={"back button"}
             src={back}
             onClick={props.handleClick ? (() => props.handleClick()) : (() => window.history.back())}
             style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
