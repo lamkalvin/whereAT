@@ -1,9 +1,0 @@
-.fade-goodbye {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-}
-
-.fade-hello {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-}
