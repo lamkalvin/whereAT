@@ -25,8 +25,8 @@ const LocationSearchPage = (props) => {
   const [showLoc, setShowloc] = useState("");
 
   function toggleShowloc(val) {
-    setShowloc("fade-goodbye");
-    setTimeout(() => setShowloc("fade-hello"), 600);
+    setShowloc("fade-shrink");
+    setTimeout(() => setShowloc("fade-grow"), 600);
     setTimeout(() => setSearchLocation(val), 300);
   }
   return (

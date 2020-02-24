@@ -8,7 +8,6 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Spin = (props) => {
   setTimeout(() => props.toggle(), 1600);
-  console.log(props.toggle)
 
   return (
     <Spinner animation="border" role="status" style={{position: 'absolute', top: '45%', left: '45%'}}>
@@ -18,7 +17,11 @@ const Spin = (props) => {
 }
 
 const NoResults = () => (
-  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}><h5>No results found.</h5></div>
+  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}>
+    <h5>No results found. <span role="img" aria-label="bad">🤔</span>
+      <br /> Try another query!
+    </h5>
+    </div>
 )
 
 function searchResultsListToHtml(data, timeout) {
@@ -30,7 +33,7 @@ function searchResultsListToHtml(data, timeout) {
     return <Link key={i}
       to={{ state: { data: space }, pathname: "/view-space" }}
       style={{ textDecoration: "none", color: "#000000" }}
-      onClick={() => {console.log("fk"); setTimeout(() => timeout, 300)}}
+      onClick={() => {setTimeout(() => timeout, 300)}}
     >
       <StudySpaceCard
         index={i}
@@ -71,11 +74,10 @@ const SearchResults = (props) => {
       || space.whiteboard === preferences.whiteboard
       || space.food === preferences.food));
 
-  console.log(spin);
   return (
     <div>
       <Topbar title='Search Results' hasBack />
-      {spin ?  searchResultsListToHtml(results, (() => setSpin(false))) :
+      {spin ? searchResultsListToHtml(results, (() => setSpin(false))) :
         <Spin toggle={() => setSpin(true)} />}
     </div>
   );

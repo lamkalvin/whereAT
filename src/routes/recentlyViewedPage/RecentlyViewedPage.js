@@ -26,13 +26,17 @@ function recentlyViewedListToHtml(data) {
 }
 
 const NoResults = () => (
-  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}><h5>No results found.</h5></div>
+  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}>
+      <h5>No recently viewed spaces <span role="img" aria-label="scream">😱</span>
+        <br /> Check out a space and see it here!
+      </h5>
+  </div>
 )
 
 const RecentlyViewedPage = (props) => {
 
   return (
-    <div>
+    <div style={{marginBottom: '50px'}}>
       <Topbar title='Recently Viewed' hasBack />
       {props.data.length > 0 ? recentlyViewedListToHtml(props.data) : <NoResults />}
     </div>

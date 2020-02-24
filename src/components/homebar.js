@@ -13,6 +13,7 @@ const Botnav = styled(ButtonGroup)`
     position: fixed;
     width: 100%;
     bottom: 0;
+    z-index: 500;
 `;
 
 const NavImg = styled.img`

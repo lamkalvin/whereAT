@@ -5,13 +5,13 @@ import {
 import '../assets/css/star.css';
 import '../assets/css/fade.css';
 
-function showRemove(hasRemove, handleClickRemove, goodbye, index) {
+function showRemove(hasRemove, handleClickRemove, goodbye, title) {
   if (hasRemove) {
     return (
       <div className={"click active active-2 active-3"}
-        style={{ marginTop: "20px", marginRight: "20px" }}
+        style={{ zIndex: "2", top: '-20px', right: '0px', position: 'absolute'}}
         onClick={(e) => { e.preventDefault(); goodbye();
-          setTimeout(() => {handleClickRemove(index)}, 600);  }}>
+          setTimeout(handleClickRemove, 600, title);  }}>
         <span className={"fa fa-star"}></span>
         <div className="ring"></div>
         <div className="ring2"></div>
@@ -24,29 +24,29 @@ const StudySpaceCard = (props) => {
   const [divClass, setDivclass] = useState("");
 
   function goodbye() {
-    setDivclass("fade-goodbye");
+    setDivclass("fade-shrink");
     setTimeout(() => setDivclass(""), 600);
   }
 
   return (
-    <div index={props.data.index} className={divClass}>
-      <Card style={{ height: '10rem', width: '100%', flexDirection: 'row' }}>
-        <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}>
-          <Card.Img style={{ objectFit: 'cover', height: '10rem' }} variant="top" src={props.data.imageFilePath} />
-        </div>
-        <Card.Body style={{ height: '100%', width: '40%' }}>
-          <Card.Title style={{ fontSize: '100%', overflow: 'hidden' }}>{props.data.title}</Card.Title>
-          <Card.Text style={{ height: '25%', fontSize: '60%', overflow: 'hidden' }}>
+    <div className={divClass}
+      style={{width: '85%', margin: '10px auto 10px auto'}}>
+      <Card className="bg-dark text-white" border="light" style={{borderRadius: '10px',}} >
+        {/* <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}> */}
+          <Card.Img style={{ objectFit: 'cover', height: '10rem', borderRadius: '10px', filter: "brightness(50%)"}}
+            variant="top" src={props.data.imageFilePath} />
+        {/* </div> */}
+        <Card.ImgOverlay
+          style={{textShadow: '0px 0px 9px rgba(0, 0, 0, 1)'}}>
+          <Card.Title style={{ fontSize: '100%', width: '85%' }}>{props.data.title}</Card.Title>
+          <Card.Text style={{ whiteSpace: 'nowrap', fontSize: '75%', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {props.data.description.join(' ')}
           </Card.Text>
           <Card.Text style={{ fontSize: '75%' }}>
-            {props.data.distance}
-          </Card.Text>
-          <Card.Text style={{ fontSize: '60%' }}>
             Tags: {props.data.tags.join(', ')}
           </Card.Text>
-        </Card.Body>
-        {showRemove(props.hasRemove, props.handleClickDelete, goodbye, props.data.index)}
+        </Card.ImgOverlay>
+        {showRemove(props.hasRemove, props.handleClickDelete, goodbye, props.data.title)}
       </Card>
     </div>
   )

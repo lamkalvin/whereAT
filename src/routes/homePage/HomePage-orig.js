@@ -14,22 +14,21 @@ const addIcon = require('../../assets/icons/bookmark-add.png');
 const TileButton = styled(Button)`
     display: flex;
     width: 100%;
-    height: 30vh;
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,156,219,1) 100%);;
+    height: 150px;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,156,219,1) 100%);
     border: none;
     border-radius: 20px;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
 
-    font-size: min(5vw, 24px);
-    text-align: center;
+    font-size: min(15vw, 24px);
+    text-align: left;
+    padding-left: 20px;
 `;
 
 const TileImg = styled(Image)`
     max-width: min(10vw, 100%);
     height: auto;
-    margin-bottom: 4vh;
+    margin-right: 4vh;
 `;
 
 const BufferDiv = styled.div`
@@ -38,13 +37,13 @@ const BufferDiv = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-    width: 85%;
     margin: auto;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    width: 85%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     display: grid;
-    grid-gap: 10px;
-    margin-top: 7vh;
+    grid-gap: 25px;
+    margin-top: 4vh;
 `;
 
 const HomePage = (props) => {

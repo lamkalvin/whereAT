@@ -11,9 +11,9 @@ function Ambience(props) {
 
     return (
         <div>
-            <h3>Ambience</h3>
+            <h4>Ambience</h4>
             {ambienceLevels[props.val-1] === 'loud' &&
-                <Figure>
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={loud} />
                     <Figure.Caption>
                         Loud
@@ -21,7 +21,7 @@ function Ambience(props) {
                 </Figure>
             }
             {ambienceLevels[props.val-1] === 'quiet' &&
-                <Figure>
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={quiet} />
                     <Figure.Caption>
                         Quiet
@@ -29,7 +29,7 @@ function Ambience(props) {
                 </Figure>
             }
             {ambienceLevels[props.val-1] === 'med' &&
-                <Figure>
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={med} />
                     <Figure.Caption>
                         Medium

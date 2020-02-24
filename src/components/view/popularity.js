@@ -9,25 +9,25 @@ const popularityLevels = ['not', 'med', 'high'];
 function Popularity(props) {
     return (
         <div>
-            <h3>Popularity</h3>
-            {popularityLevels[props.val-1] === 'med' &&
-                < Figure >
+            <h4>Popularity</h4>
+            {popularityLevels[props.val - 1] === 'med' &&
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={med} />
                     <Figure.Caption>
                         Medium
                 </Figure.Caption>
                 </Figure>
             }
-            {popularityLevels[props.val-1] === 'high' &&
-                < Figure >
+            {popularityLevels[props.val - 1] === 'high' &&
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={high} />
                     <Figure.Caption>
                         High
                 </Figure.Caption>
                 </Figure>
             }
-            {popularityLevels[props.val-1] === 'not' &&
-                < Figure >
+            {popularityLevels[props.val - 1] === 'not' &&
+                <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={not} />
                     <Figure.Caption>
                         Not very popular
