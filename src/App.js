@@ -65,7 +65,6 @@ export default class App extends React.Component {
 
 
   render() {
-    console.log(this.state.isLoggedIn);
     return (
       <Router>
         { this.state.isLoggedIn ? <Container logOut={this.logOut} /> : <LandingPage logIn={this.logIn}/> }
