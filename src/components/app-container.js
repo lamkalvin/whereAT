@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -8,10 +8,10 @@ import SearchResults from '../routes/search-results';
 import {
     Switch,
     Route,
+    Redirect,
     withRouter
 } from "react-router-dom";
-import HomePage from '../routes/homePage';
-// import HomePage from '../routes/homePage/HomePage-orig';
+import { HomePage, HomePageVariant } from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
@@ -76,6 +76,7 @@ function clearAllLocalData() {
 }
 
 function Container({ location, ...props }) {
+    const [showVariant, setShowVariate] = useState(0);
 
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
@@ -113,7 +114,13 @@ function Container({ location, ...props }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route exact path="/" render={() => <HomePage history={history} data={allSpaces} />} />
+                            <Route path="/homeAlt" render={() => <HomePageVariant history={history} data={allSpaces} />} />
+                            <Route exact path="/">
+                                {showVariant
+                                    ? <Redirect to="/homeAlt" />
+                                    : <HomePage history={history} data={allSpaces} />
+                                }
+                            </Route>
                         </Switch>
                     </section>
                 </CSSTransition>
