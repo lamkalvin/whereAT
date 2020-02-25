@@ -114,8 +114,8 @@ function Container({ location, ...props }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route path="/homeAlt" render={() => <HomePageVariant history={history} data={allSpaces} />} />
-                            <Route exact path="/">
+                            <Route path="/homeAlt" render={() => {setShowVariate(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
+                            <Route exact path="/" render={() => setShowVariate(false)}>
                                 {showVariant
                                     ? <Redirect to="/homeAlt" />
                                     : <HomePage history={history} data={allSpaces} />

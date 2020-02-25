@@ -18,7 +18,9 @@ export default class App extends React.Component {
     }
 
     initializeReactGA() {
-      ReactGA.initialize('UA-158820165-2');
+      ReactGA.initialize('UA-158820165-2', {
+        "optimize_id": "GTM-KLSH863"
+      });
       ReactGA.pageview('/')
     }
 
