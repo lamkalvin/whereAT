@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Container from './components/app-container';
 import LandingPage from './routes/landingPage';
+import ReactGA from 'react-ga';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -16,7 +17,13 @@ export default class App extends React.Component {
         this.logOut = this.logOut.bind(this);
     }
 
+    initializeReactGA() {
+      ReactGA.initialize('UA-158820165-2');
+      ReactGA.pageview('/')
+    }
+
     componentDidMount() {
+        this.initializeReactGA();
         const userPresets = localStorage.getItem('userPresets');
         const customSpaces = localStorage.getItem('customSpaces');
         const favoriteSpaces = localStorage.getItem('favoriteSpaces');
