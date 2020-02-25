@@ -18,10 +18,8 @@ export default class App extends React.Component {
     }
 
     initializeReactGA() {
-      ReactGA.initialize('UA-158820165-2', {
-        gaOptions: {"require": "GTM-KLSH863"}
-      });
-      ReactGA.pageview('/')
+      ReactGA.initialize('UA-158820165-2');
+      ReactGA.pageview('/');
     }
 
     componentDidMount() {
