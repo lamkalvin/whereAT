@@ -76,7 +76,7 @@ function clearAllLocalData() {
 }
 
 function Container({ location, ...props }) {
-    const [showVariant, setShowVariate] = useState(0);
+    const [showVariant, setShowVariant] = useState(0);
 
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
@@ -114,8 +114,9 @@ function Container({ location, ...props }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route path="/homeAlt" render={() => {setShowVariate(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
-                            <Route exact path="/" render={() => setShowVariate(false)}>
+                            <Route path="/homeAlt" render={() => {setShowVariant(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
+                            <Route path="/home" render={() => {setShowVariant(false); return (<HomePage history={history} data={allSpaces} />)}} />
+                            <Route exact path="/" render={() => setShowVariant(false)}>
                                 {showVariant
                                     ? <Redirect to="/homeAlt" />
                                     : <HomePage history={history} data={allSpaces} />
