@@ -19,7 +19,7 @@ const Topbar = (props) => (
             alt={"back button"}
             src={back}
             onClick={props.handleClick ? (() => props.handleClick()) : (() => window.history.back())}
-            style={{position: 'absolute', float: 'left', width: '24px', height: '24px'}}
+            style={{position: 'absolute', left: '20px', width: 'auto', height: '24px', paddingRight: '200px'}}
         />}
         <Title style={{ color: 'white', textAlign: 'center', fontSize: 'min(5vw, 28px)', wordWrap: 'break-word' }}>
             {props.title}

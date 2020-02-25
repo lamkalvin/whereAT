@@ -9,7 +9,7 @@ import {
 
 const NoResults = () => (
   <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}>
-    <h5>Add a favorite space to see it on this page!</h5>
+    <h5>Add a favorite space<br/>to see it here! <span role="img" aria-label="star">⭐</span></h5>
   </div>
 )
 
@@ -17,8 +17,9 @@ const Favorites = () => {
   let favoriteSpaces = JSON.parse(localStorage.getItem('favoriteSpaces'));
   const [ numSpaces, setNumSpaces ] = useState(favoriteSpaces.data.length);
 
-  function handleClickDelete(index) {
-    favoriteSpaces.data.splice(index, 1);
+  function handleClickDelete(title) {
+    let index = favoriteSpaces.data.findIndex(x => x.title === title);
+    favoriteSpaces.data.splice((index), 1);
     localStorage.setItem('favoriteSpaces', JSON.stringify(favoriteSpaces));
     setNumSpaces(numSpaces - 1);
   }
@@ -39,7 +40,7 @@ const Favorites = () => {
   }
 
   return (
-    <div id="favorites" style={{ overflow: "scroll" }}>
+    <div id="favorites" style={{ marginBottom: '50px' }}>
       <Topbar title="Favorites" hasBack={true} />
       {numSpaces > 0 ? favoritesListToHtml() : <NoResults />}
     </div>);

@@ -25,10 +25,10 @@ const Settings = (props) => {
             <BufferDiv>
                 <Button variant="secondary" size="lg" block onClick={() => {props.handleClick(); setShowToast(true)}}>
                     <img src={trash} alt={"trash"} style={{ marginRight: '10%', width: 'min(10vw, 36px)' }} />
-                    <p style={{ fontSize: '125%', display: 'inline' }}>Clear all local data</p>
+                    <p style={{ fontSize: 'min(5vw, 36px)', display: 'inline' }}>Clear all local data</p>
                 </Button>
                 <Button variant="danger" size="lg" block onClick={() => {props.logOut()}}>
-                    <p style={{ fontSize: '125%', display: 'inline' }}>Log out</p>
+                    <p style={{ fontSize: 'min(5vw, 36px)', display: 'inline' }}>Log out</p>
                 </Button>
                 <Disclaimer>
                     <p style={{ color: '#2D9CDB' }}>

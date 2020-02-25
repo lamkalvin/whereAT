@@ -11,6 +11,7 @@ import {
     withRouter
 } from "react-router-dom";
 import HomePage from '../routes/homePage';
+// import HomePage from '../routes/homePage/HomePage-orig';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
@@ -32,7 +33,8 @@ const Wrapper = styled.div`
 
     .fade-enter.fade-enter-active {
         opacity: 1;
-        transition: opacity 300ms ease-in;
+        transform: scale(1);
+        transition: opacity 300ms, transform 300ms;
     }
 
     .fade-exit {
@@ -41,7 +43,8 @@ const Wrapper = styled.div`
 
     .fade-exit.fade-exit-active {
         opacity: 0.01;
-        transition: opacity 300ms ease-in;
+        transform: scale(0.97);
+        transition: opacity 300ms, transform 300ms;
     }
 
     div.transition-group {
