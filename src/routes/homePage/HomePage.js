@@ -5,11 +5,14 @@ import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { Link, withRouter } from "react-router-dom";
+import ReactGA from 'react-ga';
 
 const pencilIcon = require('../../assets/icons/pencil.png');
 const pinIcon = require('../../assets/icons/pin.png');
 const stackIcon = require('../../assets/icons/stack.png');
 const addIcon = require('../../assets/icons/bookmark-add.png');
+
+
 
 const TileButton = styled(Button)`
     display: flex;
@@ -59,7 +62,12 @@ const HomePage = (props) => {
                 <ButtonDiv>
                     <div>
                         <Link to="/search" style={{ textDecoration: 'none' }}>
-                            <TileButton type="submit">
+                            <TileButton type="submit" onClick={() => {
+                                ReactGA.event({
+                                    category: 'Click',
+                                    action: 'Specify preferences'
+                                })}
+                            }>
                                 <TileImg src={pencilIcon} />
                                 Specify preferences
                             </TileButton>
@@ -68,7 +76,12 @@ const HomePage = (props) => {
 
                     <div>
                         <Link to="/location-search" style={{ textDecoration: 'none' }}>
-                            <TileButton type="submit">
+                            <TileButton type="submit" onClick={() => {
+                                ReactGA.event({
+                                    category: 'Click',
+                                    action: 'Search by location'
+                                })}
+                            }>
                                 <TileImg src={pinIcon}/>
                                 Search by location
                             </TileButton>
@@ -77,7 +90,12 @@ const HomePage = (props) => {
 
                     <div>
                         <Link to="/recently-viewed" style={{ textDecoration: 'none' }}>
-                            <TileButton type="submit">
+                            <TileButton type="submit" onClick={() => {
+                                ReactGA.event({
+                                    category: 'Click',
+                                    action: 'Recently viewed spaces'
+                                })}
+                            }>
                                 <TileImg src={stackIcon} />
                                 Recently viewed spaces
                             </TileButton>
@@ -86,7 +104,12 @@ const HomePage = (props) => {
 
                     <div>
                         <Link to="/new-space" style={{ textDecoration: 'none' }}>
-                            <TileButton type="submit">
+                            <TileButton type="submit" onClick={() => {
+                                ReactGA.event({
+                                    category: 'Click',
+                                    action: 'Add new study space'
+                                })}
+                            }>
                                 <TileImg src={addIcon}/>
                                 Add new study space
                             </TileButton>
