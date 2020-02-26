@@ -9,7 +9,7 @@ function showRemove(hasRemove, handleClickRemove, goodbye, title) {
   if (hasRemove) {
     return (
       <div className={"click active active-2 active-3"}
-        style={{ zIndex: "2", top: '-20px', right: '0px', position: 'absolute'}}
+        style={{ zIndex: "2", top: '-15px', right: '0px', position: 'absolute'}}
         onClick={(e) => { e.preventDefault(); goodbye();
           setTimeout(handleClickRemove, 600, title);  }}>
         <span className={"fa fa-star"}></span>
@@ -31,7 +31,7 @@ const StudySpaceCard = (props) => {
   return (
     <div className={divClass}
       style={{width: '85%', margin: '10px auto 10px auto'}}>
-      <Card className="bg-dark text-white" border="light" style={{borderRadius: '10px',}} >
+      <Card className="bg-dark text-white" border="secondary" style={{borderRadius: '10px', boxShadow: '0px 2px 5px grey'}} >
         {/* <div style={{ height: '100%', width: '40%', overflow: 'hidden' }}> */}
           <Card.Img style={{ objectFit: 'cover', height: '10rem', borderRadius: '10px', filter: "brightness(50%)"}}
             variant="top" src={props.data.imageFilePath} />
