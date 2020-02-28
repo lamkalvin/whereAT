@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
-import HoverToast from '../../components/hovertoast';
+import SurveyToast from '../../components/survey-toast';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -17,7 +17,7 @@ const LandingPage = (props) => {
 
     return (
         <StyledDiv style={{ height: '100%' }}>
-            <HoverToast show={showToast} handleClick={() => toggleToast(false)}
+            <SurveyToast show={showToast} handleClick={() => toggleToast(false)}
                 text={"Incorrect username or password"} />
             <div style={{ backgroundColor: "#2D9CDB", width: '100%', height: '80px', position: 'absolute', top: 0 }} />
             <h1>where @</h1>

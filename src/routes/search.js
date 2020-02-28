@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchForm from '../components/forms/search-form';
+import SearchForm from '../components/search-form';
 import Topbar from '../components/topbar';
 
 const BufferDiv = styled.div`

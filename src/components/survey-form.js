@@ -25,33 +25,33 @@ const SurveyForm = (props) => {
                     Clear input
                 </Button>
             </div>
-            <Form.Group controlId="formGridHoursView">
+            <Form.Group controlId="formGridHours">
                 <Form.Label><h5>Hours</h5></Form.Label>
                 <Form.Row>
                     <Col>
                         Are the hours correct for this location?
                 </Col>
                     <Col>
-                        <Form.Check inline label="Yes" id="yesHr" type='radio' checked={hours} onClick={() => toggleHours(true)} readOnly />
-                        <Form.Check inline label="No" id="noHr" type='radio' checked={!hours} onClick={() => toggleHours(false)} readOnly />
+                        <Form.Check inline label="Yes" type='radio' checked={hours} onClick={() => toggleHours(true)} readOnly />
+                        <Form.Check inline label="No" type='radio' checked={!hours} onClick={() => toggleHours(false)} readOnly />
                     </Col>
                 </Form.Row>
             </Form.Group>
 
-            <Form.Group controlId="formGridSeatsView">
+            <Form.Group controlId="formGridSeats">
                 <Form.Label><h5>Seats</h5></Form.Label>
                 <Form.Row>
                     <Col>
                         Is the number of seats about correct?
                 </Col>
                     <Col>
-                        <Form.Check inline label="Yes" id="yesSt" type='radio' checked={seats} onClick={() => toggleSeats(true)} readOnly />
-                        <Form.Check inline label="No" id="noSt" type='radio' checked={!seats} onClick={() => toggleSeats(false)} readOnly />
+                        <Form.Check inline label="Yes" type='radio' checked={seats} onClick={() => toggleSeats(true)} readOnly />
+                        <Form.Check inline label="No" type='radio' checked={!seats} onClick={() => toggleSeats(false)} readOnly />
                     </Col>
                 </Form.Row>
             </Form.Group>
 
-            <Form.Group controlId="formGridAmbView">
+            <Form.Group controlId="formGridAmb">
                 <Form.Label><h5>Ambience</h5></Form.Label>
                 <div>
                     What is the ambience of this location?
@@ -65,7 +65,7 @@ const SurveyForm = (props) => {
                 </div>
             </Form.Group>
 
-            <Form.Group controlId="formGridPopView">
+            <Form.Group controlId="formGridPop">
                 <Form.Label><h5>Popularity</h5></Form.Label>
                 <div>
                     How popular is this location?
@@ -84,7 +84,7 @@ const SurveyForm = (props) => {
                     Once submitted, we will review your survey and adjust statistics
                     for a study space on a case-by-case basis!
             </p>
-                <Button variant="primary" onClick={() => { props.handleSubmit(); props.handleClick(); }} >
+                <Button variant="primary" type="submit" onClick={() => { props.handleSubmit(); props.handleClick(); }} >
                     Submit
                 </Button>
             </div>

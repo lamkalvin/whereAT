@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../assets/css/star.css';
+import Button from 'react-bootstrap/Button';
 
 /**
  * Improvements:
@@ -17,18 +17,6 @@ import '../assets/css/star.css';
 const FavoritesButton = (props) => {
     let favoriteSpacesJson = JSON.parse(localStorage.getItem('favoriteSpaces'));
     const [favorited, setFavorited] = useState(favoriteSpacesJson.data.map(space => space.title).includes(props.space.title));
-    const clickClasses = ['active', 'active-2', 'active-3'];
-    const [currClick, setCurrClick] = useState(favorited ? "active active-2 active-3" : "");
-
-    function starClick() {
-        if (favorited) {
-            setCurrClick(clickClasses[1] + " " + clickClasses[2]);
-            setTimeout(() => {setCurrClick(clickClasses[2]); setCurrClick("");}, 30);
-        } else {
-            setCurrClick(clickClasses[0] + " " + clickClasses[1]);
-            setTimeout(() => setCurrClick(clickClasses[0] + " " + clickClasses[1] + " " + clickClasses[2]), 150);
-        }
-    }
 
     /* Add the currently viewed space to the favorites list */
     function handleClick() {
@@ -47,15 +35,13 @@ const FavoritesButton = (props) => {
         }
     }
 
-    return (
-        <div className={"click " + currClick}
-            style={{ position: "absolute", top: "55px", right: "20px"}}
-            onClick={() => {starClick(); handleClick()}}>
-                <span className={"fa fa-star"}></span>
-                <div className="ring"></div>
-                <div className="ring2"></div>
-        </div>
-    );
+    return (<Button
+        style={{ position: "absolute", top: "75px", right: "20px", fontSize: "7vw", color: favorited ? 'white' : 'black' }}
+        variant={ favorited ? "warning" : "light" }
+        onClick={handleClick}
+    >
+        { favorited ? "★" : "☆" }
+    </Button>);
 };
 
 export default FavoritesButton;
