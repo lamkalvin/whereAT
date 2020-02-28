@@ -116,7 +116,7 @@ function Container({ location, ...props }) {
                             </Route>
                             <Route path="/homeAlt" render={() => {setShowVariant(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
                             <Route path="/home" render={() => {setShowVariant(false); return (<HomePage history={history} data={allSpaces} />)}} />
-                            <Route exact path="/" render={() => setShowVariant(false)}>
+                            <Route exact path="/" >
                                 {showVariant
                                     ? <Redirect to="/homeAlt" />
                                     : <HomePage history={history} data={allSpaces} />
