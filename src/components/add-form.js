@@ -288,42 +288,42 @@ const AddForm = () => {
                 <Form.Label>Group size</Form.Label>
                 <Form.Text>What would you say is the max group size this study space can accommodate?</Form.Text>
                 <DropdownButton id="dropdown-basic-button"
-                    title={groupSize || "Group size"}
+                    title={groupSize}
                     variant="secondary"
                 >
-                    <Dropdown.Item onClick={() => setGroupsize("1-2")}>1 - 2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setGroupsize("3-4")}>3 - 4</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setGroupsize("5-6")}>5 - 6</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setGroupsize("1-2")}>1-2</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setGroupsize("3-4")}>3-4</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setGroupsize("5-6")}>5-6</Dropdown.Item>
                     <Dropdown.Item onClick={() => setGroupsize("7+")}>7+</Dropdown.Item>
                 </DropdownButton>
             </Form.Group>
 
             <Form.Group controlId="formGridOther">
-                <Form.Label>Other</Form.Label>
-                <Form.Text>What other amenties are located at this study space?</Form.Text>
+                <Form.Label>Other</Form.Label>e
+                <Form.Text>What other ammenties are located at this study space?</Form.Text>
                 <div style={{ marginLeft: '25px' }}>
                     <Form.Row>
-                        <Form.Check readOnly id={"ouN"} checked={outlet} onClick={() => toggleOutlet(!outlet)} />
+                        <Form.Check checked={outlet} onClick={() => toggleOutlet(!outlet)} />
                         Has outlet
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check readOnly id={"usN"} checked={usb} onClick={() => toggleUsb(!usb)} />
+                        <Form.Check checked={usb} onClick={() => toggleUsb(!usb)} />
                         Has USB charging port
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check readOnly id={"coN"} checked={computer} onClick={() => toggleComputer(!computer)} />
+                        <Form.Check checked={computer} onClick={() => toggleComputer(!computer)} />
                         Has public computer
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check readOnly id={"prN"} checked={printer} onClick={() => togglePrinter(!printer)} />
+                        <Form.Check checked={printer} onClick={() => togglePrinter(!printer)} />
                         Has printer
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check readOnly id={"wbN"} checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} />
+                        <Form.Check checked={whiteboard} onClick={() => toggleWhiteboard(!whiteboard)} />
                         Has whiteboard
                     </Form.Row>
                     <Form.Row>
-                        <Form.Check readOnly id={"foN"} checked={food} onClick={() => toggleFood(!food)} />
+                        <Form.Check checked={food} onClick={() => toggleFood(!food)} />
                         Allows food/drink
                     </Form.Row>
                 </div>

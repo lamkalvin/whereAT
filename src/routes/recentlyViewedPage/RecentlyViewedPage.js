@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import {
   StudySpaceCard,
@@ -12,10 +12,7 @@ import {
 function recentlyViewedListToHtml(data) {
   data = data.reverse();
   return data.map((space, i) => {
-    return <Link key={i}
-      to={{ state: { data: space }, pathname: "/view-space" }}
-      style={{ textDecoration: "none", color: "#000000" }}
-    >
+    return <Link to={{ state: { data : space }, pathname: "/view-space" }} style={{ textDecoration: "none", color: "#000000" }}>
       <StudySpaceCard
         index={i}
         data={space}
@@ -26,21 +23,18 @@ function recentlyViewedListToHtml(data) {
 }
 
 const NoResults = () => (
-  <div style={{ width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px' }}>
-      <h5>No recently viewed spaces <span role="img" aria-label="scream">😱</span>
-        <br /> Check out a space and see it here!
-      </h5>
-  </div>
+  <div style={{width: '100%', margin: 'auto', textAlign: 'center', marginTop: '350px'}}><h2>No results found.</h2></div>
 )
 
 const RecentlyViewedPage = (props) => {
+    console.log(props.data)
 
-  return (
-    <div style={{marginBottom: '50px'}}>
-      <Topbar title='Recently Viewed' hasBack />
-      {props.data.length > 0 ? recentlyViewedListToHtml(props.data) : <NoResults />}
-    </div>
-  );
+    return (
+        <div>
+            <Topbar title='Recently Viewed' hasBack/>
+            {props.data.length > 0 ? recentlyViewedListToHtml(props.data) : <NoResults />}
+        </div>
+    );
 }
 
 export default RecentlyViewedPage;

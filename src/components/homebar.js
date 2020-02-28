@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 import home from '../assets/homebar/home.png';
 import settings from '../assets/homebar/settings.png';
 import favorites from '../assets/homebar/star.png';
@@ -9,41 +8,28 @@ import {
     Link
 } from "react-router-dom";
 
-const Botnav = styled(ButtonGroup)`
+const Botnav = styled(Nav)`
+    background-color: #e6e6e6;
     position: fixed;
     width: 100%;
     bottom: 0;
-    z-index: 500;
 `;
 
 const NavImg = styled.img`
-    padding: 10px auto 10px auto;
-    max-width: 40%;
-    height: auto;
-`;
-
-const NavDiv = styled.div`
-    padding: 0px;
-    width:100%;
+    margin: 10px auto 10px auto;
 `;
 
 const Homebar = () => (
-    <Botnav>
-        <Button variant="light">
-            <Link to="/favorites">
-                <NavDiv><NavImg src={favorites} /></NavDiv>
-            </Link>
-        </Button>
-        <Button variant="light">
-            <Link to="/">
-                <NavDiv><NavImg src={home} /></NavDiv>
-            </Link>
-        </Button>
-        <Button variant="light">
-            <Link to="/settings">
-                <NavDiv><NavImg src={settings} /></NavDiv>
-            </Link>
-        </Button>
+    <Botnav fill className="justify-content-center" activeKey="/home">
+        <Nav.Item>
+            <Link to="/favorites"><NavImg src={favorites} /></Link>
+        </Nav.Item>
+        <Nav.Item>
+            <Link to="/"><NavImg src={home} /></Link>
+        </Nav.Item>
+        <Nav.Item>
+            <Link to="/settings"><NavImg src={settings} /></Link>
+        </Nav.Item>
     </Botnav>
 );
 

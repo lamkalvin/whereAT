@@ -1,4 +1,3 @@
-import HomePage from './HomePage';
-import HomePageVariant from './HomePageVariant';
+import HomePage from './HomePage'
 
-export {HomePage, HomePageVariant};
+export default HomePage;

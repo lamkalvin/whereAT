@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -8,10 +8,9 @@ import SearchResults from '../routes/search-results';
 import {
     Switch,
     Route,
-    Redirect,
     withRouter
 } from "react-router-dom";
-import { HomePage, HomePageVariant } from '../routes/homePage';
+import HomePage from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
@@ -33,8 +32,7 @@ const Wrapper = styled.div`
 
     .fade-enter.fade-enter-active {
         opacity: 1;
-        transform: scale(1);
-        transition: opacity 300ms, transform 300ms;
+        transition: opacity 300ms ease-in;
     }
 
     .fade-exit {
@@ -43,8 +41,7 @@ const Wrapper = styled.div`
 
     .fade-exit.fade-exit-active {
         opacity: 0.01;
-        transform: scale(0.97);
-        transition: opacity 300ms, transform 300ms;
+        transition: opacity 300ms ease-in;
     }
 
     div.transition-group {
@@ -76,7 +73,6 @@ function clearAllLocalData() {
 }
 
 function Container({ location, ...props }) {
-    const [showVariant, setShowVariant] = useState(0);
 
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
@@ -96,32 +92,27 @@ function Container({ location, ...props }) {
                 >
                     <section className="route-section">
                         <Switch location={location}>
-                            <Route path="/search-results" component={SearchResults} />
-                            <Route path="/favorites" render={() => <Favorites />} />
-                            <Route path="/settings">
-                                <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
-                            </Route>
-                            <Route path="/view-space" component={ViewSpace} />
-                            <Route path="/search">
-                                <Search data={allSpaces} />
-                            </Route>
-                            <Route path="/location-search">
-                                <LocationSearchPage data={allSpaces} />
-                            </Route>
-                            <Route path="/recently-viewed">
-                                <RecentlyViewedPage data={recentlyViewedSpaces.data} />
-                            </Route>
-                            <Route path="/new-space">
-                                <NewSpacePage />
-                            </Route>
-                            <Route path="/homeAlt" render={() => {setShowVariant(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
-                            <Route path="/home" render={() => {setShowVariant(false); return (<HomePage history={history} data={allSpaces} />)}} />
-                            <Route exact path="/" >
-                                {showVariant
-                                    ? <Redirect to="/homeAlt" />
-                                    : <HomePage history={history} data={allSpaces} />
-                                }
-                            </Route>
+                                <div>
+                                    <Route path="/search-results" component={SearchResults} />
+                                    <Route path="/favorites" render={() => <Favorites />} />
+                                    <Route path="/settings">
+                                        <Settings handleClick={clearAllLocalData} logOut={props.logOut} />
+                                    </Route>
+                                    <Route path="/view-space" component={ViewSpace} />
+                                    <Route path="/search">
+                                        <Search data={allSpaces}/>
+                                    </Route>
+                                    <Route path="/location-search">
+                                        <LocationSearchPage data={allSpaces} />
+                                    </Route>
+                                    <Route path="/recently-viewed">
+                                        <RecentlyViewedPage data={recentlyViewedSpaces.data} />
+                                    </Route>
+                                    <Route path="/new-space">
+                                        <NewSpacePage />
+                                    </Route>
+                                    <Route exact path="/" render={() => <HomePage history={history} data={allSpaces}/>} />
+                                </div>
                         </Switch>
                     </section>
                 </CSSTransition>

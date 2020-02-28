@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SurveyForm from '../components/forms/survey-form';
+import SurveyForm from '../components/survey-form';
 import Topbar from '../components/topbar';
 
 const BufferDiv = styled.div`

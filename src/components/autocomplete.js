@@ -154,7 +154,7 @@ class Autocomplete extends Component {
                             })[0];
 
                             return (
-                                <Link key={suggestion} to={{ state: { data: link_location }, pathname: "/view-space" }}
+                                <Link to={{ state: { data: link_location }, pathname: "/view-space" }}
                                     style={{ textDecoration: 'none' }}>
                                     <li
                                         className={className}
@@ -175,7 +175,7 @@ class Autocomplete extends Component {
         }
 
         return ([
-            <InputGroup key={"ig"} style={{ width: '85%', margin: '0px auto 20px' }} >
+            <InputGroup style={{ width: '85%', margin: '0px auto 20px' }} >
                 <InputGroup.Prepend>
                     <InputGroup.Text>
                         <Image src={searchIcon} />
@@ -190,8 +190,9 @@ class Autocomplete extends Component {
                     style={{ width: '100%' }}
                 />
             </InputGroup>,
-            <Wrapper key={"wr"}>
+            <Wrapper>
                 {suggestionsListComponent}
+                {/* {this.state.redirect && <Redirect to={{ state: { data: this.state.redirectData }, pathname: "/view-space" }} />} */}
             </Wrapper>
         ])
     }
