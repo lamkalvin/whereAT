@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Profile from '../components/profile';
-import Ambience from '../components/ambience';
+import Profile from '../components/view/profile';
+import Ambience from '../components/view/ambience';
 import FavoritesButton from '../components/favoritesButton';
-import Popularity from '../components/popularity';
-import SurveyToast from '../components/survey-toast';
+import Popularity from '../components/view/popularity';
+import HoverToast from '../components/hovertoast';
 import Topbar from '../components/topbar';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
@@ -16,22 +16,22 @@ const Centered = styled(Container)`
 `;
 
 const BufferDiv = styled.div`
-    margin: 50px auto 50px auto;
-    width: 85%;
+    margin: auto;
+    width: 100%;
 `;
 
 const Parent = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr;
-    grid-column-gap: 0px;
+    grid-column-gap: 10px;
     grid-row-gap: 10px;
-    padding: 20px;
+    padding: 15px;
 `;
 
 function Hours(props) {
     return (<div>
-        <h3>Hours</h3>
+        <h4>Hours</h4>
         <ul>
             {props.val.map((time, i) => {
                 return <li key={i}>{time}</li>
@@ -42,14 +42,14 @@ function Hours(props) {
 
 function Seats(props) {
     return (<div>
-        <h3>Seats</h3>
+        <h4>Seats</h4>
         <p>{props.val}</p>
     </div>)
 };
 
 function Description(props) {
     return <div style={{ gridArea: '2 / 1 / 3 / 3' }}>
-        <h3>Description</h3>
+        <h4>Description</h4>
         {props.val.map((item, i) => { return <p key={i}>{item}</p> })}
     </div>
 };
@@ -57,7 +57,7 @@ function Description(props) {
 function OtherFeatures(props) {
     return (
         <div style={{ gridArea: '3 / 1 / 4 / 3' }}>
-            <h3>Other features</h3>
+            <h4>Other features</h4>
             <ul>
                 {props.count && <li>Suitable for a maximum group size of {props.count}</li>}
                 {props.outlet && <li>✓ Has outlet</li>}
@@ -74,7 +74,7 @@ function OtherFeatures(props) {
 const SurveyJumbo = (props) => (
     <Jumbotron fluid>
         <Centered>
-            <h3>Been here before?</h3>
+            <h4>Been here before?</h4>
             <p>
                 Improve our data by doing our survey!
             </p>
@@ -130,7 +130,7 @@ const ViewSpace = (props) => {
                     </BufferDiv>
                     <SurveyJumbo data={data} handleClick={() => toggleSurvey(true)} />
                 </div>}
-            <SurveyToast show={showToast} handleClick={() => toggleToast(false)}
+            <HoverToast show={showToast} handleClick={() => toggleToast(false)}
                 text={"Thanks for submitting the survey! We'll get back to you soon :)"} />
         </div>)
 };
