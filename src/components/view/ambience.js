@@ -12,6 +12,7 @@ function Ambience(props) {
     return (
         <div>
             <h4>Ambience</h4>
+            <i>The relative noise level of the space</i>
             {ambienceLevels[props.val-1] === 'loud' &&
                 <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={loud} />

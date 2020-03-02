@@ -63,7 +63,7 @@ const SearchForm = (props) => {
     const [food, toggleFood] = useState(false);
 
     const [modalShow, setModalShow] = useState(false);
-    const [preset, setPresetDropdown] = useState("User presets");
+    const [preset, setPresetDropdown] = useState("Your presets");
     let userPresets = JSON.parse(localStorage.getItem('userPresets'));
 
     function clearInput() {
@@ -76,7 +76,7 @@ const SearchForm = (props) => {
         toggleComputer(false);
         toggleWhiteboard(false);
         toggleFood(false);
-        setPresetDropdown("User presets");
+        setPresetDropdown("Your presets");
     }
 
     function focusPreset() {
@@ -147,12 +147,16 @@ const SearchForm = (props) => {
 
     return (
         <Form>
+            <div>
+                Search for a study space! If you would like to save your own presets, apply them to the form and save them 
+                with the Save Preset button.
+            </div>
             <SavePresetModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 onSubmit={createNewPreset}
             />
-            <div style={{ display: 'grid', gridGap: '10px 10px', gridTemplateColumns: 'repeat(2, 1fr)', marginBottom: '10px' }}>
+            <div style={{ display: 'grid', gridGap: '10px 10px', gridTemplateColumns: 'repeat(2, 1fr)', marginBottom: '10px', marginTop: '10px' }}>
                 <Button variant="info" onClick={() => setModalShow(true)}>
                     Save preset
                 </Button>
@@ -160,9 +164,25 @@ const SearchForm = (props) => {
                     Clear input
                 </Button>
             </div>
+
+            <Form.Group controlId="app-defined-presets">
+            <div>
+                <h5>Preset search options</h5>
+                We've defined our own presets to make it quick and easy if you're looking for something specific.
+                <div>
+                    <ToggleButtonGroup type="radio" name="options" value={0} style={{ width: '100%' }}>
+                        <ToggleButton variant="warning" value={1} onClick={() => focusPreset()}>Focus</ToggleButton>
+                        <ToggleButton variant="warning" value={2} onClick={() => comfortablePreset()}>Comfortable</ToggleButton>
+                        <ToggleButton variant="warning" value={3} onClick={() => activePreset()}>Active</ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+            </div>
+            </Form.Group>
+
+            <Form.Group controlId="user-defined-presets">
             {(userPresets.data.length > 0) &&
                 <div>
-                    <h5>User presets</h5>
+                    <h5>Your presets</h5>
                     <div>
                         <DropdownButton id={"dropdown-basic-button" + preset}
                             title={preset}
@@ -172,16 +192,8 @@ const SearchForm = (props) => {
                     </div>
                 </div>
             }
-            <div>
-                <h5>Preset search options</h5>
-                <div>
-                    <ToggleButtonGroup type="radio" name="options" value={0} style={{ width: '100%' }}>
-                        <ToggleButton variant="secondary" value={1} onClick={() => focusPreset()}>Focus</ToggleButton>
-                        <ToggleButton variant="secondary" value={2} onClick={() => comfortablePreset()}>Comfortable</ToggleButton>
-                        <ToggleButton variant="secondary" value={3} onClick={() => activePreset()}>Active</ToggleButton>
-                    </ToggleButtonGroup>
-                </div>
-            </div>
+            </Form.Group>
+
             <Form.Group controlId="formGridAmb">
                 <Form.Label><h5>Ambience</h5></Form.Label>
                 <div>

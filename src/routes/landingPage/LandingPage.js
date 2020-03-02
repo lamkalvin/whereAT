@@ -31,11 +31,17 @@ const LandingPage = (props) => {
                     <Form.Control placeholder='Password' type="password" onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
             </Form>
+            <div style={{display: 'grid', gridGap: '10px', gridTemplateColumns: 'repeat(2, 1fr)'}}>
             <Button variant='primary'
                 onClick={(((username === "exampleuser@gmail.com") && (password === "testpassword")) ?
                     props.logIn : () => toggleToast(true))}>
                 Login
-        </Button>
+            </Button>
+            <Button variant='secondary'
+                onClick={props.logIn}>
+                Guest login
+            </Button>
+            </div>
         </StyledDiv>
     )
 };

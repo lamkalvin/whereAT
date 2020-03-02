@@ -10,6 +10,7 @@ function Popularity(props) {
     return (
         <div>
             <h4>Popularity</h4>
+            <i>The relative amount of people in the space</i>
             {popularityLevels[props.val - 1] === 'med' &&
                 <Figure style={{textAlign: 'center'}}>
                     <Figure.Image src={med} />
