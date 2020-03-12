@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Settings from '../routes/settings';
 import ViewSpace from '../routes/view-space';
@@ -11,7 +11,7 @@ import {
     Redirect,
     withRouter
 } from "react-router-dom";
-import { HomePage, HomePageVariant } from '../routes/homePage';
+import { HomePage } from '../routes/homePage';
 import LocationSearchPage from '../routes/locationSearchPage';
 import RecentlyViewedPage from '../routes/recentlyViewedPage';
 import { createBrowserHistory } from "history";
@@ -76,7 +76,8 @@ function clearAllLocalData() {
 }
 
 function Container({ location, ...props }) {
-    const [showVariant, setShowVariant] = useState(0);
+    // const [showVariant, setShowVariant] = useState(0);
+    let showVariant = 0;
 
     useEffect(() => {
         newSpaces = JSON.parse(localStorage.getItem('customSpaces'));
@@ -114,9 +115,9 @@ function Container({ location, ...props }) {
                             <Route path="/new-space">
                                 <NewSpacePage />
                             </Route>
-                            <Route path="/homeAlt" render={() => {setShowVariant(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
-                            <Route path="/home" render={() => {setShowVariant(false); return (<HomePage history={history} data={allSpaces} />)}} />
-                            <Route exact path="/" >
+                            {/* <Route path="/homeAlt" render={() => {setShowVariant(true); return (<HomePageVariant history={history} data={allSpaces} />)}} />
+                            <Route path="/home" render={() => {setShowVariant(false); return (<HomePage history={history} data={allSpaces} />)}} /> */}
+                            <Route path="/" >
                                 {showVariant
                                     ? <Redirect to="/homeAlt" />
                                     : <HomePage history={history} data={allSpaces} />
